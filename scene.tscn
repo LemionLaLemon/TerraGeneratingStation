@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=10 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
-[ext_resource type="PackedScene" uid="uid://dd6n5puxbafet" path="res://blender-models/hopper.blend" id="3_3253y"]
+[ext_resource type="PackedScene" uid="uid://b1jbbtrklu2n2" path="res://hopper.tscn" id="3_3253y"]
+[ext_resource type="PackedScene" uid="uid://cyo0obynbdbk1" path="res://imported/conveyor.tscn" id="4_u3cyc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -32,20 +33,22 @@ size = Vector3(0.0804443, 0.332031, 0.164795)
 environment = SubResource("Environment_m7jmp")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0145018, -0.15, -0.00598693)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.914501, -0.15, -0.00598693)
 use_collision = true
-size = Vector3(17.6, 0.3, 12.4)
+size = Vector3(19.4, 0.3, 12.4)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -0.0209519, 5.07164, 4.44811)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0.11231, 2.17164, 2.54811)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.527453, 4.3914, 0.785095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53313, 2.66478, 1.00047)
+visible = false
 size = Vector3(0.1, 0.1, 0.1)
 script = ExtResource("1_nxogm")
 
 [node name="banana" type="RigidBody3D" parent="CSGBox3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00380623, -0.128503, -0.049543)
+visible = false
 physics_material_override = SubResource("PhysicsMaterial_nxogm")
 linear_damp = 0.5
 angular_damp = 23.871
@@ -58,4 +61,10 @@ shape = SubResource("BoxShape3D_nxogm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00649172, 0.0851288, 0.0187973)
 
 [node name="hopper" parent="." instance=ExtResource("3_3253y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.506409, 1.43682, 0.992643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.52545, 1.4356, 0.988095)
+
+[node name="conveyor" parent="." instance=ExtResource("4_u3cyc")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.4, 0, 1)
+
+[node name="conveyor2" parent="." instance=ExtResource("4_u3cyc")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.8, 0, 1)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1jbbtrklu2n2"]
+
+[ext_resource type="PackedScene" uid="uid://dd6n5puxbafet" path="res://blender-models/hopper.blend" id="1_6wt36"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_op1ys"]
+friction = 0.1
+
+[node name="hopper" instance=ExtResource("1_6wt36")]
+
+[node name="StaticBody3D" parent="Cube" index="0"]
+physics_material_override = SubResource("PhysicsMaterial_op1ys")

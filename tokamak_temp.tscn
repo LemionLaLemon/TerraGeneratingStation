@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bigrg03qoeskn"]
+
+[ext_resource type="PackedScene" uid="uid://d1bt5ie0ca4je" path="res://blender-models/tokamak.blend" id="1_ijrjq"]
+
+[node name="tokamak" instance=ExtResource("1_ijrjq")]
+
+[node name="Cylinder" parent="." index="9"]
+visible = false
+
+[node name="Divertor" parent="." index="17"]
+visible = false
+
+[node name="Inner Vertical Target_025" parent="." index="19"]
+visible = false
+
+[node name="Outer Vertical Target_025" parent="." index="20"]
+visible = false
+
+[node name="Tokamak_001" parent="." index="21"]
+visible = false

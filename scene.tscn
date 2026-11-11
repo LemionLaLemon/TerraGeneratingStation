@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=12 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
 [ext_resource type="PackedScene" uid="uid://b1jbbtrklu2n2" path="res://hopper.tscn" id="3_3253y"]
 [ext_resource type="PackedScene" uid="uid://cyo0obynbdbk1" path="res://imported/conveyor.tscn" id="4_u3cyc"]
+[ext_resource type="PackedScene" uid="uid://d1bt5ie0ca4je" path="res://blender-models/tokamak.blend" id="5_m7jmp"]
+[ext_resource type="Script" uid="uid://dguh8n3k5uptb" path="res://blender-models/diverter.gd" id="6_y2354"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -38,26 +40,27 @@ use_collision = true
 size = Vector3(19.4, 0.3, 12.4)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0.11231, 2.17164, 2.54811)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 35.6123, 19.0716, 38.1481)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+[node name="bananaSpawner" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53313, 2.66478, 1.00047)
 visible = false
+calculate_tangents = false
 size = Vector3(0.1, 0.1, 0.1)
 script = ExtResource("1_nxogm")
 
-[node name="banana" type="RigidBody3D" parent="CSGBox3D2"]
+[node name="banana" type="RigidBody3D" parent="bananaSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00380623, -0.128503, -0.049543)
 visible = false
 physics_material_override = SubResource("PhysicsMaterial_nxogm")
 linear_damp = 0.5
 angular_damp = 23.871
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="CSGBox3D2/banana"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="bananaSpawner/banana"]
 transform = Transform3D(-3.77879e-08, 0.864485, 0.502658, -1, -4.37114e-08, 0, 2.19719e-08, -0.502658, 0.864485, 0.000447094, 0.128011, 0.00520635)
 shape = SubResource("BoxShape3D_nxogm")
 
-[node name="banana" parent="CSGBox3D2/banana" instance=ExtResource("2_3253y")]
+[node name="banana" parent="bananaSpawner/banana" instance=ExtResource("2_3253y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00649172, 0.0851288, 0.0187973)
 
 [node name="hopper" parent="." instance=ExtResource("3_3253y")]
@@ -68,3 +71,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.4, 
 
 [node name="conveyor2" parent="." instance=ExtResource("4_u3cyc")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.8, 0, 1)
+
+[node name="tokamak" parent="." instance=ExtResource("5_m7jmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.3, 10.8, 23.2)
+script = ExtResource("6_y2354")

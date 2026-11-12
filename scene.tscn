@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=19 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
-[ext_resource type="PackedScene" uid="uid://b1jbbtrklu2n2" path="res://hopper.tscn" id="3_3253y"]
-[ext_resource type="PackedScene" uid="uid://cyo0obynbdbk1" path="res://imported/conveyor.tscn" id="4_u3cyc"]
-[ext_resource type="PackedScene" uid="uid://d1bt5ie0ca4je" path="res://blender-models/tokamak.blend" id="5_m7jmp"]
-[ext_resource type="Script" uid="uid://dguh8n3k5uptb" path="res://blender-models/diverter.gd" id="6_y2354"]
+[ext_resource type="PackedScene" uid="uid://cx3gjakrs0i8k" path="res://blender-models/plant.blend" id="4_u3cyc"]
+[ext_resource type="Script" uid="uid://bkv87oxvf4ooc" path="res://banana_hmi.gd" id="5_m7jmp"]
+[ext_resource type="Script" uid="uid://b5utvkg8nm2nk" path="res://player.gd" id="8_xlvrw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -29,6 +28,34 @@ rough = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_nxogm"]
 size = Vector3(0.0804443, 0.332031, 0.164795)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_73fnb"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u3cyc"]
+viewport_path = NodePath("Node3D/DX1000/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7jmp"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_u3cyc")
+uv1_scale = Vector3(-1, 1, -1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y2354"]
+font_size = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_u3cyc"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_m7jmp"]
+font_size = 32
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m7jmp"]
+viewport_path = NodePath("Node3D/CSGBox3D2/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2354"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_m7jmp")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -38,9 +65,6 @@ environment = SubResource("Environment_m7jmp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.914501, -0.15, -0.00598693)
 use_collision = true
 size = Vector3(19.4, 0.3, 12.4)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 35.6123, 19.0716, 38.1481)
 
 [node name="bananaSpawner" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53313, 2.66478, 1.00047)
@@ -63,15 +87,150 @@ shape = SubResource("BoxShape3D_nxogm")
 [node name="banana" parent="bananaSpawner/banana" instance=ExtResource("2_3253y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00649172, 0.0851288, 0.0187973)
 
-[node name="hopper" parent="." instance=ExtResource("3_3253y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.52545, 1.4356, 0.988095)
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -38.9, 9, -49.5)
+script = ExtResource("8_xlvrw")
 
-[node name="conveyor" parent="." instance=ExtResource("4_u3cyc")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.4, 0, 1)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_73fnb")
 
-[node name="conveyor2" parent="." instance=ExtResource("4_u3cyc")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.8, 0, 1)
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
-[node name="tokamak" parent="." instance=ExtResource("5_m7jmp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.3, 10.8, 23.2)
-script = ExtResource("6_y2354")
+[node name="plant" parent="." instance=ExtResource("4_u3cyc")]
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1, 8.5, -45.4)
+
+[node name="DX1000" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 1.34457, 0.468357, 1.53485)
+size = Vector3(0.2, 0.03, 0.2)
+material = SubResource("StandardMaterial3D_m7jmp")
+script = ExtResource("5_m7jmp")
+
+[node name="SubViewport" type="SubViewport" parent="Node3D/DX1000"]
+
+[node name="Panel" type="Panel" parent="Node3D/DX1000/SubViewport"]
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="Label" type="Label" parent="Node3D/DX1000/SubViewport"]
+offset_left = 32.0
+offset_top = 4.0
+offset_right = 202.0
+offset_bottom = 27.0
+text = "DX1000 (trust me bro)"
+label_settings = SubResource("LabelSettings_y2354")
+
+[node name="CenterContainer" type="CenterContainer" parent="Node3D/DX1000/SubViewport"]
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="Panel2" type="Panel" parent="Node3D/DX1000/SubViewport/CenterContainer"]
+custom_minimum_size = Vector2(450, 450)
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel3" type="Panel" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2"]
+custom_minimum_size = Vector2(450, 450)
+layout_mode = 2
+offset_right = 450.0
+offset_bottom = 450.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 241.0
+offset_bottom = 34.0
+text = "BANANA HOPPER WEIGHT"
+
+[node name="BN_H_WEIGHT" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 40.0
+offset_right = 239.0
+offset_bottom = 128.0
+text = "1600"
+label_settings = SubResource("LabelSettings_u3cyc")
+
+[node name="Label3" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 40.0
+offset_right = 239.0
+offset_bottom = 107.0
+text = "KG"
+label_settings = SubResource("LabelSettings_m7jmp")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 119.0
+offset_right = 241.0
+offset_bottom = 142.0
+text = "BANANA CONVEYOR FEED RATE"
+
+[node name="BN_C_RATE" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 148.0
+offset_right = 239.0
+offset_bottom = 236.0
+text = "1600"
+label_settings = SubResource("LabelSettings_u3cyc")
+
+[node name="Label4" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 148.0
+offset_right = 239.0
+offset_bottom = 215.0
+text = "KG/s"
+label_settings = SubResource("LabelSettings_m7jmp")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Label5" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 232.0
+offset_right = 241.0
+offset_bottom = 255.0
+text = "BANANA BLENDER WEIGHT"
+
+[node name="BN_B_WEIGHT" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 261.0
+offset_right = 239.0
+offset_bottom = 349.0
+text = "1600"
+label_settings = SubResource("LabelSettings_u3cyc")
+
+[node name="Label6" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 261.0
+offset_right = 239.0
+offset_bottom = 328.0
+text = "KG"
+label_settings = SubResource("LabelSettings_m7jmp")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0.729443, 1.54056, 4.03056)
+size = Vector3(1.3, 0.03, 2)
+material = SubResource("StandardMaterial3D_y2354")
+
+[node name="SubViewport" type="SubViewport" parent="Node3D/CSGBox3D2"]
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="InCoreCamera" type="Camera3D" parent="Node3D/CSGBox3D2/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.946784, 0.321869, 0, -0.321869, 0.946784, 0, 19.9527, 19.482)
+fov = 100.0

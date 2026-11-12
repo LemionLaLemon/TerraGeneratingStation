@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=21 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
 [ext_resource type="PackedScene" uid="uid://cx3gjakrs0i8k" path="res://blender-models/plant.blend" id="4_u3cyc"]
 [ext_resource type="Script" uid="uid://bkv87oxvf4ooc" path="res://banana_hmi.gd" id="5_m7jmp"]
+[ext_resource type="Script" uid="uid://3rnmwl5jqthk" path="res://BananaConveyorBreaker.gd" id="6_y2354"]
 [ext_resource type="Script" uid="uid://b5utvkg8nm2nk" path="res://player.gd" id="8_xlvrw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
@@ -33,7 +34,7 @@ radius = 0.4
 height = 1.8
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_u3cyc"]
-viewport_path = NodePath("Node3D/DX1000/SubViewport")
+viewport_path = NodePath("ControlRoom/BananaDX1000/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7jmp"]
 resource_local_to_scene = true
@@ -50,11 +51,14 @@ font_size = 48
 font_size = 32
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m7jmp"]
-viewport_path = NodePath("Node3D/CSGBox3D2/SubViewport")
+viewport_path = NodePath("ControlRoom/InCoreCamera/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2354"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_m7jmp")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y2354"]
+size = Vector3(0.1, 0.559937, 0.1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -99,22 +103,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="plant" parent="." instance=ExtResource("4_u3cyc")]
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="ControlRoom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1, 8.5, -45.4)
 
-[node name="DX1000" type="CSGBox3D" parent="Node3D"]
+[node name="BananaDX1000" type="CSGBox3D" parent="ControlRoom"]
 transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 1.34457, 0.468357, 1.53485)
 size = Vector3(0.2, 0.03, 0.2)
 material = SubResource("StandardMaterial3D_m7jmp")
 script = ExtResource("5_m7jmp")
 
-[node name="SubViewport" type="SubViewport" parent="Node3D/DX1000"]
+[node name="SubViewport" type="SubViewport" parent="ControlRoom/BananaDX1000"]
 
-[node name="Panel" type="Panel" parent="Node3D/DX1000/SubViewport"]
+[node name="Panel" type="Panel" parent="ControlRoom/BananaDX1000/SubViewport"]
 offset_right = 512.0
 offset_bottom = 512.0
 
-[node name="Label" type="Label" parent="Node3D/DX1000/SubViewport"]
+[node name="Label" type="Label" parent="ControlRoom/BananaDX1000/SubViewport"]
 offset_left = 32.0
 offset_top = 4.0
 offset_right = 202.0
@@ -122,23 +126,23 @@ offset_bottom = 27.0
 text = "DX1000 (trust me bro)"
 label_settings = SubResource("LabelSettings_y2354")
 
-[node name="CenterContainer" type="CenterContainer" parent="Node3D/DX1000/SubViewport"]
+[node name="CenterContainer" type="CenterContainer" parent="ControlRoom/BananaDX1000/SubViewport"]
 offset_right = 512.0
 offset_bottom = 512.0
 
-[node name="Panel2" type="Panel" parent="Node3D/DX1000/SubViewport/CenterContainer"]
+[node name="Panel2" type="Panel" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer"]
 custom_minimum_size = Vector2(450, 450)
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel3" type="Panel" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2"]
+[node name="Panel3" type="Panel" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2"]
 custom_minimum_size = Vector2(450, 450)
 layout_mode = 2
 offset_right = 450.0
 offset_bottom = 450.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+[node name="Label" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 11.0
@@ -146,7 +150,7 @@ offset_right = 241.0
 offset_bottom = 34.0
 text = "BANANA HOPPER WEIGHT"
 
-[node name="BN_H_WEIGHT" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+[node name="BN_H_WEIGHT" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 40.0
@@ -155,7 +159,7 @@ offset_bottom = 128.0
 text = "1600"
 label_settings = SubResource("LabelSettings_u3cyc")
 
-[node name="Label3" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+[node name="Label3" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 40.0
@@ -166,7 +170,7 @@ label_settings = SubResource("LabelSettings_m7jmp")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="Label2" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+[node name="Label2" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 119.0
@@ -174,7 +178,7 @@ offset_right = 241.0
 offset_bottom = 142.0
 text = "BANANA CONVEYOR FEED RATE"
 
-[node name="BN_C_RATE" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+[node name="BN_C_RATE" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 148.0
@@ -183,7 +187,7 @@ offset_bottom = 236.0
 text = "1600"
 label_settings = SubResource("LabelSettings_u3cyc")
 
-[node name="Label4" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+[node name="Label4" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 148.0
@@ -194,7 +198,7 @@ label_settings = SubResource("LabelSettings_m7jmp")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="Label5" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+[node name="Label5" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 232.0
@@ -202,7 +206,7 @@ offset_right = 241.0
 offset_bottom = 255.0
 text = "BANANA BLENDER WEIGHT"
 
-[node name="BN_B_WEIGHT" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+[node name="BN_B_WEIGHT" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 261.0
@@ -211,7 +215,7 @@ offset_bottom = 349.0
 text = "1600"
 label_settings = SubResource("LabelSettings_u3cyc")
 
-[node name="Label6" type="Label" parent="Node3D/DX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+[node name="Label6" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 261.0
@@ -222,15 +226,26 @@ label_settings = SubResource("LabelSettings_m7jmp")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Node3D"]
+[node name="InCoreCamera" type="CSGBox3D" parent="ControlRoom"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0.729443, 1.54056, 4.03056)
 size = Vector3(1.3, 0.03, 2)
 material = SubResource("StandardMaterial3D_y2354")
 
-[node name="SubViewport" type="SubViewport" parent="Node3D/CSGBox3D2"]
+[node name="SubViewport" type="SubViewport" parent="ControlRoom/InCoreCamera"]
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="InCoreCamera" type="Camera3D" parent="Node3D/CSGBox3D2/SubViewport"]
+[node name="InCoreCamera" type="Camera3D" parent="ControlRoom/InCoreCamera/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.946784, 0.321869, 0, -0.321869, 0.946784, 0, 19.9527, 19.482)
 fov = 100.0
+
+[node name="Breaker" type="CSGBox3D" parent="ControlRoom"]
+transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 1.32096, 0.100617, 1.31221)
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ControlRoom/Breaker"]
+script = ExtResource("6_y2354")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlRoom/Breaker/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.220032, -3.8147e-06)
+shape = SubResource("BoxShape3D_y2354")

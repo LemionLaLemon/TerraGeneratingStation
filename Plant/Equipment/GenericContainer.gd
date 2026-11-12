@@ -12,6 +12,9 @@ func _init(Elevation, Temperature, Volume = 1.0, Contents = {}):
 	self.contents = Contents
 	self.volume = Volume
 
+func getTemperature():
+	return temperature
+
 func total_volume():
 	var vol: float = 0
 	for content in contents:

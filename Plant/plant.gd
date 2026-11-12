@@ -22,6 +22,14 @@ var BananaConveyor
 var PulpSieve
 var PulpTank
 
+# Distillation stage
+var SludgeTank
+var PulpPump
+var PulpPumpBreaker
+var PulpStill
+var PulpStillBreaker
+var WaterTank
+
 var links = []
 
 func _ready():
@@ -50,9 +58,19 @@ func _ready():
 	PulpSieve = Sieve.new(BananaBlender, PulpTank, 1.0, [Common.Materials.Pulp, Common.Materials.Water, Common.Materials.K40], true)
 	links.append(PulpSieve)
 	
+	# Distillation stage
+	PulpStillBreaker = Breaker.new(BusA, null, false)
+	PulpPumpBreaker = Breaker.new(BusA, null, false)
+	SludgeTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 100)
+	WaterTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 100)
+	PulpStill = Still.new(0, Units.CtoK(AMBIENT_TEMPERATURE), PulpStillBreaker, WaterTank)
+	PulpPump = Pump.new(PulpTank, PulpStill, 1.0, PulpPumpBreaker, 15.0)
+	links.append(PulpPump)
+	
 	print("Ready")
 
 func _physics_process(dt):
-		for link in links:
-			link.step(dt)
-		BananaBlender.step(dt)
+	for link in links:
+		link.step(dt)
+	BananaBlender.step(dt)
+	PulpStill.step(dt)

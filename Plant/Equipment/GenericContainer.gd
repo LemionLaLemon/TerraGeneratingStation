@@ -11,7 +11,6 @@ func _init(Elevation, Temperature, Volume = 1.0, Contents = {}):
 	self.temperature = Temperature
 	self.contents = Contents
 	self.volume = Volume
-	print("Newed tank with " + str(self.elevation) + "m " + str(self.temperature) + "k")
 
 func total_volume():
 	var vol: float = 0

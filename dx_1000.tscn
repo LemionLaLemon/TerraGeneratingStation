@@ -1,0 +1,316 @@
+[gd_scene load_steps=14 format=3 uid="uid://dlp384ayvbxcb"]
+
+[ext_resource type="PackedScene" uid="uid://bqenjvexd2mbo" path="res://blender-models/dx1000.blend" id="1_uy17x"]
+[ext_resource type="FontFile" uid="uid://dh04hvxxdo5mk" path="res://external/VCR_OSD_MONO_1.001.ttf" id="2_435pj"]
+[ext_resource type="Script" uid="uid://bw1488iat777b" path="res://dx_1000.gd" id="2_883dd"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uy17x"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uy17x"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_uy17x")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egboq"]
+bg_color = Color(0.752941, 0.752941, 0.752941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_883dd"]
+bg_color = Color(0.752941, 0.752941, 0.752941, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.608664, 0.608664, 0.608664, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3lcq"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuhqy"]
+bg_color = Color(0.54902, 0.172549, 0.894118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_435pj"]
+bg_color = Color(0, 0.501961, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08f15"]
+bg_color = Color(0.643137, 0.172549, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1vja"]
+bg_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chlfx"]
+bg_color = Color(1, 0.643137, 0, 1)
+
+[node name="dx1000" instance=ExtResource("1_uy17x")]
+script = ExtResource("2_883dd")
+
+[node name="Enclosure" parent="." index="2"]
+surface_material_override/1 = SubResource("StandardMaterial3D_uy17x")
+
+[node name="SubViewport" type="SubViewport" parent="." index="9"]
+size = Vector2i(640, 480)
+
+[node name="Screen" type="Panel" parent="SubViewport" index="0"]
+custom_minimum_size = Vector2(640, 480)
+offset_right = 640.0
+offset_bottom = 480.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_egboq")
+metadata/_edit_use_anchors_ = true
+
+[node name="1" type="Panel" parent="SubViewport/Screen" index="0"]
+custom_minimum_size = Vector2(320, 160)
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_883dd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="SubViewport/Screen/1" index="0"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_x3lcq")
+text = "BANANA HOPPER WEIGHT"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="SubViewport/Screen/1" index="1"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 315.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 61
+text = "1600.00"
+horizontal_alignment = 2
+
+[node name="Unit" type="Label" parent="SubViewport/Screen/1" index="2"]
+layout_mode = 0
+offset_top = 92.0
+offset_right = 315.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 32
+text = "DEG C"
+horizontal_alignment = 2
+
+[node name="2" type="Panel" parent="SubViewport/Screen" index="1"]
+custom_minimum_size = Vector2(320, 160)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 320.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_883dd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="SubViewport/Screen/2" index="0"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_uuhqy")
+text = "BANANA HOPPER WEIGHT"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="SubViewport/Screen/2" index="1"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 315.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 61
+text = "1600.00"
+horizontal_alignment = 2
+
+[node name="Unit" type="Label" parent="SubViewport/Screen/2" index="2"]
+layout_mode = 0
+offset_top = 92.0
+offset_right = 315.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 32
+text = "DEG C"
+horizontal_alignment = 2
+
+[node name="3" type="Panel" parent="SubViewport/Screen" index="2"]
+custom_minimum_size = Vector2(320, 160)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.333333
+anchor_bottom = 0.333333
+offset_right = 320.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_883dd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="SubViewport/Screen/3" index="0"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_435pj")
+text = "BANANA HOPPER WEIGHT"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="SubViewport/Screen/3" index="1"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 315.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 61
+text = "1600.00"
+horizontal_alignment = 2
+
+[node name="Unit" type="Label" parent="SubViewport/Screen/3" index="2"]
+layout_mode = 0
+offset_top = 92.0
+offset_right = 315.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 32
+text = "DEG C"
+horizontal_alignment = 2
+
+[node name="4" type="Panel" parent="SubViewport/Screen" index="3"]
+custom_minimum_size = Vector2(320, 160)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.333333
+anchor_right = 0.5
+anchor_bottom = 0.333333
+offset_right = 320.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_883dd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="SubViewport/Screen/4" index="0"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_08f15")
+text = "BANANA HOPPER WEIGHT"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="SubViewport/Screen/4" index="1"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 315.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 61
+text = "1600.00"
+horizontal_alignment = 2
+
+[node name="Unit" type="Label" parent="SubViewport/Screen/4" index="2"]
+layout_mode = 0
+offset_top = 92.0
+offset_right = 315.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 32
+text = "DEG C"
+horizontal_alignment = 2
+
+[node name="5" type="Panel" parent="SubViewport/Screen" index="4"]
+custom_minimum_size = Vector2(320, 160)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.666667
+anchor_bottom = 0.666667
+offset_right = 320.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_883dd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="SubViewport/Screen/5" index="0"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_h1vja")
+text = "BANANA HOPPER WEIGHT"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="SubViewport/Screen/5" index="1"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 315.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 61
+text = "1600.00"
+horizontal_alignment = 2
+
+[node name="Unit" type="Label" parent="SubViewport/Screen/5" index="2"]
+layout_mode = 0
+offset_top = 92.0
+offset_right = 315.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 32
+text = "DEG C"
+horizontal_alignment = 2
+
+[node name="6" type="Panel" parent="SubViewport/Screen" index="5"]
+custom_minimum_size = Vector2(320, 160)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.666667
+anchor_right = 0.5
+anchor_bottom = 0.666667
+offset_right = 320.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_883dd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="SubViewport/Screen/6" index="0"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_chlfx")
+text = "BANANA HOPPER WEIGHT"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="SubViewport/Screen/6" index="1"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 315.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 61
+text = "1600.00"
+horizontal_alignment = 2
+
+[node name="Unit" type="Label" parent="SubViewport/Screen/6" index="2"]
+layout_mode = 0
+offset_top = 92.0
+offset_right = 315.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_435pj")
+theme_override_font_sizes/font_size = 32
+text = "DEG C"
+horizontal_alignment = 2

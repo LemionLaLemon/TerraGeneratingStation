@@ -1,6 +1,7 @@
 class_name Link
 extends RefCounted
 
+var gates = []
 var source
 var sink
 var max_flow_kgs: float = 1.0
@@ -16,6 +17,9 @@ func _init(from, to, max_flow = 1.0):
 	max_flow_kgs  = max_flow
 
 func _capacity():
+	for gate in gates:
+		if not gate.isOpen():
+			return 0.0
 	if _head() <= 0.0:
 		return 0.0
 	return min(coefficient * sqrt(_head()), max_flow_kgs)

@@ -6,7 +6,7 @@ var gravity = 9.8
 
 @onready var cam = $Camera3D
 @onready var cameraFOVNormal = cam.fov
-var cameraFOVZoomed = 30.0
+var cameraFOVZoomed = 25.0
 var zoomSpeed = 180.0
 var rmbLock = false
 

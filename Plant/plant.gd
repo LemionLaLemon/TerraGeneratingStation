@@ -30,11 +30,32 @@ var PulpStill
 var PulpStillBreaker
 var WaterTank
 
+# Separating stage 2
+var SeparatorGirdlerSeparator
+var SeparatorGirdlerSeparatorBreaker
+var SeparatorProduct
+var SeparatorEffluent
+var SeparatorRecirculationIsolationValve
+var SeparatorRecirculationIsolationValveBreaker
+var SeparatorRecirculationPump
+var SeparatorRecirculationPumpBreaker
+var SeparatorSourcePump
+var SeparatorSourcePumpBreaker
+var SeparatorEffluentDischargeToRadwastePump #
+var SeparatorEffluentDischargeToRadwastePumpBreaker
+var SeparatorEffluentDischargeToRadwasteIsolationValve
+var SeparatorEffluentDischargeToRadwasteIsolationValveBreaker
+
+# Radwaste
+var EquipmentDrainCollectorTank
+
 var links = []
 
 func _ready():
 	print(Common.Info[Common.Materials.Water].Density)
 	Grid = Bus.new(230_000, 60, true)
+	# Radwaste
+	EquipmentDrainCollectorTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 50000) # temporary "infinite" volmume
 	
 	# Electrical
 	TR_S_Secondary = Bus.new(120, 60, false) 
@@ -67,6 +88,27 @@ func _ready():
 	PulpPump = Pump.new(PulpTank, PulpStill, 1.0, PulpPumpBreaker, 15.0)
 	links.append(PulpPump)
 	
+	# Separating stage 2
+	SeparatorSourcePumpBreaker = Breaker.new(BusA, null, false)
+	SeparatorRecirculationIsolationValveBreaker = Breaker.new(BusA, null, false)
+	SeparatorRecirculationPumpBreaker = Breaker.new(BusA, null, false)
+	SeparatorGirdlerSeparatorBreaker = Breaker.new(BusA, null, false)
+	SeparatorEffluentDischargeToRadwasteIsolationValveBreaker = Breaker.new(BusA, null, false)
+	SeparatorEffluentDischargeToRadwastePumpBreaker = Breaker.new(BusA, null, false)
+	SeparatorProduct = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 200)
+	SeparatorEffluent = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 200)
+	SeparatorGirdlerSeparator = GirdlerSeparator.new(0, Units.CtoK(AMBIENT_TEMPERATURE), SeparatorGirdlerSeparatorBreaker, SeparatorProduct, SeparatorEffluent, 400)
+	SeparatorSourcePump = Pump.new(WaterTank, SeparatorGirdlerSeparator, 1.0, SeparatorSourcePumpBreaker)
+	SeparatorRecirculationPump = Pump.new(SeparatorEffluent, SeparatorGirdlerSeparator, 1.0, SeparatorGirdlerSeparatorBreaker)
+	SeparatorRecirculationIsolationValve = MotorOperatedValve.new(SeparatorRecirculationIsolationValveBreaker)
+	SeparatorRecirculationPump.gates.append(SeparatorRecirculationIsolationValve)
+	links.append(SeparatorSourcePump)
+	links.append(SeparatorRecirculationPump)
+	SeparatorEffluentDischargeToRadwastePump = Pump.new(SeparatorEffluent, EquipmentDrainCollectorTank, 1.0, SeparatorEffluentDischargeToRadwastePumpBreaker)
+	SeparatorEffluentDischargeToRadwasteIsolationValve = MotorOperatedValve.new(SeparatorEffluentDischargeToRadwasteIsolationValveBreaker)
+	SeparatorEffluentDischargeToRadwastePump.gates.append(SeparatorEffluentDischargeToRadwasteIsolationValve)
+	links.append(SeparatorEffluentDischargeToRadwastePump)
+	
 	print("Ready")
 
 func _physics_process(dt):
@@ -74,3 +116,4 @@ func _physics_process(dt):
 		link.step(dt)
 	BananaBlender.step(dt)
 	PulpStill.step(dt)
+	SeparatorGirdlerSeparator.step(dt)

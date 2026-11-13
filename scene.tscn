@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=35 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://b5utvkg8nm2nk" path="res://player.gd" id="8_xlvrw"]
 [ext_resource type="Script" uid="uid://qchygjy56pxw" path="res://PulpPumpBreaker.gd" id="10_fy5k1"]
 [ext_resource type="Script" uid="uid://5qy2xcch6vbc" path="res://PulpStillBreaker.gd" id="11_5c1cw"]
+[ext_resource type="PackedScene" uid="uid://dlp384ayvbxcb" path="res://dx_1000.tscn" id="12_5c1cw"]
+[ext_resource type="Script" uid="uid://doddov2e23i40" path="res://DXChannel.gd" id="13_akxrc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -81,6 +83,33 @@ albedo_texture = SubResource("ViewportTexture_m7jmp")
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2354"]
 size = Vector3(0.1, 0.0934448, 0.1)
 
+[sub_resource type="Resource" id="Resource_gu47o"]
+script = ExtResource("13_akxrc")
+expression = "BananaHopper.total_mass()"
+label_text = "BANANA HOPPER WEIGHT"
+unit_text = "KG"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_8hm71"]
+script = ExtResource("13_akxrc")
+expression = "BananaConveyor.speed()"
+label_text = "CONVEYOR FEED RATE"
+unit_text = "m/s"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_223my"]
+script = ExtResource("13_akxrc")
+expression = "BananaBlender.total_mass()"
+label_text = "BLENDER MASS"
+unit_text = "KG"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -128,7 +157,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1, 8.5, -45.4)
 
 [node name="BananaDX1000" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 1.34457, 0.468357, 1.53485)
+transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 0.590332, 0.468357, 0.126492)
 size = Vector3(0.2, 0.03, 0.2)
 material = SubResource("StandardMaterial3D_m7jmp")
 script = ExtResource("5_m7jmp")
@@ -248,7 +277,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="BlenderDX1000" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 1.14457, 0.468357, 1.53485)
+transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 0.390331, 0.468357, 0.126492)
 size = Vector3(0.2, 0.03, 0.2)
 material = SubResource("StandardMaterial3D_73fnb")
 script = ExtResource("6_ni31j")
@@ -368,7 +397,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="PulpDX1000" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 0.944574, 0.468357, 1.53485)
+transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 0.190334, 0.468357, 0.126492)
 size = Vector3(0.2, 0.03, 0.2)
 material = SubResource("StandardMaterial3D_5juve")
 script = ExtResource("7_73fnb")
@@ -488,6 +517,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="Label7" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 320.0
 offset_right = 241.0
@@ -495,6 +525,7 @@ offset_bottom = 343.0
 text = "CONDENSATE TANK WEIGHT"
 
 [node name="COND_TK_WEIGHT" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 349.0
 offset_right = 239.0
@@ -503,6 +534,7 @@ text = "1600"
 label_settings = SubResource("LabelSettings_u3cyc")
 
 [node name="Label8" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 349.0
 offset_right = 239.0
@@ -513,7 +545,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="InCoreCamera" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0.729443, 1.54056, 4.03056)
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.0267258, 1.54056, 3.61528)
 size = Vector3(1.3, 0.03, 2)
 material = SubResource("StandardMaterial3D_y2354")
 
@@ -526,7 +558,7 @@ transform = Transform3D(1, 0, 0, 0, 0.946784, 0.321869, 0, -0.321869, 0.946784, 
 fov = 100.0
 
 [node name="Breaker" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 1.32096, 0.100617, 1.31221)
+transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 0.573952, 0.100617, -0.0961494)
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ControlRoom/Breaker"]
@@ -537,7 +569,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0132141, -3.8147e-06)
 shape = SubResource("BoxShape3D_y2354")
 
 [node name="Breaker2" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 1.12096, 0.100617, 1.31221)
+transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 0.373951, 0.100617, -0.0961494)
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ControlRoom/Breaker2"]
@@ -548,7 +580,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0132141, -3.8147e-06)
 shape = SubResource("BoxShape3D_y2354")
 
 [node name="Breaker3" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 0.920961, 0.100617, 1.31221)
+transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 0.17395, 0.100617, -0.0961494)
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ControlRoom/Breaker3"]
@@ -559,7 +591,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0132141, -3.8147e-06)
 shape = SubResource("BoxShape3D_y2354")
 
 [node name="Breaker4" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 0.720961, 0.100617, 1.31221)
+transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, -0.0260468, 0.100617, -0.0961494)
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ControlRoom/Breaker4"]
@@ -568,3 +600,8 @@ script = ExtResource("11_5c1cw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ControlRoom/Breaker4/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0132141, -3.8147e-06)
 shape = SubResource("BoxShape3D_y2354")
+
+[node name="dx1000" parent="." instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, -40.1148, 8.97432, -45.2803)
+channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_gu47o"), SubResource("Resource_8hm71"), SubResource("Resource_223my")])
+updateEvery = 0.25

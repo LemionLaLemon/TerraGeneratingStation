@@ -62,4 +62,5 @@ const Info = {
 	Materials.D2:    {"Density": 0.167, "SpecificHeat": 7240.0, "State": States.Gas | States.Liquid | States.Solid},
 	Materials.K40:   {"Density": 862.0, "SpecificHeat": 757.0, "State": States.Solid | States.Liquid},
 	Materials.O:     {"Density": 1.31, "SpecificHeat": 920.0, "State": States.Gas | States.Liquid | States.Solid},
+	Materials.H2O: {"Density": 998.2, "SpecificHeat": 4184.0, "State": States.Liquid | States.Solid | States.Gas},
 }

@@ -1,16 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=26 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
 [ext_resource type="PackedScene" uid="uid://cx3gjakrs0i8k" path="res://blender-models/plant.blend" id="4_u3cyc"]
-[ext_resource type="Script" uid="uid://bkv87oxvf4ooc" path="res://banana_hmi.gd" id="5_m7jmp"]
-[ext_resource type="Script" uid="uid://b1unnw4yqiowq" path="res://blender_dx_1000.gd" id="6_ni31j"]
-[ext_resource type="Script" uid="uid://3rnmwl5jqthk" path="res://BananaConveyorBreaker.gd" id="6_y2354"]
-[ext_resource type="Script" uid="uid://per0rua5hhsf" path="res://pulp_dx_1000.gd" id="7_73fnb"]
-[ext_resource type="Script" uid="uid://cjsdo28x8t2d0" path="res://banana_blender_breaker.gd" id="8_73fnb"]
 [ext_resource type="Script" uid="uid://b5utvkg8nm2nk" path="res://player.gd" id="8_xlvrw"]
-[ext_resource type="Script" uid="uid://qchygjy56pxw" path="res://PulpPumpBreaker.gd" id="10_fy5k1"]
-[ext_resource type="Script" uid="uid://5qy2xcch6vbc" path="res://PulpStillBreaker.gd" id="11_5c1cw"]
+[ext_resource type="PackedScene" uid="uid://d126fnwgvrbxc" path="res://16_mm_pushbutton.tscn" id="11_fy5k1"]
 [ext_resource type="PackedScene" uid="uid://dlp384ayvbxcb" path="res://dx_1000.tscn" id="12_5c1cw"]
 [ext_resource type="Script" uid="uid://doddov2e23i40" path="res://DXChannel.gd" id="13_akxrc"]
 
@@ -38,40 +32,7 @@ size = Vector3(0.0804443, 0.332031, 0.164795)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_73fnb"]
 radius = 0.4
-height = 1.8
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_u3cyc"]
-viewport_path = NodePath("ControlRoom/BananaDX1000/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7jmp"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_u3cyc")
-uv1_scale = Vector3(-1, 1, -1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_y2354"]
-font_size = 15
-
-[sub_resource type="LabelSettings" id="LabelSettings_u3cyc"]
-font_size = 48
-
-[sub_resource type="LabelSettings" id="LabelSettings_m7jmp"]
-font_size = 32
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_xlvrw"]
-viewport_path = NodePath("ControlRoom/BlenderDX1000/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73fnb"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_xlvrw")
-uv1_scale = Vector3(-1, 1, -1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_73fnb"]
-viewport_path = NodePath("ControlRoom/PulpDX1000/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5juve"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_73fnb")
-uv1_scale = Vector3(-1, 1, -1)
+height = 1.6
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m7jmp"]
 viewport_path = NodePath("ControlRoom/InCoreCamera/SubViewport")
@@ -79,9 +40,6 @@ viewport_path = NodePath("ControlRoom/InCoreCamera/SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2354"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_m7jmp")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_y2354"]
-size = Vector3(0.1, 0.0934448, 0.1)
 
 [sub_resource type="Resource" id="Resource_gu47o"]
 script = ExtResource("13_akxrc")
@@ -105,6 +63,69 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 script = ExtResource("13_akxrc")
 expression = "BananaBlender.total_mass()"
 label_text = "BLENDER MASS"
+unit_text = "KG"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_5c1cw"]
+script = ExtResource("13_akxrc")
+expression = "BananaBlender.total_mass()"
+label_text = "BLENDER WEIGHT"
+unit_text = "KG"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_akxrc"]
+script = ExtResource("13_akxrc")
+expression = "BananaBlender.getRpm()"
+label_text = "BLENDER SPEED"
+unit_text = "RPM"
+format = "%d"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_17rhs"]
+script = ExtResource("13_akxrc")
+expression = "PulpTank.total_mass()"
+label_text = "PULP TANK WEIGHT"
+unit_text = "KG"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_8j1ou"]
+script = ExtResource("13_akxrc")
+expression = "PulpStill.total_mass()"
+label_text = "STILL WEIGHT"
+unit_text = "KG"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_o3hm7"]
+script = ExtResource("13_akxrc")
+expression = "Units.KtoC(PulpStill.getTemperature())"
+label_text = "STILL TEMPERATURE"
+unit_text = "DEG C"
+format = "%.1f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_xpof7"]
+script = ExtResource("13_akxrc")
+expression = "SludgeTank.total_mass()"
+label_text = "SLUDE TANK WEIGHT"
+unit_text = "KG"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_302uq"]
+script = ExtResource("13_akxrc")
+expression = "WaterTank.total_mass()"
+label_text = "CONDENSATE TANK WEIGHT"
 unit_text = "KG"
 format = "%.2f"
 offset = 0.0
@@ -149,400 +170,12 @@ script = ExtResource("8_xlvrw")
 shape = SubResource("CapsuleShape3D_73fnb")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="plant" parent="." instance=ExtResource("4_u3cyc")]
 
 [node name="ControlRoom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1, 8.5, -45.4)
-
-[node name="BananaDX1000" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 0.590332, 0.468357, 0.126492)
-size = Vector3(0.2, 0.03, 0.2)
-material = SubResource("StandardMaterial3D_m7jmp")
-script = ExtResource("5_m7jmp")
-
-[node name="SubViewport" type="SubViewport" parent="ControlRoom/BananaDX1000"]
-
-[node name="Panel" type="Panel" parent="ControlRoom/BananaDX1000/SubViewport"]
-offset_right = 512.0
-offset_bottom = 512.0
-
-[node name="Label" type="Label" parent="ControlRoom/BananaDX1000/SubViewport"]
-offset_left = 32.0
-offset_top = 4.0
-offset_right = 202.0
-offset_bottom = 27.0
-text = "DX1000 (trust me bro)"
-label_settings = SubResource("LabelSettings_y2354")
-
-[node name="CenterContainer" type="CenterContainer" parent="ControlRoom/BananaDX1000/SubViewport"]
-offset_right = 512.0
-offset_bottom = 512.0
-
-[node name="Panel2" type="Panel" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer"]
-custom_minimum_size = Vector2(450, 450)
-layout_mode = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Panel3" type="Panel" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2"]
-custom_minimum_size = Vector2(450, 450)
-layout_mode = 2
-offset_right = 450.0
-offset_bottom = 450.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 11.0
-offset_right = 241.0
-offset_bottom = 34.0
-text = "BANANA HOPPER WEIGHT"
-
-[node name="BN_H_WEIGHT" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 40.0
-offset_right = 239.0
-offset_bottom = 128.0
-text = "1600"
-label_settings = SubResource("LabelSettings_u3cyc")
-
-[node name="Label3" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 40.0
-offset_right = 239.0
-offset_bottom = 107.0
-text = "KG"
-label_settings = SubResource("LabelSettings_m7jmp")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Label2" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 119.0
-offset_right = 241.0
-offset_bottom = 142.0
-text = "BANANA CONVEYOR FEED RATE"
-
-[node name="BN_C_RATE" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 148.0
-offset_right = 239.0
-offset_bottom = 236.0
-text = "1600"
-label_settings = SubResource("LabelSettings_u3cyc")
-
-[node name="Label4" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 148.0
-offset_right = 239.0
-offset_bottom = 215.0
-text = "m/s"
-label_settings = SubResource("LabelSettings_m7jmp")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Label5" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 232.0
-offset_right = 241.0
-offset_bottom = 255.0
-text = "BANANA BLENDER WEIGHT"
-
-[node name="BN_B_WEIGHT" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 261.0
-offset_right = 239.0
-offset_bottom = 349.0
-text = "1600"
-label_settings = SubResource("LabelSettings_u3cyc")
-
-[node name="Label6" type="Label" parent="ControlRoom/BananaDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 261.0
-offset_right = 239.0
-offset_bottom = 328.0
-text = "KG"
-label_settings = SubResource("LabelSettings_m7jmp")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="BlenderDX1000" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 0.390331, 0.468357, 0.126492)
-size = Vector3(0.2, 0.03, 0.2)
-material = SubResource("StandardMaterial3D_73fnb")
-script = ExtResource("6_ni31j")
-
-[node name="SubViewport" type="SubViewport" parent="ControlRoom/BlenderDX1000"]
-
-[node name="Panel" type="Panel" parent="ControlRoom/BlenderDX1000/SubViewport"]
-offset_right = 512.0
-offset_bottom = 512.0
-
-[node name="Label" type="Label" parent="ControlRoom/BlenderDX1000/SubViewport"]
-offset_left = 32.0
-offset_top = 4.0
-offset_right = 202.0
-offset_bottom = 27.0
-text = "DX1000 (trust me bro)"
-label_settings = SubResource("LabelSettings_y2354")
-
-[node name="CenterContainer" type="CenterContainer" parent="ControlRoom/BlenderDX1000/SubViewport"]
-offset_right = 512.0
-offset_bottom = 512.0
-
-[node name="Panel2" type="Panel" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer"]
-custom_minimum_size = Vector2(450, 450)
-layout_mode = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Panel3" type="Panel" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer/Panel2"]
-custom_minimum_size = Vector2(450, 450)
-layout_mode = 2
-offset_right = 450.0
-offset_bottom = 450.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 11.0
-offset_right = 241.0
-offset_bottom = 34.0
-text = "BANANA BLENDER WEIGHT"
-
-[node name="BN_B_WEIGHT" type="Label" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 40.0
-offset_right = 239.0
-offset_bottom = 128.0
-text = "1600"
-label_settings = SubResource("LabelSettings_u3cyc")
-
-[node name="Label3" type="Label" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 40.0
-offset_right = 239.0
-offset_bottom = 107.0
-text = "KG"
-label_settings = SubResource("LabelSettings_m7jmp")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Label2" type="Label" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 119.0
-offset_right = 241.0
-offset_bottom = 142.0
-text = "BANANA BLENDER RPM"
-
-[node name="BN_B_RPM" type="Label" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 148.0
-offset_right = 239.0
-offset_bottom = 236.0
-text = "1600"
-label_settings = SubResource("LabelSettings_u3cyc")
-
-[node name="Label4" type="Label" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 148.0
-offset_right = 239.0
-offset_bottom = 215.0
-text = "RPM"
-label_settings = SubResource("LabelSettings_m7jmp")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Label5" type="Label" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 220.0
-offset_right = 241.0
-offset_bottom = 243.0
-text = "PULP TANK WEIGHT"
-
-[node name="PL_TK_WEIGHT" type="Label" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 249.0
-offset_right = 239.0
-offset_bottom = 337.0
-text = "1600"
-label_settings = SubResource("LabelSettings_u3cyc")
-
-[node name="Label6" type="Label" parent="ControlRoom/BlenderDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 249.0
-offset_right = 239.0
-offset_bottom = 316.0
-text = "KG"
-label_settings = SubResource("LabelSettings_m7jmp")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="PulpDX1000" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(-1.70794e-08, 4.02366e-08, -1, 0.920505, 0.390731, 0, 0.390731, -0.920505, -4.37114e-08, 0.190334, 0.468357, 0.126492)
-size = Vector3(0.2, 0.03, 0.2)
-material = SubResource("StandardMaterial3D_5juve")
-script = ExtResource("7_73fnb")
-
-[node name="SubViewport" type="SubViewport" parent="ControlRoom/PulpDX1000"]
-
-[node name="Panel" type="Panel" parent="ControlRoom/PulpDX1000/SubViewport"]
-offset_right = 512.0
-offset_bottom = 512.0
-
-[node name="Label" type="Label" parent="ControlRoom/PulpDX1000/SubViewport"]
-offset_left = 32.0
-offset_top = 4.0
-offset_right = 202.0
-offset_bottom = 27.0
-text = "DX1000 (trust me bro)"
-label_settings = SubResource("LabelSettings_y2354")
-
-[node name="CenterContainer" type="CenterContainer" parent="ControlRoom/PulpDX1000/SubViewport"]
-offset_right = 512.0
-offset_bottom = 512.0
-
-[node name="Panel2" type="Panel" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer"]
-custom_minimum_size = Vector2(450, 450)
-layout_mode = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Panel3" type="Panel" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2"]
-custom_minimum_size = Vector2(450, 450)
-layout_mode = 2
-offset_right = 450.0
-offset_bottom = 450.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 11.0
-offset_right = 241.0
-offset_bottom = 34.0
-text = "STILL VESSEL WEIGHT"
-
-[node name="ST_TK_WEIGHT" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 40.0
-offset_right = 239.0
-offset_bottom = 128.0
-text = "1600"
-label_settings = SubResource("LabelSettings_u3cyc")
-
-[node name="Label3" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 40.0
-offset_right = 239.0
-offset_bottom = 107.0
-text = "KG"
-label_settings = SubResource("LabelSettings_m7jmp")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Label2" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 119.0
-offset_right = 241.0
-offset_bottom = 142.0
-text = "STILL TEMPERATURE"
-
-[node name="PL_ST_TEMPERATURE" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 148.0
-offset_right = 239.0
-offset_bottom = 236.0
-text = "1600"
-label_settings = SubResource("LabelSettings_u3cyc")
-
-[node name="Label4" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 148.0
-offset_right = 239.0
-offset_bottom = 215.0
-text = "DEG C"
-label_settings = SubResource("LabelSettings_m7jmp")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Label5" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 220.0
-offset_right = 241.0
-offset_bottom = 243.0
-text = "SLUDE TANK WEIGHT"
-
-[node name="SL_TK_WEIGHT" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 249.0
-offset_right = 239.0
-offset_bottom = 337.0
-text = "1600"
-label_settings = SubResource("LabelSettings_u3cyc")
-
-[node name="Label6" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 249.0
-offset_right = 239.0
-offset_bottom = 316.0
-text = "KG"
-label_settings = SubResource("LabelSettings_m7jmp")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Label7" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 320.0
-offset_right = 241.0
-offset_bottom = 343.0
-text = "CONDENSATE TANK WEIGHT"
-
-[node name="COND_TK_WEIGHT" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 349.0
-offset_right = 239.0
-offset_bottom = 437.0
-text = "1600"
-label_settings = SubResource("LabelSettings_u3cyc")
-
-[node name="Label8" type="Label" parent="ControlRoom/PulpDX1000/SubViewport/CenterContainer/Panel2/Panel3"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 349.0
-offset_right = 239.0
-offset_bottom = 416.0
-text = "KG"
-label_settings = SubResource("LabelSettings_m7jmp")
-horizontal_alignment = 2
-vertical_alignment = 2
 
 [node name="InCoreCamera" type="CSGBox3D" parent="ControlRoom"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.0267258, 1.54056, 3.61528)
@@ -557,51 +190,33 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.946784, 0.321869, 0, -0.321869, 0.946784, 0, 19.9527, 19.482)
 fov = 100.0
 
-[node name="Breaker" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 0.573952, 0.100617, -0.0961494)
-size = Vector3(0.1, 0.1, 0.1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="ControlRoom/Breaker"]
-script = ExtResource("6_y2354")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlRoom/Breaker/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0132141, -3.8147e-06)
-shape = SubResource("BoxShape3D_y2354")
-
-[node name="Breaker2" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 0.373951, 0.100617, -0.0961494)
-size = Vector3(0.1, 0.1, 0.1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="ControlRoom/Breaker2"]
-script = ExtResource("8_73fnb")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlRoom/Breaker2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0132141, -3.8147e-06)
-shape = SubResource("BoxShape3D_y2354")
-
-[node name="Breaker3" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 0.17395, 0.100617, -0.0961494)
-size = Vector3(0.1, 0.1, 0.1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="ControlRoom/Breaker3"]
-script = ExtResource("10_fy5k1")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlRoom/Breaker3/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0132141, -3.8147e-06)
-shape = SubResource("BoxShape3D_y2354")
-
-[node name="Breaker4" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, -0.0260468, 0.100617, -0.0961494)
-size = Vector3(0.1, 0.1, 0.1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="ControlRoom/Breaker4"]
-script = ExtResource("11_5c1cw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlRoom/Breaker4/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0132141, -3.8147e-06)
-shape = SubResource("BoxShape3D_y2354")
-
-[node name="dx1000" parent="." instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, -40.1148, 8.97432, -45.2803)
+[node name="BananaHopperDx1000" parent="." instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, -39.5239, 8.96723, -45.2831)
 channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_gu47o"), SubResource("Resource_8hm71"), SubResource("Resource_223my")])
 updateEvery = 0.25
+
+[node name="BlenderDx1000" parent="." instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, -39.7239, 8.96723, -45.2831)
+channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_5c1cw"), SubResource("Resource_akxrc"), SubResource("Resource_17rhs")])
+updateEvery = 0.25
+
+[node name="StillDx1000" parent="." instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, -39.9239, 8.96723, -45.2831)
+channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_8j1ou"), SubResource("Resource_o3hm7"), SubResource("Resource_xpof7"), SubResource("Resource_302uq")])
+updateEvery = 0.25
+
+[node name="16mm_pushbutton" parent="." instance=ExtResource("11_fy5k1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, -39.4869, 8.65016, -45.4542)
+breakerName = "BananaConveyorBreaker"
+
+[node name="16mm_pushbutton2" parent="." instance=ExtResource("11_fy5k1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, -39.5869, 8.65016, -45.4542)
+breakerName = "BananaBlenderBreaker"
+
+[node name="16mm_pushbutton3" parent="." instance=ExtResource("11_fy5k1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, -39.6869, 8.65016, -45.4542)
+breakerName = "PulpPumpBreaker"
+
+[node name="16mm_pushbutton4" parent="." instance=ExtResource("11_fy5k1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, -39.7868, 8.65016, -45.4542)
+breakerName = "PulpStillBreaker"

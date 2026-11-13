@@ -19,7 +19,7 @@ func _ready():
 		if not node.visible:
 			continue
 		var e = Expression.new()
-		if e.parse(c.expression) != OK:
+		if e.parse(c.expression, ["Units"]) != OK:
 			push_error(e.get_error_text())
 			node.visible = false
 			continue
@@ -35,5 +35,5 @@ func _process(_dt):
 			if exprs[i] == null:
 				continue
 			var c = channels[i]
-			var v = exprs[i].execute([], base)
-			screen.get_child(i).get_node("Value").text = "----" if exprs[i].has_execute_failed() else c.format % (v + c.offset)
+			var v = exprs[i].execute([Units], base)
+			screen.get_child(i).get_node("Value").text = "-" if exprs[i].has_execute_failed() else c.format % (v + c.offset)

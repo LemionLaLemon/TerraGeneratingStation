@@ -19,3 +19,4 @@ surface_material_override/1 = SubResource("StandardMaterial3D_xtlnk")
 transform = Transform3D(0.328, 0, 0, 0, -1.43373e-08, 0.328, 0, -0.328, -1.43373e-08, 0, 0.0313671, -2.78313e-10)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
+line_spacing = -15.0

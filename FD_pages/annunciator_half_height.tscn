@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfnexndfjnxuc"]
+
+[ext_resource type="PackedScene" uid="uid://dr08ggfus4mtm" path="res://blender-models/annunciator_half_height.blend" id="1_pigbg"]
+[ext_resource type="Script" uid="uid://cdg8m50fhrv4r" path="res://annunciator.gd" id="2_4dkc8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dkc8"]
+albedo_color = Color(0.501961, 0.501961, 0.501961, 1)
+emission_enabled = true
+emission = Color(0.899275, 0.899275, 0.899275, 1)
+emission_energy_multiplier = 0.8
+
+[node name="annunciator_half_height" instance=ExtResource("1_pigbg")]
+script = ExtResource("2_4dkc8")
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/1 = SubResource("StandardMaterial3D_4dkc8")
+
+[node name="Label" type="Label3D" parent="." index="1"]
+transform = Transform3D(0.328, 0, 0, 0, -1.43373e-08, 0.328, 0, -0.328, -1.43373e-08, 0, 0.0313671, -2.78313e-10)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+line_spacing = -15.0

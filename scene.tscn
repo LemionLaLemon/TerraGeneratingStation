@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=36 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://doddov2e23i40" path="res://DXChannel.gd" id="13_akxrc"]
 [ext_resource type="PackedScene" uid="uid://cokldtgs25cn3" path="res://FD_pages/ELEC.tscn" id="13_gu47o"]
 [ext_resource type="PackedScene" uid="uid://4rn2o2rqaxy5" path="res://FD_pages/blsp.tscn" id="14_gu47o"]
+[ext_resource type="PackedScene" uid="uid://bfnexndfjnxuc" path="res://FD_pages/annunciator_half_height.tscn" id="15_8hm71"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -183,6 +184,7 @@ shape = SubResource("CapsuleShape3D_73fnb")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+fov = 80.0
 
 [node name="plant" parent="." instance=ExtResource("4_u3cyc")]
 
@@ -557,45 +559,40 @@ horizontal_alignment = 0
 [node name="Annunciator" parent="ControlRoom/Blending and Separating" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
 controls = NodePath("Controls")
 
-[node name="annunciator" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.4361, 3.15422, 2.37518)
+[node name="Controls" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("11_5c1cw")]
+transform = Transform3D(0.939693, -0.0827422, 0.331861, 2.98023e-08, 0.970296, 0.241922, -0.34202, -0.227332, 0.91178, 2.72329, 0.0802975, -1.12048)
+
+[node name="annunciator_half_height" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.4263, 3.21865, 2.34964)
 label = "TK-101
-FILL
-HI"
+FILL HI"
 condition = "BananaHopper.fill_fraction() > 0.9"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator4" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.96931, 3.15422, 2.55436)
+[node name="annunciator_half_height4" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.95951, 3.21865, 2.52883)
 label = "TK-105
-FILL
-HI"
+FILL HI"
 condition = "WaterTank.fill_fraction() > 0.8"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator5" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.00852, 2.89648, 2.6565)
+[node name="annunciator_half_height5" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.97911, 3.08978, 2.5799)
 label = "TK-106
-FILL
-HI"
+FILL HI"
 condition = "SludgeTank.fill_fraction() > 0.8"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator2" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.4753, 2.89647, 2.47732)
+[node name="annunciator_half_height2" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.4459, 3.08978, 2.40071)
 label = "BL-101
-FILL
-HI"
+FILL HI"
 condition = "BananaBlender.fill_fraction() > 0.8"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator3" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.51451, 2.63873, 2.57946)
+[node name="annunciator_half_height3" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.46481, 2.96551, 2.44996)
 label = "TK-104
-FILL
-HI"
+FILL HI"
 condition = "PulpTank.fill_fraction() > 0.8"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="Controls" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("11_5c1cw")]
-transform = Transform3D(0.939693, -0.0827422, 0.331861, 2.98023e-08, 0.970296, 0.241922, -0.34202, -0.227332, 0.91178, 2.72329, 0.0802975, -1.12048)

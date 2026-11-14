@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcqlf8d3fj51g"]
+
+[ext_resource type="Script" uid="uid://g3lpul3wimfk" path="res://annunciatorpanel.gd" id="1_6xa7h"]
+[ext_resource type="AudioStream" uid="uid://cr6yylrwbbxeb" path="res://sounds/annunciator-pair-500ms-loop.wav" id="2_j7vux"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_6xa7h")
+
+[node name="Alarm" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_j7vux")
+max_distance = 50.0

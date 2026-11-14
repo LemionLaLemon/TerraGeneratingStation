@@ -2,6 +2,7 @@ extends Node3D
 
 @export var breakerName: String = ""
 var breaker
+var closed: bool = false
 @onready var collideArea = $StaticBody3D
 @onready var sound = $Sound
 @onready var solid = $Solid
@@ -24,17 +25,24 @@ func _ready():
 	if breaker == null:
 		push_error("Breaker na kaput")
 		return
+		
+	closed = breaker.isClosed()
 	collideArea.input_ray_pickable = true
 	collideArea.input_event.connect(_on_input_event)
+	_setColor()
 	
 func _on_input_event(camera, event, pos, normal, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		held = true
+		closed = not closed
 		sound.play()
 		breaker.open() if breaker.isClosed() else breaker.close()
-		solid.get_surface_override_material(0).albedo_color = Color("FFFFFF") if breaker.isClosed() else Color("C0C0C0")
-		solid.get_surface_override_material(0).emission_enabled = true if breaker.isClosed() else false
+		_setColor()
 		_press(0.0025)
+		
+func _setColor():
+	solid.get_surface_override_material(0).albedo_color = Color("FFFFFF") if closed else Color("C0C0C0")
+	solid.get_surface_override_material(0).emission_enabled = true if closed else false
 
 func _input(event):
 	if held and event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

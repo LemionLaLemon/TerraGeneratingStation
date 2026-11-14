@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1h3bowed7cw3"]
+
+[ext_resource type="PackedScene" uid="uid://cexeetbktobn4" path="res://blender-models/16mm_round_pushbutton.blend" id="1_64asx"]
+[ext_resource type="AudioStream" uid="uid://dnjpj17ocorhy" path="res://sounds/16mm_pushbutton.mp3" id="2_nke2r"]
+[ext_resource type="Script" uid="uid://t2awxgxldmuu" path="res://16_mm_round_pushbutton.gd" id="2_stxlm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_stxlm"]
+height = 0.389526
+radius = 0.299316
+
+[node name="16mm_round_pushbutton" instance=ExtResource("1_64asx")]
+script = ExtResource("2_stxlm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(0.038, 0, 0, 0, 0.038, 0, 0, 0, 0.038, 0, 0.00760696, 0)
+shape = SubResource("CylinderShape3D_stxlm")
+debug_color = Color(0.9855, 0.0823161, 0.21759, 0.42)
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="." index="3"]
+stream = ExtResource("2_nke2r")
+max_distance = 10.0

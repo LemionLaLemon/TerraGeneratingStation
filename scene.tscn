@@ -1,9 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=32 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
 [ext_resource type="PackedScene" uid="uid://cx3gjakrs0i8k" path="res://blender-models/plant.blend" id="4_u3cyc"]
+[ext_resource type="PackedScene" uid="uid://ckgx6i6g04d0a" path="res://blender-models/panel_symbols/transformer_winding.blend" id="8_73fnb"]
 [ext_resource type="Script" uid="uid://b5utvkg8nm2nk" path="res://player.gd" id="8_xlvrw"]
+[ext_resource type="PackedScene" uid="uid://bcqlf8d3fj51g" path="res://annunciatorpanel.tscn" id="9_5juve"]
+[ext_resource type="PackedScene" uid="uid://caqjbhjp4dgvo" path="res://annunciator.tscn" id="10_fy5k1"]
+[ext_resource type="PackedScene" uid="uid://dljbg2wqe42th" path="res://Annunciator_Controls.tscn" id="11_5c1cw"]
 [ext_resource type="PackedScene" uid="uid://d126fnwgvrbxc" path="res://16_mm_pushbutton.tscn" id="11_fy5k1"]
 [ext_resource type="PackedScene" uid="uid://dlp384ayvbxcb" path="res://dx_1000.tscn" id="12_5c1cw"]
 [ext_resource type="Script" uid="uid://doddov2e23i40" path="res://DXChannel.gd" id="13_akxrc"]
@@ -131,6 +135,11 @@ format = "%.2f"
 offset = 0.0
 metadata/_custom_type_script = "uid://doddov2e23i40"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlvrw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73fnb"]
+albedo_color = Color(0.920025, 0.920025, 7.70092e-07, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -220,3 +229,149 @@ breakerName = "PulpPumpBreaker"
 [node name="16mm_pushbutton4" parent="." instance=ExtResource("11_fy5k1")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, -39.7868, 8.65016, -45.4542)
 breakerName = "PulpStillBreaker"
+
+[node name="Electrical" type="Node3D" parent="."]
+
+[node name="CB_TR-S_B" parent="Electrical" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(-0.344485, 0.0987796, -0.93358, 0.275637, 0.961262, -1.49012e-08, 0.897415, -0.25733, -0.358368, -43.7247, 8.62675, -46.2736)
+breakerName = "CB_TR_S_B"
+
+[node name="CB_TR-S_A" parent="Electrical" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(-0.344485, 0.0987796, -0.93358, 0.275637, 0.961262, -1.49012e-08, 0.897415, -0.25733, -0.358368, -43.6314, 8.62675, -46.2378)
+breakerName = "CB_TR_S_A"
+
+[node name="transformer_winding" parent="Electrical" instance=ExtResource("8_73fnb")]
+transform = Transform3D(-0.93358, 0.0987796, 0.344485, -2.98023e-08, 0.961262, -0.275637, -0.358368, -0.25733, -0.897415, -43.7475, 8.65048, -46.1866)
+
+[node name="transformer_winding3" parent="Electrical" instance=ExtResource("8_73fnb")]
+transform = Transform3D(-0.93358, 0.0987796, 0.344485, -2.98023e-08, 0.961262, -0.275637, -0.358368, -0.25733, -0.897415, -43.6728, 8.65048, -46.1579)
+
+[node name="transformer_winding2" parent="Electrical" instance=ExtResource("8_73fnb")]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 2.79397e-08, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.7534, 8.64769, -46.1993)
+
+[node name="transformer_winding4" parent="Electrical" instance=ExtResource("8_73fnb")]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 2.79397e-08, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.66, 8.64769, -46.1635)
+
+[node name="Label" type="CSGBox3D" parent="Electrical"]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.7192, 8.65611, -46.1457)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="Electrical/Label"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "STARTUP 
+TRANSFORMER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="Electrical/Label"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0309443, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TR-S
+"
+horizontal_alignment = 0
+
+[node name="Label2" type="CSGBox3D" parent="Electrical"]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.734, 8.63471, -46.2488)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="Electrical/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BUS B
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="Electrical/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CB-TR-S-B"
+horizontal_alignment = 0
+
+[node name="Label3" type="CSGBox3D" parent="Electrical"]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.6405, 8.63471, -46.2129)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="Electrical/Label3"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BUS A
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="Electrical/Label3"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CB-TR-S-A"
+horizontal_alignment = 0
+
+[node name="Label4" type="CSGBox3D" parent="Electrical"]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.614, 8.6169, -46.2818)
+size = Vector3(0.085, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="Electrical/Label4"]
+transform = Transform3D(-0.065, 9.81473e-09, 4.29015e-16, 0, -2.84124e-09, 0.065, 9.81473e-09, 0.065, 2.84124e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BUS A    4.16 kV"
+vertical_alignment = 0
+
+[node name="Label5" type="CSGBox3D" parent="Electrical"]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.7074, 8.6169, -46.3177)
+size = Vector3(0.085, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="Electrical/Label5"]
+transform = Transform3D(-0.065, 9.81473e-09, 4.29015e-16, 0, -2.84124e-09, 0.065, 9.81473e-09, 0.065, 2.84124e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BUS B    4.16 kV"
+vertical_alignment = 0
+
+[node name="Line" type="CSGBox3D" parent="Electrical"]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.7425, 8.64041, -46.227)
+size = Vector3(0.005, 0.001, 0.0335547)
+material = SubResource("StandardMaterial3D_73fnb")
+
+[node name="Line2" type="CSGBox3D" parent="Electrical"]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.6492, 8.64041, -46.1912)
+size = Vector3(0.005, 0.001, 0.0335547)
+material = SubResource("StandardMaterial3D_73fnb")
+
+[node name="Line3" type="CSGBox3D" parent="Electrical"]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.6226, 8.62262, -46.2603)
+size = Vector3(0.005, 0.001, 0.0335547)
+material = SubResource("StandardMaterial3D_73fnb")
+
+[node name="Line4" type="CSGBox3D" parent="Electrical"]
+transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.716, 8.62262, -46.2961)
+size = Vector3(0.005, 0.001, 0.0335547)
+material = SubResource("StandardMaterial3D_73fnb")
+
+[node name="Annunciator" parent="Electrical" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.095, 11.575, -42.06)
+controls = NodePath("Controls")
+
+[node name="annunciator" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.38134, 0.0764918, -0.938704)
+label = "BUS B
+UNDERVOLTAGE"
+condition = "BusB.getVoltage() < 0.95 * BusB.getNominalVoltage()"
+
+[node name="annunciator4" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, 0.08545, 0.0764918, -0.759521)
+label = "BUS A
+UNDERVOLTAGE"
+condition = "BusA.getVoltage() < 0.95 * BusA.getNominalVoltage()"
+
+[node name="Controls" parent="Electrical/Annunciator" instance=ExtResource("11_5c1cw")]
+transform = Transform3D(0.93358, 0.0732848, -0.350795, 0, 0.978867, 0.204496, 0.358368, -0.190913, 0.913851, 0.883844, -2.99205, -4.22955)

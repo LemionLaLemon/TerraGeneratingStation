@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://dljbg2wqe42th"]
+
+[ext_resource type="Script" uid="uid://ciodrawexood8" path="res://annunciator_controls.gd" id="1_rrjvc"]
+[ext_resource type="PackedScene" uid="uid://c7w4ei1bvp62" path="res://blender-models/annunciator_plate.blend" id="1_va2ab"]
+[ext_resource type="PackedScene" uid="uid://c1h3bowed7cw3" path="res://16_mm_round_pushbutton.tscn" id="2_rrjvc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrjvc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5ieb"]
+albedo_color = Color(0.0409533, 0.0409533, 0.0409533, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_rrjvc")
+
+[node name="annunciator_plate" parent="." instance=ExtResource("1_va2ab")]
+
+[node name="Acknowledge" parent="." instance=ExtResource("2_rrjvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0, 0)
+
+[node name="Reset" parent="." instance=ExtResource("2_rrjvc")]
+
+[node name="Test" parent="." instance=ExtResource("2_rrjvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025, 0, 0)
+
+[node name="Label4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03)
+size = Vector3(0.085, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_rrjvc")
+
+[node name="Label3D" type="Label3D" parent="Label4"]
+transform = Transform3D(-0.035, 5.28485e-09, 2.31008e-16, 0, -1.5299e-09, 0.035, 5.28485e-09, 0.035, 1.5299e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "ANNUNCIATOR
+CONTROLS"
+vertical_alignment = 0
+
+[node name="Label5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0251483, 0.005, -0.0115916)
+size = Vector3(0.0205078, 0.001, 0.005)
+material = SubResource("StandardMaterial3D_t5ieb")
+
+[node name="Label3D" type="Label3D" parent="Label5"]
+transform = Transform3D(-0.014, 2.11394e-09, 9.24033e-17, 0, -6.11959e-10, 0.014, 2.11394e-09, 0.014, 6.11959e-10, 2.31957e-10, 0.00104, 0.00153617)
+outline_modulate = Color(0, 0, 0, 0)
+text = "ACKNOWLEDGE"
+vertical_alignment = 0
+
+[node name="Label7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025, 0.005, -0.012)
+size = Vector3(0.0205078, 0.001, 0.005)
+material = SubResource("StandardMaterial3D_t5ieb")
+
+[node name="Label3D" type="Label3D" parent="Label7"]
+transform = Transform3D(-0.014, 2.11394e-09, 9.24033e-17, 0, -6.11959e-10, 0.014, 2.11394e-09, 0.014, 6.11959e-10, 2.31957e-10, 0.00104, 0.00153617)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TEST"
+vertical_alignment = 0
+
+[node name="Label6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, -0.012)
+size = Vector3(0.0205078, 0.001, 0.005)
+material = SubResource("StandardMaterial3D_t5ieb")
+
+[node name="Label3D" type="Label3D" parent="Label6"]
+transform = Transform3D(-0.014, 2.11394e-09, 9.24033e-17, 0, -6.11959e-10, 0.014, 2.11394e-09, 0.014, 6.11959e-10, 2.31957e-10, 0.00104, 0.00153617)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RESET"
+vertical_alignment = 0

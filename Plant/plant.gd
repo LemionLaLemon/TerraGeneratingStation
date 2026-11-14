@@ -58,11 +58,11 @@ func _ready():
 	EquipmentDrainCollectorTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 50000) # temporary "infinite" volmume
 	
 	# Electrical
-	TR_S_Secondary = Bus.new(120, 60, false) 
-	BusA = Bus.new(120, 60, false)
-	BusB = Bus.new(120, 60, false)
+	TR_S_Secondary = Bus.new(4160, 60, false) 
+	BusA = Bus.new(4160, 60, false)
+	BusB = Bus.new(4160, 60, false)
 	
-	TR_S = Transformer.new(Grid, TR_S_Secondary, 230_000, 120)
+	TR_S = Transformer.new(Grid, TR_S_Secondary, 230_000, 4160)
 	CB_TR_S_A = Breaker.new(TR_S_Secondary, BusA, true)
 	CB_TR_S_B = Breaker.new(TR_S_Secondary, BusB, true)
 	BananaBlenderBreaker = Breaker.new(BusA, null)

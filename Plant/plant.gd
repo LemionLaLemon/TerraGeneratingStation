@@ -50,6 +50,14 @@ var SeparatorEffluentDischargeToRadwastePumpBreaker
 var SeparatorEffluentDischargeToRadwasteIsolationValve
 var SeparatorEffluentDischargeToRadwasteIsolationValveBreaker
 
+# Electrolysis
+var D2Electrolyser
+var D2ElectrolyserBreaker
+var D2ElectrolyserFeedPump
+var D2ElectrolyserFeedPumpBreaker
+var DeuteriumTank
+var OxygenVent
+
 # Radwaste
 var EquipmentDrainCollectorTank
 
@@ -73,7 +81,7 @@ func _ready():
 	BananaConveyorBreaker = Breaker.new(BusA, null)
 	
 	# Blending stage
-	BananaHopper = GenericContainer.new(8, Units.CtoK(AMBIENT_TEMPERATURE), 100, {Common.Materials.Banana: 50})
+	BananaHopper = GenericContainer.new(8, Units.CtoK(AMBIENT_TEMPERATURE), 34000, {Common.Materials.Banana: 50})
 	BananaBlender = Blender.new(2, Units.CtoK(AMBIENT_TEMPERATURE), BananaBlenderBreaker, 100, 0.5)
 	BananaConveyor = Conveyor.new(0, Units.CtoK(AMBIENT_TEMPERATURE), BananaConveyorBreaker, .05)
 	links.append(BeltLink.new(BananaHopper, BananaBlender, BananaConveyor))
@@ -118,6 +126,16 @@ func _ready():
 	SeparatorEffluentDischargeToRadwasteIsolationValve = MotorOperatedValve.new(SeparatorEffluentDischargeToRadwasteIsolationValveBreaker)
 	SeparatorEffluentDischargeToRadwastePump.gates.append(SeparatorEffluentDischargeToRadwasteIsolationValve)
 	links.append(SeparatorEffluentDischargeToRadwastePump)
+	
+	# Electrolysis
+	D2ElectrolyserBreaker = Breaker.new(BusB, null, false)
+	D2ElectrolyserFeedPumpBreaker = Breaker.new(BusB, null, false)
+	DeuteriumTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 50)
+	OxygenVent = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 1_000_000_000)
+	D2Electrolyser = Electrolyser.new(0, Units.CtoK(AMBIENT_TEMPERATURE), D2ElectrolyserBreaker, DeuteriumTank, OxygenVent)
+	D2ElectrolyserFeedPump = Pump.new(SeparatorProduct, D2Electrolyser, 1.0, D2ElectrolyserFeedPumpBreaker, 5.0)
+	D2ElectrolyserFeedPump.ratedKw = 0.5
+	links.append(D2ElectrolyserFeedPump)
 	
 	print("Ready")
 

@@ -18,6 +18,9 @@ func _init(Elevation, Temperature, Supply, Volume = 1.0, Rate = 2, RatedRpm = 36
 	supply.loads.append(getLoadKw)
 	self.ratedRpm = RatedRpm
 
+func energized():
+	return supply.energized()
+
 func getLoadKw():
 	return ratedKw * (rpm / ratedRpm)
 

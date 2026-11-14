@@ -17,4 +17,5 @@ script = ExtResource("2_1nbmw")
 surface_material_override/1 = SubResource("StandardMaterial3D_35x0e")
 
 [node name="SubViewport" type="SubViewport" parent="." index="1"]
+canvas_item_default_texture_filter = 3
 size = Vector2i(640, 480)

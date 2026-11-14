@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=35 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://olcjvk0ag61y" path="res://FD.tscn" id="12_akxrc"]
 [ext_resource type="Script" uid="uid://doddov2e23i40" path="res://DXChannel.gd" id="13_akxrc"]
 [ext_resource type="PackedScene" uid="uid://cokldtgs25cn3" path="res://FD_pages/ELEC.tscn" id="13_gu47o"]
+[ext_resource type="PackedScene" uid="uid://4rn2o2rqaxy5" path="res://FD_pages/blsp.tscn" id="14_gu47o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -194,6 +195,7 @@ size = Vector3(1.3, 0.03, 2)
 material = SubResource("StandardMaterial3D_y2354")
 
 [node name="SubViewport" type="SubViewport" parent="ControlRoom/InCoreCamera"]
+anisotropic_filtering_level = 4
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
@@ -201,65 +203,66 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.946784, 0.321869, 0, -0.321869, 0.946784, 0, 19.9527, 19.482)
 fov = 100.0
 
-[node name="BananaHopperDx1000" parent="." instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, -39.5239, 8.96723, -45.2831)
+[node name="BananaHopperDx1000" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, 0.576099, 0.46723, 0.116901)
 channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_gu47o"), SubResource("Resource_8hm71"), SubResource("Resource_223my")])
 updateEvery = 0.25
 
-[node name="BlenderDx1000" parent="." instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, -39.7239, 8.96723, -45.2831)
+[node name="BlenderDx1000" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, 0.376099, 0.46723, 0.116901)
 channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_5c1cw"), SubResource("Resource_akxrc"), SubResource("Resource_17rhs")])
 updateEvery = 0.25
 
-[node name="StillDx1000" parent="." instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, -39.9239, 8.96723, -45.2831)
+[node name="StillDx1000" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, 0.176098, 0.46723, 0.116901)
 channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_8j1ou"), SubResource("Resource_o3hm7"), SubResource("Resource_xpof7"), SubResource("Resource_302uq")])
 updateEvery = 0.25
 
-[node name="16mm_pushbutton" parent="." instance=ExtResource("11_fy5k1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, -39.4869, 8.65016, -45.4542)
+[node name="16mm_pushbutton" parent="ControlRoom" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, 0.613098, 0.15016, -0.0541992)
 breakerName = "BananaConveyorBreaker"
 
-[node name="16mm_pushbutton2" parent="." instance=ExtResource("11_fy5k1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, -39.5869, 8.65016, -45.4542)
+[node name="16mm_pushbutton2" parent="ControlRoom" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, 0.5131, 0.15016, -0.0541992)
 breakerName = "BananaBlenderBreaker"
 
-[node name="16mm_pushbutton3" parent="." instance=ExtResource("11_fy5k1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, -39.6869, 8.65016, -45.4542)
+[node name="16mm_pushbutton3" parent="ControlRoom" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, 0.413097, 0.15016, -0.0541992)
 breakerName = "PulpPumpBreaker"
 
-[node name="16mm_pushbutton4" parent="." instance=ExtResource("11_fy5k1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, -39.7868, 8.65016, -45.4542)
+[node name="16mm_pushbutton4" parent="ControlRoom" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.275637, 0.961262, 0, 0.961262, -0.275637, -3.72529e-08, 0.313198, 0.15016, -0.0541992)
 breakerName = "PulpStillBreaker"
 
-[node name="Electrical" type="Node3D" parent="."]
+[node name="Electrical" type="Node3D" parent="ControlRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.1, -8.5, 45.4)
 
-[node name="CB_TR-S_B" parent="Electrical" instance=ExtResource("11_fy5k1")]
+[node name="CB_TR-S_B" parent="ControlRoom/Electrical" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(-0.344485, 0.0987796, -0.93358, 0.275637, 0.961262, -1.49012e-08, 0.897415, -0.25733, -0.358368, -43.7247, 8.62675, -46.2736)
 breakerName = "CB_TR_S_B"
 
-[node name="CB_TR-S_A" parent="Electrical" instance=ExtResource("11_fy5k1")]
+[node name="CB_TR-S_A" parent="ControlRoom/Electrical" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(-0.344485, 0.0987796, -0.93358, 0.275637, 0.961262, -1.49012e-08, 0.897415, -0.25733, -0.358368, -43.6314, 8.62675, -46.2378)
 breakerName = "CB_TR_S_A"
 
-[node name="transformer_winding" parent="Electrical" instance=ExtResource("8_73fnb")]
+[node name="transformer_winding" parent="ControlRoom/Electrical" instance=ExtResource("8_73fnb")]
 transform = Transform3D(-0.93358, 0.0987796, 0.344485, -2.98023e-08, 0.961262, -0.275637, -0.358368, -0.25733, -0.897415, -43.7475, 8.65048, -46.1866)
 
-[node name="transformer_winding3" parent="Electrical" instance=ExtResource("8_73fnb")]
+[node name="transformer_winding3" parent="ControlRoom/Electrical" instance=ExtResource("8_73fnb")]
 transform = Transform3D(-0.93358, 0.0987796, 0.344485, -2.98023e-08, 0.961262, -0.275637, -0.358368, -0.25733, -0.897415, -43.6728, 8.65048, -46.1579)
 
-[node name="transformer_winding2" parent="Electrical" instance=ExtResource("8_73fnb")]
+[node name="transformer_winding2" parent="ControlRoom/Electrical" instance=ExtResource("8_73fnb")]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 2.79397e-08, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.7534, 8.64769, -46.1993)
 
-[node name="transformer_winding4" parent="Electrical" instance=ExtResource("8_73fnb")]
+[node name="transformer_winding4" parent="ControlRoom/Electrical" instance=ExtResource("8_73fnb")]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 2.79397e-08, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.66, 8.64769, -46.1635)
 
-[node name="Label" type="CSGBox3D" parent="Electrical"]
+[node name="Label" type="CSGBox3D" parent="ControlRoom/Electrical"]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.7192, 8.65611, -46.1457)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="Electrical/Label"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Electrical/Label"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -267,7 +270,7 @@ text = "STARTUP
 TRANSFORMER"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="Electrical/Label"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Electrical/Label"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0309443, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -275,12 +278,12 @@ text = "TR-S
 "
 horizontal_alignment = 0
 
-[node name="Label2" type="CSGBox3D" parent="Electrical"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Electrical"]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.734, 8.63471, -46.2488)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="Electrical/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Electrical/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -288,19 +291,19 @@ text = "BUS B
 BREAKER"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="Electrical/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Electrical/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "CB-TR-S-B"
 horizontal_alignment = 0
 
-[node name="Label3" type="CSGBox3D" parent="Electrical"]
+[node name="Label3" type="CSGBox3D" parent="ControlRoom/Electrical"]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.6405, 8.63471, -46.2129)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="Electrical/Label3"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Electrical/Label3"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -308,76 +311,76 @@ text = "BUS A
 BREAKER"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="Electrical/Label3"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Electrical/Label3"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "CB-TR-S-A"
 horizontal_alignment = 0
 
-[node name="Label4" type="CSGBox3D" parent="Electrical"]
+[node name="Label4" type="CSGBox3D" parent="ControlRoom/Electrical"]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.614, 8.6169, -46.2818)
 size = Vector3(0.085, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="Electrical/Label4"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Electrical/Label4"]
 transform = Transform3D(-0.065, 9.81473e-09, 4.29015e-16, 0, -2.84124e-09, 0.065, 9.81473e-09, 0.065, 2.84124e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "BUS A    4.16 kV"
 vertical_alignment = 0
 
-[node name="Label5" type="CSGBox3D" parent="Electrical"]
+[node name="Label5" type="CSGBox3D" parent="ControlRoom/Electrical"]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.7074, 8.6169, -46.3177)
 size = Vector3(0.085, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="Electrical/Label5"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Electrical/Label5"]
 transform = Transform3D(-0.065, 9.81473e-09, 4.29015e-16, 0, -2.84124e-09, 0.065, 9.81473e-09, 0.065, 2.84124e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "BUS B    4.16 kV"
 vertical_alignment = 0
 
-[node name="Line" type="CSGBox3D" parent="Electrical"]
+[node name="Line" type="CSGBox3D" parent="ControlRoom/Electrical"]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.7425, 8.64041, -46.227)
 size = Vector3(0.005, 0.001, 0.0335547)
 material = SubResource("StandardMaterial3D_73fnb")
 
-[node name="Line2" type="CSGBox3D" parent="Electrical"]
+[node name="Line2" type="CSGBox3D" parent="ControlRoom/Electrical"]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.6492, 8.64041, -46.1912)
 size = Vector3(0.005, 0.001, 0.0335547)
 material = SubResource("StandardMaterial3D_73fnb")
 
-[node name="Line3" type="CSGBox3D" parent="Electrical"]
+[node name="Line3" type="CSGBox3D" parent="ControlRoom/Electrical"]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.6226, 8.62262, -46.2603)
 size = Vector3(0.005, 0.001, 0.0335547)
 material = SubResource("StandardMaterial3D_73fnb")
 
-[node name="Line4" type="CSGBox3D" parent="Electrical"]
+[node name="Line4" type="CSGBox3D" parent="ControlRoom/Electrical"]
 transform = Transform3D(0.93358, 0.0987796, -0.344485, 0, 0.961262, 0.275637, 0.358368, -0.25733, 0.897415, -43.716, 8.62262, -46.2961)
 size = Vector3(0.005, 0.001, 0.0335547)
 material = SubResource("StandardMaterial3D_73fnb")
 
-[node name="Annunciator" parent="Electrical" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
+[node name="Annunciator" parent="ControlRoom/Electrical" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.095, 11.575, -42.06)
 controls = NodePath("Controls")
 
-[node name="annunciator" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+[node name="annunciator" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
 transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.437355, 0.0764918, -0.960206)
 label = "BUS B
 UNDERVOLTAGE"
 condition = "BusB.getVoltage() < 0.95 * BusB.getNominalVoltage()"
 litColor = Color(0.901714, 0.181276, 0.246103, 1)
 
-[node name="annunciator4" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+[node name="annunciator4" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
 transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, 0.0294351, 0.0764918, -0.781023)
 label = "BUS A
 UNDERVOLTAGE"
 condition = "BusA.getVoltage() < 0.95 * BusA.getNominalVoltage()"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator5" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+[node name="annunciator5" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
 transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.00977186, -0.18125, -0.678885)
 label = "BUS A
 LOAD HI
@@ -385,7 +388,7 @@ LOAD HI
 condition = "BusA.getLoading() > 80"
 litColor = Color(0.901961, 0.858824, 0.341176, 1)
 
-[node name="annunciator7" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+[node name="annunciator7" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
 transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.0489789, -0.438991, -0.576747)
 label = "BUS A
 LOAD HI-HI
@@ -393,7 +396,7 @@ LOAD HI-HI
 condition = "BusA.getLoading() > 100"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator8" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+[node name="annunciator8" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
 transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.515769, -0.438991, -0.755931)
 label = "BUS B
 LOAD HI-HI
@@ -401,7 +404,7 @@ LOAD HI-HI
 condition = "BusB.getLoading() > 100"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator6" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+[node name="annunciator6" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
 transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.476562, -0.18125, -0.858069)
 label = "BUS B
 LOAD HI
@@ -409,9 +412,15 @@ LOAD HI
 condition = "BusB.getLoading() > 80"
 litColor = Color(0.901961, 0.858824, 0.341176, 1)
 
-[node name="Controls" parent="Electrical/Annunciator" instance=ExtResource("11_5c1cw")]
+[node name="Controls" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("11_5c1cw")]
 transform = Transform3D(0.93358, 0.0732848, -0.350795, 0, 0.978867, 0.204496, 0.358368, -0.190913, 0.913851, 0.883844, -2.99205, -4.22955)
 
-[node name="FD" parent="Electrical/Annunciator" instance=ExtResource("12_akxrc")]
-transform = Transform3D(0.93358, 0.328645, -0.142899, -1.39114e-08, 0.398749, 0.91706, 0.358368, -0.856149, 0.372264, 0.244404, -2.80088, -4.06768)
+[node name="FD" parent="ControlRoom/Electrical" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.93358, 0.328645, -0.142899, -1.39114e-08, 0.398749, 0.91706, 0.358368, -0.856149, 0.372264, -43.8506, 8.77412, -46.1277)
 page = ExtResource("13_gu47o")
+
+[node name="Blending and Separating" type="Node3D" parent="ControlRoom"]
+
+[node name="FD2" parent="ControlRoom/Blending and Separating" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.934242, -0.324679, 0.147562, -0.00649381, 0.398203, 0.917275, -0.35658, -0.857915, 0.369909, 2.75758, 0.265155, -0.729172)
+page = ExtResource("14_gu47o")

@@ -19,3 +19,6 @@ func capacity():
 	if not supply.energized():
 		return 0.0
 	return belt_speed_ms * kg_per_m
+
+func energized():
+	return supply.energized()

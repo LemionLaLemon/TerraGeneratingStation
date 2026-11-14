@@ -364,18 +364,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.095, 11.575, -42.06)
 controls = NodePath("Controls")
 
 [node name="annunciator" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.38134, 0.0764918, -0.938704)
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.437355, 0.0764918, -0.960206)
 label = "BUS B
 UNDERVOLTAGE"
 condition = "BusB.getVoltage() < 0.95 * BusB.getNominalVoltage()"
 litColor = Color(0.901714, 0.181276, 0.246103, 1)
 
 [node name="annunciator4" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, 0.08545, 0.0764918, -0.759521)
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, 0.0294351, 0.0764918, -0.781023)
 label = "BUS A
 UNDERVOLTAGE"
 condition = "BusA.getVoltage() < 0.95 * BusA.getNominalVoltage()"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator5" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.00977186, -0.18125, -0.678885)
+label = "BUS A
+LOAD HI
+>80%"
+condition = "BusA.getLoading() > 80"
+litColor = Color(0.901961, 0.858824, 0.341176, 1)
+
+[node name="annunciator7" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.0489789, -0.438991, -0.576747)
+label = "BUS A
+LOAD HI-HI
+>100%"
+condition = "BusA.getLoading() > 100"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator8" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.515769, -0.438991, -0.755931)
+label = "BUS B
+LOAD HI-HI
+>100%"
+condition = "BusB.getLoading() > 100"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator6" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.476562, -0.18125, -0.858069)
+label = "BUS B
+LOAD HI
+>80%"
+condition = "BusB.getLoading() > 80"
+litColor = Color(0.901961, 0.858824, 0.341176, 1)
 
 [node name="Controls" parent="Electrical/Annunciator" instance=ExtResource("11_5c1cw")]
 transform = Transform3D(0.93358, 0.0732848, -0.350795, 0, 0.978867, 0.204496, 0.358368, -0.190913, 0.913851, 0.883844, -2.99205, -4.22955)

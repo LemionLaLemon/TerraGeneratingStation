@@ -5,6 +5,7 @@ var supply
 var rpm: float = 0
 var ratedRpm: float = 3600
 var rate_kgs: float = 2
+var ratedKw: float = 15
 
 const AllowedRecipes = [
 	Common.Materials.Banana
@@ -14,7 +15,11 @@ func _init(Elevation, Temperature, Supply, Volume = 1.0, Rate = 2, RatedRpm = 36
 	super(Elevation, Temperature, Volume, Contents)
 	self.rate_kgs = Rate
 	self.supply = Supply
+	supply.loads.append(getLoadKw)
 	self.ratedRpm = RatedRpm
+
+func getLoadKw():
+	return ratedKw * (rpm / ratedRpm)
 
 func getRpm():
 	return rpm

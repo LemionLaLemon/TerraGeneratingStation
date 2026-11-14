@@ -34,5 +34,5 @@ func step(dt):
 	var fraction = amount / mass
 	for stuff in source.contents.keys():
 		var got = source.take(stuff, source.contents[stuff] * fraction)
-		source.add(stuff, got - sink.add(stuff, got))
+		source.add(stuff, got - sink.add(stuff, got, source.temperature))
 		flow_kgs = amount / dt

@@ -64,3 +64,6 @@ const Info = {
 	Materials.O:     {"Density": 1.31, "SpecificHeat": 920.0, "State": States.Gas | States.Liquid | States.Solid},
 	Materials.H2O: {"Density": 998.2, "SpecificHeat": 4184.0, "State": States.Liquid | States.Solid | States.Gas},
 }
+
+# Electrical
+const PowerFactor = 0.85 # pretty awful

@@ -29,6 +29,10 @@ var PulpPumpBreaker
 var PulpStill
 var PulpStillBreaker
 var WaterTank
+var SludgePump
+var SludgePumpBreaker
+var SludgeValve
+var SludgeValveBreaker
 
 # Separating stage 2
 var SeparatorGirdlerSeparator
@@ -87,6 +91,12 @@ func _ready():
 	PulpStill = Still.new(0, Units.CtoK(AMBIENT_TEMPERATURE), PulpStillBreaker, WaterTank)
 	PulpPump = Pump.new(PulpTank, PulpStill, 1.0, PulpPumpBreaker, 15.0)
 	links.append(PulpPump)
+	SludgeValveBreaker = Breaker.new(BusA, null, false)
+	SludgePumpBreaker = Breaker.new(BusA, null, false)
+	SludgeValve = MotorOperatedValve.new(SludgeValveBreaker)
+	SludgePump = Pump.new(PulpStill, SludgeTank, 1.0, SludgePumpBreaker)
+	SludgePump.gates.append(SludgeValve)
+	links.append(SludgePump)
 	
 	# Separating stage 2
 	SeparatorSourcePumpBreaker = Breaker.new(BusA, null, false)
@@ -99,7 +109,7 @@ func _ready():
 	SeparatorEffluent = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 200)
 	SeparatorGirdlerSeparator = GirdlerSeparator.new(0, Units.CtoK(AMBIENT_TEMPERATURE), SeparatorGirdlerSeparatorBreaker, SeparatorProduct, SeparatorEffluent, 400)
 	SeparatorSourcePump = Pump.new(WaterTank, SeparatorGirdlerSeparator, 1.0, SeparatorSourcePumpBreaker)
-	SeparatorRecirculationPump = Pump.new(SeparatorEffluent, SeparatorGirdlerSeparator, 1.0, SeparatorGirdlerSeparatorBreaker)
+	SeparatorRecirculationPump = Pump.new(SeparatorEffluent, SeparatorGirdlerSeparator, 1.0, SeparatorRecirculationPumpBreaker)
 	SeparatorRecirculationIsolationValve = MotorOperatedValve.new(SeparatorRecirculationIsolationValveBreaker)
 	SeparatorRecirculationPump.gates.append(SeparatorRecirculationIsolationValve)
 	links.append(SeparatorSourcePump)
@@ -117,3 +127,5 @@ func _physics_process(dt):
 	BananaBlender.step(dt)
 	PulpStill.step(dt)
 	SeparatorGirdlerSeparator.step(dt)
+	
+	print(BusA.getLoad(), " ", BusA.getVoltage(), " ", Common.PowerFactor, " ", BusA.getAmps())

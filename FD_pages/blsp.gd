@@ -34,7 +34,7 @@ func refresh():
 	$TK_104_LEVEL.text = sig((Plant.PulpTank.fill_fraction() * 5), 4)
 	$TK_105_LEVEL.text = sig((Plant.WaterTank.fill_fraction() * 5), 4)
 	$TK_106_LEVEL.text = sig((Plant.SludgeTank.fill_fraction() * 5), 4)
-	$E_101_TEMP.text = sig(Plant.PulpStill.getTemperature(), 4)
+	$E_101_TEMP.text = sig(Units.KtoC(Plant.PulpStill.getTemperature()), 4)
 	$E_101_LEVEL.text = sig((Plant.PulpStill.fill_fraction() * 5), 4)
 	$P_101_RPM.text = sig(Plant.PulpPump.getRpm(), 4)
 	$P_102_RPM.text = sig(Plant.SludgePump.getRpm(), 4)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=34 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dljbg2wqe42th" path="res://Annunciator_Controls.tscn" id="11_5c1cw"]
 [ext_resource type="PackedScene" uid="uid://d126fnwgvrbxc" path="res://16_mm_pushbutton.tscn" id="11_fy5k1"]
 [ext_resource type="PackedScene" uid="uid://dlp384ayvbxcb" path="res://dx_1000.tscn" id="12_5c1cw"]
+[ext_resource type="PackedScene" uid="uid://olcjvk0ag61y" path="res://FD.tscn" id="12_akxrc"]
 [ext_resource type="Script" uid="uid://doddov2e23i40" path="res://DXChannel.gd" id="13_akxrc"]
+[ext_resource type="PackedScene" uid="uid://cokldtgs25cn3" path="res://FD_pages/ELEC.tscn" id="13_gu47o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -366,12 +368,18 @@ transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, 
 label = "BUS B
 UNDERVOLTAGE"
 condition = "BusB.getVoltage() < 0.95 * BusB.getNominalVoltage()"
+litColor = Color(0.901714, 0.181276, 0.246103, 1)
 
 [node name="annunciator4" parent="Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
 transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, 0.08545, 0.0764918, -0.759521)
 label = "BUS A
 UNDERVOLTAGE"
 condition = "BusA.getVoltage() < 0.95 * BusA.getNominalVoltage()"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
 [node name="Controls" parent="Electrical/Annunciator" instance=ExtResource("11_5c1cw")]
 transform = Transform3D(0.93358, 0.0732848, -0.350795, 0, 0.978867, 0.204496, 0.358368, -0.190913, 0.913851, 0.883844, -2.99205, -4.22955)
+
+[node name="FD" parent="Electrical/Annunciator" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.93358, 0.328645, -0.142899, -1.39114e-08, 0.398749, 0.91706, 0.358368, -0.856149, 0.372264, 0.244404, -2.80088, -4.06768)
+page = ExtResource("13_gu47o")

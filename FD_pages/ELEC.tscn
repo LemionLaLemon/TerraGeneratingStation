@@ -1,0 +1,131 @@
+[gd_scene load_steps=5 format=3 uid="uid://cokldtgs25cn3"]
+
+[ext_resource type="Script" uid="uid://b2dk4tjk6eh2n" path="res://FD_pages/elec.gd" id="1_ev5bl"]
+[ext_resource type="Texture2D" uid="uid://c22t5fjwthd0s" path="res://imported/FD-ELEC.png" id="1_o2mtl"]
+[ext_resource type="FontFile" uid="uid://dh04hvxxdo5mk" path="res://external/VCR_OSD_MONO_1.001.ttf" id="2_ev5bl"]
+[ext_resource type="Texture2D" uid="uid://db4a7obf4spcl" path="res://imported/CLOSED.png" id="3_f4uy1"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ev5bl")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 480.0
+texture = ExtResource("1_o2mtl")
+
+[node name="TR_S_VOLTS" type="Label" parent="."]
+offset_left = 420.0
+offset_top = 93.0
+offset_right = 477.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ev5bl")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="TR_S_LOAD" type="Label" parent="."]
+offset_left = 420.0
+offset_top = 105.0
+offset_right = 477.0
+offset_bottom = 117.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ev5bl")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="TR_S_FREQ" type="Label" parent="."]
+offset_left = 420.0
+offset_top = 117.0
+offset_right = 477.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ev5bl")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="BUS_A_VOLTS" type="Label" parent="."]
+offset_left = 93.0
+offset_top = 234.0
+offset_right = 150.0
+offset_bottom = 246.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ev5bl")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="BUS_A_LOAD" type="Label" parent="."]
+offset_left = 93.0
+offset_top = 246.0
+offset_right = 150.0
+offset_bottom = 258.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ev5bl")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="BUS_A_FREQ" type="Label" parent="."]
+offset_left = 93.0
+offset_top = 258.0
+offset_right = 150.0
+offset_bottom = 270.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ev5bl")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="BUS_B_VOLTS" type="Label" parent="."]
+offset_left = 396.0
+offset_top = 234.0
+offset_right = 453.0
+offset_bottom = 246.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ev5bl")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="BUS_B_LOAD" type="Label" parent="."]
+offset_left = 396.0
+offset_top = 246.0
+offset_right = 453.0
+offset_bottom = 258.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ev5bl")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="BUS_B_FREQ" type="Label" parent="."]
+offset_left = 396.0
+offset_top = 258.0
+offset_right = 453.0
+offset_bottom = 270.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ev5bl")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="CB_TR_S_A" type="TextureRect" parent="."]
+offset_left = 201.0
+offset_top = 177.0
+offset_right = 249.0
+offset_bottom = 219.0
+texture = ExtResource("3_f4uy1")
+
+[node name="CB_TR_S_B" type="TextureRect" parent="."]
+offset_left = 505.0
+offset_top = 177.0
+offset_right = 553.0
+offset_bottom = 219.0
+texture = ExtResource("3_f4uy1")

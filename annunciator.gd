@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 enum States {
@@ -7,7 +8,11 @@ enum States {
 	Ringback
 }
 
-@export_multiline var label: String = ""
+@export_multiline var label: String = "":
+	set(value):
+		label = value
+		if is_node_ready():
+			$Label.text = value
 @export var condition: String = ""
 @export var ringback: bool = true
 @export var litColor: Color = Color("#FFFFFF")
@@ -17,9 +22,11 @@ var state = States.Normal
 var expr = Expression.new()
 
 func _ready():
+	$Label.text = label
+	if Engine.is_editor_hint():
+		return
 	if expr.parse(condition) != OK:
 		push_error("Annunciator " + label + " condition na kaput")
-	$Label.text = label
 	tile.set_surface_override_material(1, tile.get_active_material(1).duplicate())
 	set_lit(false)
 
@@ -53,4 +60,5 @@ func lit(fast, slow, test) -> bool:
 
 func set_lit(on: bool):
 	tile.get_surface_override_material(1).albedo_color = litColor if on else unlitColor
+	tile.get_surface_override_material(1).emission = litColor
 	tile.get_surface_override_material(1).emission_enabled = on

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://olcjvk0ag61y"]
+
+[ext_resource type="PackedScene" uid="uid://dq11om5u8g5pw" path="res://blender-models/FD.blend" id="1_xq7as"]
+[ext_resource type="Script" uid="uid://be75yeg76t4le" path="res://fd.gd" id="2_1nbmw"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m3sj6"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35x0e"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_m3sj6")
+
+[node name="FD" instance=ExtResource("1_xq7as")]
+script = ExtResource("2_1nbmw")
+
+[node name="Screen" parent="." index="0"]
+surface_material_override/1 = SubResource("StandardMaterial3D_35x0e")
+
+[node name="SubViewport" type="SubViewport" parent="." index="1"]
+size = Vector2i(640, 480)

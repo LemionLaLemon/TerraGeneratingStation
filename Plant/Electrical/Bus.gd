@@ -29,5 +29,8 @@ func getVoltage():
 			return link.upstream.getVoltage() * link.ratio
 	return 0.0
 
+func getFrequency():
+	return frequency if getVoltage() > 0 else 0.0
+
 func getNominalVoltage():
 	return nominalVoltage

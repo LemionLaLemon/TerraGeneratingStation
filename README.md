@@ -32,4 +32,6 @@ Godot has very generously packaged everything into either a .x86_64 (linux) or a
 2. Double click to run
 
 ## Procedures
-There are currently no procedures at all. Good luck!
+A Standard Operating Procedure for producing D2 from bananas is available:
+
+[SOP-FUEL-OPS: Fuel Operations](procedures/SOP-FUEL-OPS.pdf)

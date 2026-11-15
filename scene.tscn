@@ -878,7 +878,7 @@ vertical_alignment = 0
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "T-101"
+text = "P-101"
 horizontal_alignment = 0
 
 [node name="Annunciator" parent="ControlRoom/Blending and Distilling" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]

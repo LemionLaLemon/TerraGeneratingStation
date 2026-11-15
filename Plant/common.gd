@@ -67,3 +67,21 @@ const Info = {
 
 # Electrical
 const PowerFactor = 0.85 # pretty awful
+
+# Functions
+static func sig(v: float, digits: int = 4) -> String:
+	var a = abs(v)
+	if a >= pow(10, digits):
+		return "Ol."
+	var n = 1 if a < 1.0 else int(floor(log(a) / log(10.0) + 1e-9)) + 1
+	var d = digits - n
+	var p = pow(10, d)
+	var t = floor(a * p + 1e-9) / p
+	if a > 0.0 and t == 0.0:
+		return "Ul."
+	var s = ("-" if v < 0.0 else "") + "%.*f" % [d, t]
+	if s.contains("."):
+		s = s.rstrip("0")
+		if s.ends_with("."):
+			s += "0"
+	return s

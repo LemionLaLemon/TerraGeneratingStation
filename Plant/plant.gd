@@ -145,5 +145,3 @@ func _physics_process(dt):
 	BananaBlender.step(dt)
 	PulpStill.step(dt)
 	SeparatorGirdlerSeparator.step(dt)
-	
-	print(BusA.getLoad(), " ", BusA.getVoltage(), " ", Common.PowerFactor, " ", BusA.getAmps())

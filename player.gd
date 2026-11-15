@@ -6,8 +6,10 @@ var gravity = 9.8
 
 @onready var cam = $Camera3D
 @onready var cameraFOVNormal = cam.fov
-var cameraFOVZoomed = 25.0
-var zoomSpeed = 180.0
+var cameraFOVZoomed: float = 25.0
+var zoomDefault: float = 25.0
+var zoomMin: float = 3.0
+var zoomSpeed: float = 180.0
 var rmbLock = false
 
 func _ready():
@@ -35,7 +37,12 @@ func _input(event):
 		elif not event.pressed and rmbLock:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			rmbLock = false
-		
+	
+	if event is InputEventMouseButton and event.pressed and Input.is_key_pressed(KEY_E):
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			cameraFOVZoomed = max(cameraFOVZoomed * 0.85, zoomMin)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			cameraFOVZoomed = min(cameraFOVZoomed / 0.85, cameraFOVNormal)
 
 func _physics_process(dt):
 	var dir = Vector3.ZERO
@@ -53,5 +60,7 @@ func _physics_process(dt):
 	var target = cameraFOVNormal
 	if Input.is_key_pressed(KEY_E):
 		target = cameraFOVZoomed
+	else:
+		cameraFOVZoomed = zoomDefault
 	
 	cam.fov = lerp(cam.fov, target, 1.0 - exp(-10.0 * dt))

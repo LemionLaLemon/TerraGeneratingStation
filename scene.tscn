@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://doddov2e23i40" path="res://DXChannel.gd" id="13_akxrc"]
 [ext_resource type="PackedScene" uid="uid://cokldtgs25cn3" path="res://FD_pages/ELEC.tscn" id="13_gu47o"]
 [ext_resource type="PackedScene" uid="uid://4rn2o2rqaxy5" path="res://FD_pages/blsp.tscn" id="14_gu47o"]
-[ext_resource type="PackedScene" uid="uid://bfnexndfjnxuc" path="res://FD_pages/annunciator_half_height.tscn" id="15_8hm71"]
+[ext_resource type="PackedScene" uid="uid://bfnexndfjnxuc" path="res://annunciator_half_height.tscn" id="15_8hm71"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -53,6 +53,7 @@ albedo_texture = SubResource("ViewportTexture_m7jmp")
 script = ExtResource("13_akxrc")
 expression = "BananaHopper.total_mass()"
 label_text = "BANANA HOPPER WEIGHT"
+paper_label_text = "Banana Hopper Weight"
 unit_text = "KG"
 format = "%.2f"
 offset = 0.0
@@ -62,6 +63,7 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 script = ExtResource("13_akxrc")
 expression = "BananaConveyor.speed()"
 label_text = "CONVEYOR FEED RATE"
+paper_label_text = "Banana Conveyor Feed Rate"
 unit_text = "m/s"
 format = "%.2f"
 offset = 0.0
@@ -71,6 +73,7 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 script = ExtResource("13_akxrc")
 expression = "BananaBlender.total_mass()"
 label_text = "BLENDER MASS"
+paper_label_text = "Banana Blender Weight"
 unit_text = "KG"
 format = "%.2f"
 offset = 0.0
@@ -80,6 +83,7 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 script = ExtResource("13_akxrc")
 expression = "BananaBlender.total_mass()"
 label_text = "BLENDER WEIGHT"
+paper_label_text = ""
 unit_text = "KG"
 format = "%.2f"
 offset = 0.0
@@ -89,6 +93,7 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 script = ExtResource("13_akxrc")
 expression = "BananaBlender.getRpm()"
 label_text = "BLENDER SPEED"
+paper_label_text = ""
 unit_text = "RPM"
 format = "%d"
 offset = 0.0
@@ -98,6 +103,7 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 script = ExtResource("13_akxrc")
 expression = "PulpTank.total_mass()"
 label_text = "PULP TANK WEIGHT"
+paper_label_text = ""
 unit_text = "KG"
 format = "%.2f"
 offset = 0.0
@@ -107,6 +113,7 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 script = ExtResource("13_akxrc")
 expression = "PulpStill.total_mass()"
 label_text = "STILL WEIGHT"
+paper_label_text = ""
 unit_text = "KG"
 format = "%.2f"
 offset = 0.0
@@ -116,6 +123,7 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 script = ExtResource("13_akxrc")
 expression = "Units.KtoC(PulpStill.getTemperature())"
 label_text = "STILL TEMPERATURE"
+paper_label_text = ""
 unit_text = "DEG C"
 format = "%.1f"
 offset = 0.0
@@ -125,6 +133,7 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 script = ExtResource("13_akxrc")
 expression = "SludgeTank.total_mass()"
 label_text = "SLUDE TANK WEIGHT"
+paper_label_text = ""
 unit_text = "KG"
 format = "%.2f"
 offset = 0.0
@@ -134,6 +143,7 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 script = ExtResource("13_akxrc")
 expression = "WaterTank.total_mass()"
 label_text = "CONDENSATE TANK WEIGHT"
+paper_label_text = ""
 unit_text = "KG"
 format = "%.2f"
 offset = 0.0
@@ -197,7 +207,6 @@ size = Vector3(1.3, 0.03, 2)
 material = SubResource("StandardMaterial3D_y2354")
 
 [node name="SubViewport" type="SubViewport" parent="ControlRoom/InCoreCamera"]
-anisotropic_filtering_level = 4
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
@@ -206,9 +215,12 @@ transform = Transform3D(1, 0, 0, 0, 0.946784, 0.321869, 0, -0.321869, 0.946784, 
 fov = 100.0
 
 [node name="BananaHopperDx1000" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, 0.576099, 0.46723, 0.116901)
+transform = Transform3D(-0.934242, 0.147562, -0.324679, 0.00649367, 0.917274, 0.398203, 0.35658, 0.36991, -0.857915, 2.55155, 0.234447, -0.665454)
 channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_gu47o"), SubResource("Resource_8hm71"), SubResource("Resource_223my")])
+dx_ID = "BLSL SYSTEM"
 updateEvery = 0.25
+chart_min = 10.0
+chart_max = 110.0
 
 [node name="BlenderDx1000" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
 transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, 0.376099, 0.46723, 0.116901)
@@ -366,61 +378,59 @@ UNDERVOLTAGE"
 condition = "BusA.getVoltage() < 0.95 * BusA.getNominalVoltage()"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator5" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.00977186, -0.18125, -0.678885)
+[node name="Controls" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("11_5c1cw")]
+transform = Transform3D(0.93358, 0.0732848, -0.350795, 0, 0.978867, 0.204496, 0.358368, -0.190913, 0.913851, 0.883844, -2.99205, -4.22955)
+
+[node name="annunciator_half_height" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, 2.99131e-05, -0.116815, -0.704419)
 label = "BUS A
-LOAD HI
->80%"
+LOAD HI"
 condition = "BusA.getLoading() > 80"
 litColor = Color(0.901961, 0.858824, 0.341176, 1)
 
-[node name="annunciator7" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.0489789, -0.438991, -0.576747)
-label = "BUS A
-LOAD HI-HI
->100%"
-condition = "BusA.getLoading() > 100"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator8" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.515769, -0.438991, -0.755931)
+[node name="annunciator_half_height3" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.46676, -0.116815, -0.883603)
 label = "BUS B
-LOAD HI-HI
->100%"
-condition = "BusB.getLoading() > 100"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator6" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.476562, -0.18125, -0.858069)
-label = "BUS B
-LOAD HI
->80%"
+LOAD HI"
 condition = "BusB.getLoading() > 80"
 litColor = Color(0.901961, 0.858824, 0.341176, 1)
 
-[node name="Controls" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("11_5c1cw")]
-transform = Transform3D(0.93358, 0.0732848, -0.350795, 0, 0.978867, 0.204496, 0.358368, -0.190913, 0.913851, 0.883844, -2.99205, -4.22955)
+[node name="annunciator_half_height4" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.486364, -0.245685, -0.832534)
+label = "BUS B
+LOAD HI-HI"
+condition = "BusB.getLoading() > 100"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator_half_height2" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.0195736, -0.245685, -0.65335)
+label = "BUS A
+LOAD HI-HI"
+condition = "BusA.getLoading() > 100"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
 [node name="FD" parent="ControlRoom/Electrical" instance=ExtResource("12_akxrc")]
 transform = Transform3D(0.93358, 0.328645, -0.142899, -1.39114e-08, 0.398749, 0.91706, 0.358368, -0.856149, 0.372264, -43.8506, 8.77412, -46.1277)
 page = ExtResource("13_gu47o")
+updateEvery = 0.25
 
-[node name="Blending and Separating" type="Node3D" parent="ControlRoom"]
+[node name="Blending and Distilling" type="Node3D" parent="ControlRoom"]
 
-[node name="FD2" parent="ControlRoom/Blending and Separating" instance=ExtResource("12_akxrc")]
+[node name="FD2" parent="ControlRoom/Blending and Distilling" instance=ExtResource("12_akxrc")]
 transform = Transform3D(0.934242, -0.324679, 0.147562, -0.00649381, 0.398203, 0.917275, -0.35658, -0.857915, 0.369909, 2.75758, 0.265155, -0.729172)
 page = ExtResource("14_gu47o")
+updateEvery = 0.25
 
-[node name="16mm_pushbutton" parent="ControlRoom/Blending and Separating" instance=ExtResource("11_fy5k1")]
+[node name="16mm_pushbutton" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.76257, 0.104749, -1.03958)
 breakerName = "BananaConveyorBreaker"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -428,23 +438,23 @@ text = "BANANA
 CONVEYOR"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "CV-101"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton2" parent="ControlRoom/Blending and Separating" instance=ExtResource("11_fy5k1")]
+[node name="16mm_pushbutton2" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.69679, 0.104749, -1.01564)
 breakerName = "BananaBlenderBreaker"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton2"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton2"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton2/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton2/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -452,7 +462,7 @@ text = "BANANA
 BLENDER"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton2/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton2/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -460,16 +470,16 @@ text = "BL-101
 "
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton4" parent="ControlRoom/Blending and Separating" instance=ExtResource("11_fy5k1")]
+[node name="16mm_pushbutton4" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.62162, 0.104749, -0.988277)
 breakerName = "PulpStillBreaker"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton4"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton4"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton4/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton4/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -477,23 +487,23 @@ text = "PULP
 STILL"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton4/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton4/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "E-101"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton5" parent="ControlRoom/Blending and Separating" instance=ExtResource("11_fy5k1")]
+[node name="16mm_pushbutton5" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.61011, 0.0951014, -1.01989)
 breakerName = "SludgeValveBreaker"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton5"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton5"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton5/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton5/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -501,23 +511,23 @@ text = "SLUDGE
 VALVE"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton5/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton5/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "V-101"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton6" parent="ControlRoom/Blending and Separating" instance=ExtResource("11_fy5k1")]
+[node name="16mm_pushbutton6" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.54433, 0.0951014, -0.995949)
 breakerName = "SludgePumpBreaker"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton6"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton6"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton6/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton6/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -525,23 +535,23 @@ text = "SLUDGE
 PUMP"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton6/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton6/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "P-102"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton3" parent="ControlRoom/Blending and Separating" instance=ExtResource("11_fy5k1")]
+[node name="16mm_pushbutton3" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.68529, 0.0951014, -1.04725)
 breakerName = "PulpPumpBreaker"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton3"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton3"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton3/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton3/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -549,50 +559,46 @@ text = "PULP
 PUMP"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Separating/16mm_pushbutton3/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton3/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "T-101"
 horizontal_alignment = 0
 
-[node name="Annunciator" parent="ControlRoom/Blending and Separating" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
+[node name="Annunciator" parent="ControlRoom/Blending and Distilling" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
 controls = NodePath("Controls")
 
-[node name="Controls" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("11_5c1cw")]
+[node name="Controls" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("11_5c1cw")]
 transform = Transform3D(0.939693, -0.0827422, 0.331861, 2.98023e-08, 0.970296, 0.241922, -0.34202, -0.227332, 0.91178, 2.72329, 0.0802975, -1.12048)
 
-[node name="annunciator_half_height" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("15_8hm71")]
+[node name="annunciator_half_height" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
 transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.4263, 3.21865, 2.34964)
 label = "TK-101
 FILL HI"
 condition = "BananaHopper.fill_fraction() > 0.9"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator_half_height4" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("15_8hm71")]
+[node name="annunciator_half_height4" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
 transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.95951, 3.21865, 2.52883)
 label = "TK-105
 FILL HI"
 condition = "WaterTank.fill_fraction() > 0.8"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator_half_height5" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("15_8hm71")]
+[node name="annunciator_half_height5" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
 transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.97911, 3.08978, 2.5799)
 label = "TK-106
 FILL HI"
 condition = "SludgeTank.fill_fraction() > 0.8"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator_half_height2" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("15_8hm71")]
+[node name="annunciator_half_height2" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
 transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.4459, 3.08978, 2.40071)
 label = "BL-101
 FILL HI"
 condition = "BananaBlender.fill_fraction() > 0.8"
 litColor = Color(0.901961, 0.180392, 0.247059, 1)
 
-[node name="annunciator_half_height3" parent="ControlRoom/Blending and Separating/Annunciator" instance=ExtResource("15_8hm71")]
+[node name="annunciator_half_height3" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
 transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.46481, 2.96551, 2.44996)
 label = "TK-104
 FILL HI"
 condition = "PulpTank.fill_fraction() > 0.8"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)

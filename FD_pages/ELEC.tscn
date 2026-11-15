@@ -14,11 +14,13 @@ offset_bottom = 40.0
 script = ExtResource("1_ev5bl")
 
 [node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
 texture = ExtResource("1_o2mtl")
 
 [node name="TR_S_VOLTS" type="Label" parent="."]
+layout_mode = 0
 offset_left = 420.0
 offset_top = 93.0
 offset_right = 477.0
@@ -30,6 +32,7 @@ text = "1600.0"
 horizontal_alignment = 2
 
 [node name="TR_S_LOAD" type="Label" parent="."]
+layout_mode = 0
 offset_left = 420.0
 offset_top = 105.0
 offset_right = 477.0
@@ -41,6 +44,7 @@ text = "1600.0"
 horizontal_alignment = 2
 
 [node name="TR_S_FREQ" type="Label" parent="."]
+layout_mode = 0
 offset_left = 420.0
 offset_top = 117.0
 offset_right = 477.0
@@ -52,6 +56,7 @@ text = "1600.0"
 horizontal_alignment = 2
 
 [node name="BUS_A_VOLTS" type="Label" parent="."]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 234.0
 offset_right = 150.0
@@ -63,6 +68,7 @@ text = "1600.0"
 horizontal_alignment = 2
 
 [node name="BUS_A_LOAD" type="Label" parent="."]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 246.0
 offset_right = 150.0
@@ -74,6 +80,7 @@ text = "1600.0"
 horizontal_alignment = 2
 
 [node name="BUS_A_FREQ" type="Label" parent="."]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 258.0
 offset_right = 150.0
@@ -85,6 +92,7 @@ text = "1600.0"
 horizontal_alignment = 2
 
 [node name="BUS_B_VOLTS" type="Label" parent="."]
+layout_mode = 0
 offset_left = 396.0
 offset_top = 234.0
 offset_right = 453.0
@@ -96,6 +104,7 @@ text = "1600.0"
 horizontal_alignment = 2
 
 [node name="BUS_B_LOAD" type="Label" parent="."]
+layout_mode = 0
 offset_left = 396.0
 offset_top = 246.0
 offset_right = 453.0
@@ -107,6 +116,7 @@ text = "1600.0"
 horizontal_alignment = 2
 
 [node name="BUS_B_FREQ" type="Label" parent="."]
+layout_mode = 0
 offset_left = 396.0
 offset_top = 258.0
 offset_right = 453.0
@@ -118,6 +128,7 @@ text = "1600.0"
 horizontal_alignment = 2
 
 [node name="CB_TR_S_A" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 201.0
 offset_top = 177.0
 offset_right = 249.0
@@ -125,6 +136,7 @@ offset_bottom = 219.0
 texture = ExtResource("3_f4uy1")
 
 [node name="CB_TR_S_B" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 505.0
 offset_top = 177.0
 offset_right = 553.0

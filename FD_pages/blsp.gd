@@ -9,35 +9,18 @@ const BLENDER_TRIPPED = preload("res://imported/MIXER_TRIPPED.png")
 const CONVEYOR_CLOSED = preload("res://imported/BELT_CLOSED.png")
 const CONVEYOR_TRIPPED = preload("res://imported/BELT_TRIPPED.png")
 
-static func sig(v: float, digits: int = 4) -> String:
-	var a = abs(v)
-	if a >= pow(10, digits):
-		return "Ol."
-	var n = 1 if a < 1.0 else int(floor(log(a) / log(10.0) + 1e-9)) + 1
-	var d = digits - n
-	var p = pow(10, d)
-	var t = floor(a * p + 1e-9) / p
-	if a > 0.0 and t == 0.0:
-		return "Ul."
-	var s = ("-" if v < 0.0 else "") + "%.*f" % [d, t]
-	if s.contains("."):
-		s = s.rstrip("0")
-		if s.ends_with("."):
-			s += "0"
-	return s
-	
 func refresh():
-	$TK_101_WEIGHT.text = sig(Plant.BananaHopper.total_mass(), 5)
-	$CV_101_RATE.text = sig(Plant.BananaConveyor.speed(), 3)
-	$BL_101_LEVEL.text = sig((Plant.BananaBlender.fill_fraction() * 5), 4)
-	$BL_101_RPM.text = sig(Plant.BananaBlender.getRpm(), 4)
-	$TK_104_LEVEL.text = sig((Plant.PulpTank.fill_fraction() * 5), 4)
-	$TK_105_LEVEL.text = sig((Plant.WaterTank.fill_fraction() * 5), 4)
-	$TK_106_LEVEL.text = sig((Plant.SludgeTank.fill_fraction() * 5), 4)
-	$E_101_TEMP.text = sig(Units.KtoC(Plant.PulpStill.getTemperature()), 4)
-	$E_101_LEVEL.text = sig((Plant.PulpStill.fill_fraction() * 5), 4)
-	$P_101_RPM.text = sig(Plant.PulpPump.getRpm(), 4)
-	$P_102_RPM.text = sig(Plant.SludgePump.getRpm(), 4)
+	$TK_101_WEIGHT.text = Common.sig(Plant.BananaHopper.total_mass(), 5)
+	$CV_101_RATE.text = Common.sig(Plant.BananaConveyor.speed(), 3)
+	$BL_101_LEVEL.text = Common.sig((Plant.BananaBlender.fill_fraction() * 5), 4)
+	$BL_101_RPM.text = Common.sig(Plant.BananaBlender.getRpm(), 4)
+	$TK_104_LEVEL.text = Common.sig((Plant.PulpTank.fill_fraction() * 5), 4)
+	$TK_105_LEVEL.text = Common.sig((Plant.WaterTank.fill_fraction() * 5), 4)
+	$TK_106_LEVEL.text = Common.sig((Plant.SludgeTank.fill_fraction() * 5), 4)
+	$E_101_TEMP.text = Common.sig(Units.KtoC(Plant.PulpStill.getTemperature()), 4)
+	$E_101_LEVEL.text = Common.sig((Plant.PulpStill.fill_fraction() * 5), 4)
+	$P_101_RPM.text = Common.sig(Plant.PulpPump.getRpm(), 4)
+	$P_102_RPM.text = Common.sig(Plant.SludgePump.getRpm(), 4)
 	
 	$CV_101.texture = CONVEYOR_CLOSED if Plant.BananaConveyor.energized() else CONVEYOR_TRIPPED
 	$BL_101.texture = BLENDER_CLOSED if Plant.BananaBlender.energized() else BLENDER_TRIPPED

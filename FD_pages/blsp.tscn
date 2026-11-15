@@ -205,7 +205,6 @@ offset_bottom = 139.0
 pivot_offset = Vector2(2.5, 54)
 color = Color(0, 1, 0, 1)
 script = ExtResource("8_8ay6r")
-max_value = 34000.0
 alarm_high = 0.95
 
 [node name="BL_101_BAR" type="ColorRect" parent="."]

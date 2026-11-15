@@ -1,0 +1,285 @@
+[gd_scene load_steps=9 format=3 uid="uid://l7collwbv7rk"]
+
+[ext_resource type="Script" uid="uid://bvp8woj6l6bu5" path="res://FD_pages/gses.gd" id="1_jslv6"]
+[ext_resource type="Texture2D" uid="uid://brkggv7i38lxu" path="res://imported/FD-GSES.png" id="2_jslv6"]
+[ext_resource type="FontFile" uid="uid://dh04hvxxdo5mk" path="res://external/VCR_OSD_MONO_1.001.ttf" id="3_hfoeh"]
+[ext_resource type="Texture2D" uid="uid://cqc84elhstsxb" path="res://imported/ELECTROLYSER_TRIPPED.png" id="5_0lrnw"]
+[ext_resource type="Texture2D" uid="uid://o77n1vsebl6y" path="res://imported/PUMP_TRIPPED.png" id="6_0u78k"]
+[ext_resource type="Texture2D" uid="uid://bbuqn68sj1v0w" path="res://imported/VALVE_CLOSED.png" id="7_0m0t1"]
+[ext_resource type="Texture2D" uid="uid://te2chr7ybbtm" path="res://imported/GIRDLER_TRIPPED.png" id="7_221u2"]
+[ext_resource type="Script" uid="uid://be35edo75vck4" path="res://FD_pages/element_bar.gd" id="8_qpye6"]
+
+[node name="Gses" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jslv6")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+texture = ExtResource("2_jslv6")
+
+[node name="TK_105_LEVEL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 11.0
+offset_right = 200.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="GS_101_LEVEL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 151.0
+offset_right = 232.0
+offset_bottom = 163.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="TK_107_LEVEL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 184.0
+offset_right = 348.0
+offset_bottom = 196.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="TK_110_LEVEL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 153.0
+offset_right = 640.0
+offset_bottom = 165.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="EL_101_POWER" type="Label" parent="."]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 61.0
+offset_right = 472.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="EL_101_LEVEL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 49.0
+offset_right = 472.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="TK_108_LEVEL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 305.0
+offset_right = 348.0
+offset_bottom = 317.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600.0"
+horizontal_alignment = 2
+
+[node name="P_106_RPM" type="Label" parent="."]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 71.0
+offset_right = 243.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600"
+horizontal_alignment = 2
+
+[node name="P_105_RPM" type="Label" parent="."]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 233.0
+offset_right = 399.0
+offset_bottom = 245.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600"
+horizontal_alignment = 2
+
+[node name="P_104_RPM" type="Label" parent="."]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 346.0
+offset_right = 399.0
+offset_bottom = 358.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600"
+horizontal_alignment = 2
+
+[node name="P_103_RPM" type="Label" parent="."]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 405.0
+offset_right = 399.0
+offset_bottom = 417.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hfoeh")
+theme_override_font_sizes/font_size = 12
+text = "1600"
+horizontal_alignment = 2
+
+[node name="P_106" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 100.0
+offset_right = 144.0
+offset_bottom = 124.0
+texture = ExtResource("6_0u78k")
+
+[node name="EL_101" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 82.0
+offset_right = 319.0
+offset_bottom = 146.0
+texture = ExtResource("5_0lrnw")
+
+[node name="P_105" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 262.0
+offset_right = 300.0
+offset_bottom = 286.0
+texture = ExtResource("6_0u78k")
+
+[node name="P_104" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 375.0
+offset_right = 300.0
+offset_bottom = 399.0
+texture = ExtResource("6_0u78k")
+
+[node name="P_103" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 434.0
+offset_right = 300.0
+offset_bottom = 458.0
+texture = ExtResource("6_0u78k")
+
+[node name="V_102" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 332.0
+offset_right = 91.0
+offset_bottom = 358.0
+texture = ExtResource("7_0m0t1")
+
+[node name="V_103" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 369.0
+offset_right = 482.0
+offset_bottom = 395.0
+rotation = 1.5708
+texture = ExtResource("7_0m0t1")
+
+[node name="GS_101" type="TextureRect" parent="."]
+offset_left = 67.0
+offset_top = 180.0
+offset_right = 91.0
+offset_bottom = 244.0
+texture = ExtResource("7_221u2")
+
+[node name="TK_105_BAR" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 69.0
+offset_bottom = 118.0
+pivot_offset = Vector2(2.5, 54)
+color = Color(0, 1, 0, 1)
+script = ExtResource("8_qpye6")
+alarm_high = 0.8
+
+[node name="GS_101_BAR" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 185.0
+offset_right = 87.0
+offset_bottom = 239.0
+pivot_offset = Vector2(2.5, 54)
+color = Color(0, 1, 0, 1)
+script = ExtResource("8_qpye6")
+
+[node name="TK_107_BAR" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 237.0
+offset_right = 217.0
+offset_bottom = 291.0
+pivot_offset = Vector2(2.5, 54)
+color = Color(0, 1, 0, 1)
+script = ExtResource("8_qpye6")
+alarm_high = 0.8
+
+[node name="TK_108_BAR" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 358.0
+offset_right = 217.0
+offset_bottom = 412.0
+pivot_offset = Vector2(2.5, 54)
+color = Color(0, 1, 0, 1)
+script = ExtResource("8_qpye6")
+alarm_high = 0.8
+
+[node name="EL_101_BAR" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 309.0
+offset_top = 87.0
+offset_right = 314.0
+offset_bottom = 141.0
+pivot_offset = Vector2(2.5, 54)
+color = Color(0, 1, 0, 1)
+script = ExtResource("8_qpye6")
+alarm_high = 0.8
+
+[node name="TK_110_BAR" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 206.0
+offset_right = 509.0
+offset_bottom = 260.0
+pivot_offset = Vector2(2.5, 54)
+color = Color(0, 1, 0, 1)
+script = ExtResource("8_qpye6")

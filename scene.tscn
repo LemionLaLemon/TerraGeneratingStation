@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=42 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cokldtgs25cn3" path="res://FD_pages/ELEC.tscn" id="13_gu47o"]
 [ext_resource type="PackedScene" uid="uid://4rn2o2rqaxy5" path="res://FD_pages/blsp.tscn" id="14_gu47o"]
 [ext_resource type="PackedScene" uid="uid://bfnexndfjnxuc" path="res://annunciator_half_height.tscn" id="15_8hm71"]
+[ext_resource type="PackedScene" uid="uid://l7collwbv7rk" path="res://FD_pages/gses.tscn" id="16_223my"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -51,30 +52,80 @@ albedo_texture = SubResource("ViewportTexture_m7jmp")
 
 [sub_resource type="Resource" id="Resource_gu47o"]
 script = ExtResource("13_akxrc")
-expression = "BananaHopper.total_mass()"
-label_text = "BANANA HOPPER WEIGHT"
-paper_label_text = "Banana Hopper Weight"
-unit_text = "KG"
+expression = "BananaHopper.fill_fraction() * 5"
+label_text = "TK-101 LEVEL"
+paper_label_text = "Banana Hopper Level"
+unit_text = "M"
 format = "%.2f"
 offset = 0.0
 metadata/_custom_type_script = "uid://doddov2e23i40"
 
 [sub_resource type="Resource" id="Resource_8hm71"]
 script = ExtResource("13_akxrc")
-expression = "BananaConveyor.speed()"
-label_text = "CONVEYOR FEED RATE"
-paper_label_text = "Banana Conveyor Feed Rate"
-unit_text = "m/s"
+expression = "BananaBlender.fill_fraction() * 5"
+label_text = "BL-101 LEVEL"
+paper_label_text = "Banana Blender Level"
+unit_text = "M"
 format = "%.2f"
 offset = 0.0
 metadata/_custom_type_script = "uid://doddov2e23i40"
 
 [sub_resource type="Resource" id="Resource_223my"]
 script = ExtResource("13_akxrc")
-expression = "BananaBlender.total_mass()"
-label_text = "BLENDER MASS"
-paper_label_text = "Banana Blender Weight"
-unit_text = "KG"
+expression = "PulpTank.fill_fraction() * 5"
+label_text = "TK-104 LEVEL"
+paper_label_text = "Pulp Tank Level"
+unit_text = "M"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_1q4c1"]
+script = ExtResource("13_akxrc")
+expression = "PulpStill.fill_fraction() * 5"
+label_text = "E-101 LEVEL"
+paper_label_text = "Pulp Still Level"
+unit_text = "M"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_aobyt"]
+script = ExtResource("13_akxrc")
+expression = "SeparatorProduct.fill_fraction() * 5"
+label_text = "TK-107 LEVEL"
+paper_label_text = "Separator Product Tank Level"
+unit_text = "M"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_i6j5g"]
+script = ExtResource("13_akxrc")
+expression = "SeparatorEffluent.fill_fraction() * 5"
+label_text = "TK-108 LEVEL"
+paper_label_text = "Separator Effluent Tank Level"
+unit_text = "M"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_g6g5t"]
+script = ExtResource("13_akxrc")
+expression = "D2Electrolyser.fill_fraction() * 5"
+label_text = "EL-101 Level"
+paper_label_text = "Electrolyser Level"
+unit_text = "M"
+format = "%.2f"
+offset = 0.0
+metadata/_custom_type_script = "uid://doddov2e23i40"
+
+[sub_resource type="Resource" id="Resource_iss77"]
+script = ExtResource("13_akxrc")
+expression = "DeuteriumTank.fill_fraction() * 5"
+label_text = "TK-110 LEVEL"
+paper_label_text = "Deuterium Tank Level"
+unit_text = "M"
 format = "%.2f"
 offset = 0.0
 metadata/_custom_type_script = "uid://doddov2e23i40"
@@ -214,13 +265,19 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.946784, 0.321869, 0, -0.321869, 0.946784, 0, 19.9527, 19.482)
 fov = 100.0
 
-[node name="BananaHopperDx1000" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-0.934242, 0.147562, -0.324679, 0.00649367, 0.917274, 0.398203, 0.35658, 0.36991, -0.857915, 2.55155, 0.234447, -0.665454)
-channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_gu47o"), SubResource("Resource_8hm71"), SubResource("Resource_223my")])
-dx_ID = "BLSL SYSTEM"
+[node name="BLSP_dx1000_1" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-0.934242, 0.147562, -0.324679, 0.00649367, 0.917274, 0.398203, 0.35658, 0.36991, -0.857915, 2.56188, 0.298656, -0.63956)
+channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_gu47o"), SubResource("Resource_8hm71"), SubResource("Resource_223my"), SubResource("Resource_1q4c1")])
+dx_ID = "BLSP (GROUP 1)"
 updateEvery = 0.25
-chart_min = 10.0
-chart_max = 110.0
+chart_max = 5.0
+
+[node name="BLSP_dx1000_2" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-0.934242, 0.147562, -0.324679, 0.00649367, 0.917274, 0.398203, 0.35658, 0.36991, -0.857915, 2.58623, 0.450006, -0.578525)
+channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_aobyt"), SubResource("Resource_i6j5g"), SubResource("Resource_g6g5t"), SubResource("Resource_iss77")])
+dx_ID = "GSES (GROUP 1)"
+updateEvery = 0.25
+chart_max = 5.0
 
 [node name="BlenderDx1000" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
 transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, 0.376099, 0.46723, 0.116901)
@@ -414,12 +471,78 @@ transform = Transform3D(0.93358, 0.328645, -0.142899, -1.39114e-08, 0.398749, 0.
 page = ExtResource("13_gu47o")
 updateEvery = 0.25
 
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Electrical/FD"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Electrical/FD/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "ELECTRICAL SYSTEM
+FLOW DIAGRAM"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Electrical/FD/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD_E1"
+horizontal_alignment = 0
+
 [node name="Blending and Distilling" type="Node3D" parent="ControlRoom"]
 
 [node name="FD2" parent="ControlRoom/Blending and Distilling" instance=ExtResource("12_akxrc")]
 transform = Transform3D(0.934242, -0.324679, 0.147562, -0.00649381, 0.398203, 0.917275, -0.35658, -0.857915, 0.369909, 2.75758, 0.265155, -0.729172)
 page = ExtResource("14_gu47o")
 updateEvery = 0.25
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/FD2"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/FD2/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BLENDER AND STILL
+FLOW DIAGRAM"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/FD2/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD_BLSL"
+horizontal_alignment = 0
+
+[node name="FD3" parent="ControlRoom/Blending and Distilling" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.934242, -0.324679, 0.147562, -0.00649381, 0.398203, 0.917275, -0.35658, -0.857915, 0.369909, 2.79226, 0.480715, -0.642243)
+page = ExtResource("16_223my")
+updateEvery = 0.25
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/FD3"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/FD3/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "GIRDLER SEPARATOR AND ELECTROLYSER
+FLOW DIAGRAM"
+font_size = 31
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/FD3/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD_GSES"
+horizontal_alignment = 0
 
 [node name="16mm_pushbutton" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.76257, 0.104749, -1.03958)
@@ -443,6 +566,198 @@ transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "CV-101"
+horizontal_alignment = 0
+
+[node name="16mm_pushbutton7" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.82281, 0.143572, -0.87408)
+breakerName = "SeparatorSourcePumpBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton7"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton7/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "SEPARATOR SOURCE
+PUMP"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton7/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "P-106"
+horizontal_alignment = 0
+
+[node name="16mm_pushbutton10" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.7454, 0.135148, -0.882084)
+breakerName = "D2ElectrolyserFeedPumpBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton10"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton10/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "ELECTROLYSER FEED
+PUMP"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton10/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "P-105"
+horizontal_alignment = 0
+
+[node name="16mm_pushbutton12" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.81118, 0.135148, -0.906025)
+breakerName = "SeparatorGirdlerSeparatorBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton12"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton12/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "GIRDLER SEPARATOR
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton12/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "GS-101"
+horizontal_alignment = 0
+
+[node name="16mm_pushbutton11" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.67023, 0.135148, -0.854722)
+breakerName = "D2ElectrolyserBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton11"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton11/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "ELECTROLYSER
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton11/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "EL-101"
+horizontal_alignment = 0
+
+[node name="16mm_pushbutton15" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.72206, 0.119208, -0.946218)
+breakerName = "SeparatorRecirculationPumpBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton15"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton15/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RECIRCULATION
+PUMP"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton15/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "P-103"
+horizontal_alignment = 0
+
+[node name="16mm_pushbutton14" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.79947, 0.127525, -0.938186)
+breakerName = "SeparatorRecirculationIsolationValveBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton14"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton14/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RECIRCULATION ISOL.
+VALVE"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton14/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "V-102"
+horizontal_alignment = 0
+
+[node name="16mm_pushbutton16" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.7337, 0.127525, -0.914244)
+breakerName = "SeparatorEffluentDischargeToRadwastePumpBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton16"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton16/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RADWASTE
+PUMP"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton16/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "P-104"
+horizontal_alignment = 0
+
+[node name="16mm_pushbutton17" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.65852, 0.127525, -0.886883)
+breakerName = "SeparatorEffluentDischargeToRadwasteIsolationValveBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton17"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton17/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RADWASTE ISOL.
+VALVE"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton17/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "V-103"
 horizontal_alignment = 0
 
 [node name="16mm_pushbutton2" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]

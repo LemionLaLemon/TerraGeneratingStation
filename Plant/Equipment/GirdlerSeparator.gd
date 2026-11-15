@@ -19,6 +19,9 @@ func _init(Elevation, Temperature, Supply, Product, Effluent, Volume = 1.0, Cont
 func getLoadKw():
 	return 20.0 if supply.energized() else 0.0
 
+func energized():
+	return supply.energized()
+
 func step(dt):
 	if not supply.energized():
 		return

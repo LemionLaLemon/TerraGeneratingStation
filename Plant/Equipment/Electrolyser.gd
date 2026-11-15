@@ -18,6 +18,9 @@ func _init(Elevation, Temperature, Supply, D2Tank, OxygenVent, Volume = 1.0, Con
 func getLoadKw():
 	return kw
 
+func energized():
+	return supply.energized()
+
 func step(dt):
 	kw = 0.0
 	if not supply.energized():
@@ -26,7 +29,7 @@ func step(dt):
 		return
 	
 	var feed = contents.get(Common.Materials.D2O, 0.0)
-	if feed < 0.0:
+	if feed <= 0.0:
 		return
 	var max_kg = rated_kw / kwh_per_kg / 3600.0 * dt
 	var got = take(Common.Materials.D2O, min(feed, max_kg))

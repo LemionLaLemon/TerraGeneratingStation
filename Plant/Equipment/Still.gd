@@ -15,7 +15,7 @@ func _init(Elevation, Temperature, Supply, Condensate, Volume = 1.0, Contents = 
 	vessel_cap = 1.0e6
 	
 func getLoadKw():
-	return power_w / 1000.0 if supply.energized else 0.0
+	return power_w / 1000.0 if supply.energized() else 0.0
 	
 func step(dt):
 	if not supply.energized():

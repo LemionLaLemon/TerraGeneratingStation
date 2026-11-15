@@ -81,21 +81,21 @@ func _ready():
 	BananaConveyorBreaker = Breaker.new(BusA, null)
 	
 	# Blending stage
-	BananaHopper = GenericContainer.new(8, Units.CtoK(AMBIENT_TEMPERATURE), 34000, {Common.Materials.Banana: 50})
-	BananaBlender = Blender.new(2, Units.CtoK(AMBIENT_TEMPERATURE), BananaBlenderBreaker, 100, 0.5)
+	BananaHopper = GenericContainer.new(8, Units.CtoK(AMBIENT_TEMPERATURE), 34000 / Common.Info[Common.Materials.Banana].Density, {Common.Materials.Banana: 5000})
+	BananaBlender = Blender.new(2, Units.CtoK(AMBIENT_TEMPERATURE), BananaBlenderBreaker, 100 / Common.Info[Common.Materials.Banana].Density, 0.5)
 	BananaConveyor = Conveyor.new(0, Units.CtoK(AMBIENT_TEMPERATURE), BananaConveyorBreaker, .05)
 	links.append(BeltLink.new(BananaHopper, BananaBlender, BananaConveyor))
 	
 	# Separating stage
-	PulpTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 100)
+	PulpTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 100 / Common.Info[Common.Materials.Banana].Density)
 	PulpSieve = Sieve.new(BananaBlender, PulpTank, 1.0, [Common.Materials.Pulp, Common.Materials.Water, Common.Materials.K40], true)
 	links.append(PulpSieve)
 	
 	# Distillation stage
 	PulpStillBreaker = Breaker.new(BusA, null, false)
 	PulpPumpBreaker = Breaker.new(BusA, null, false)
-	SludgeTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 100)
-	WaterTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 100)
+	SludgeTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 100 / Common.Info[Common.Materials.Banana].Density)
+	WaterTank = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 100 / Common.Info[Common.Materials.Banana].Density)
 	PulpStill = Still.new(0, Units.CtoK(AMBIENT_TEMPERATURE), PulpStillBreaker, WaterTank)
 	PulpPump = Pump.new(PulpTank, PulpStill, 1.0, PulpPumpBreaker, 15.0)
 	links.append(PulpPump)
@@ -113,9 +113,9 @@ func _ready():
 	SeparatorGirdlerSeparatorBreaker = Breaker.new(BusA, null, false)
 	SeparatorEffluentDischargeToRadwasteIsolationValveBreaker = Breaker.new(BusA, null, false)
 	SeparatorEffluentDischargeToRadwastePumpBreaker = Breaker.new(BusA, null, false)
-	SeparatorProduct = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 200)
-	SeparatorEffluent = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 200)
-	SeparatorGirdlerSeparator = GirdlerSeparator.new(0, Units.CtoK(AMBIENT_TEMPERATURE), SeparatorGirdlerSeparatorBreaker, SeparatorProduct, SeparatorEffluent, 400)
+	SeparatorProduct = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 0.002)
+	SeparatorEffluent = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 0.2)
+	SeparatorGirdlerSeparator = GirdlerSeparator.new(0, Units.CtoK(AMBIENT_TEMPERATURE), SeparatorGirdlerSeparatorBreaker, SeparatorProduct, SeparatorEffluent, 0.05)
 	SeparatorSourcePump = Pump.new(WaterTank, SeparatorGirdlerSeparator, 1.0, SeparatorSourcePumpBreaker)
 	SeparatorRecirculationPump = Pump.new(SeparatorEffluent, SeparatorGirdlerSeparator, 1.0, SeparatorRecirculationPumpBreaker)
 	SeparatorRecirculationIsolationValve = MotorOperatedValve.new(SeparatorRecirculationIsolationValveBreaker)
@@ -145,3 +145,4 @@ func _physics_process(dt):
 	BananaBlender.step(dt)
 	PulpStill.step(dt)
 	SeparatorGirdlerSeparator.step(dt)
+	D2Electrolyser.step(dt)

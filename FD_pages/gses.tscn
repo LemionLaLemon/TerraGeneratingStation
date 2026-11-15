@@ -214,6 +214,7 @@ rotation = 1.5708
 texture = ExtResource("7_0m0t1")
 
 [node name="GS_101" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 67.0
 offset_top = 180.0
 offset_right = 91.0

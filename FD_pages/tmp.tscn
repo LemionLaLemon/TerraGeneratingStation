@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://qfjj8822hpkn"]
+
+[ext_resource type="Script" uid="uid://cokmxl4i5appl" path="res://FD_pages/tmp.gd" id="1_3knqm"]
+[ext_resource type="Texture2D" uid="uid://dejb5oc664qfd" path="res://imported/FD-TMP.png" id="2_3knqm"]
+[ext_resource type="FontFile" uid="uid://dh04hvxxdo5mk" path="res://external/VCR_OSD_MONO_1.001.ttf" id="3_8trho"]
+[ext_resource type="Texture2D" uid="uid://o77n1vsebl6y" path="res://imported/PUMP_TRIPPED.png" id="4_p0rku"]
+[ext_resource type="Texture2D" uid="uid://bbuqn68sj1v0w" path="res://imported/VALVE_CLOSED.png" id="5_cv8i5"]
+
+[node name="Rp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3knqm")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+texture = ExtResource("2_3knqm")
+
+[node name="P_204_RPM" type="Label" parent="."]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 259.0
+offset_right = 250.0
+offset_bottom = 271.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_8trho")
+theme_override_font_sizes/font_size = 12
+text = "1600"
+horizontal_alignment = 2
+
+[node name="P_205_RPM" type="Label" parent="."]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 259.0
+offset_right = 404.0
+offset_bottom = 271.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_8trho")
+theme_override_font_sizes/font_size = 12
+text = "1600"
+horizontal_alignment = 2
+
+[node name="VESSEL_PRESS_N" type="Label" parent="."]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 62.0
+offset_right = 562.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_8trho")
+theme_override_font_sizes/font_size = 12
+text = "1600"
+horizontal_alignment = 2
+
+[node name="VESSEL_PRESS_W" type="Label" parent="."]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 49.0
+offset_right = 562.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_8trho")
+theme_override_font_sizes/font_size = 12
+text = "1600"
+horizontal_alignment = 2
+
+[node name="P_204" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 208.0
+offset_right = 207.0
+offset_bottom = 232.0
+rotation = 1.5708
+texture = ExtResource("4_p0rku")
+
+[node name="P_205" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 208.0
+offset_right = 360.0
+offset_bottom = 232.0
+rotation = 1.5708
+texture = ExtResource("4_p0rku")
+
+[node name="V_204" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 142.0
+offset_right = 179.0
+offset_bottom = 168.0
+texture = ExtResource("5_cv8i5")
+
+[node name="V_205" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 307.0
+offset_top = 142.0
+offset_right = 332.0
+offset_bottom = 168.0
+texture = ExtResource("5_cv8i5")

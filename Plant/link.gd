@@ -20,6 +20,14 @@ func _capacity():
 	for gate in gates:
 		if not gate.isOpen():
 			return 0.0
+	if source is IdealContainer or sink is IdealContainer:
+		var dp = source.getPressure() - sink.getPressure()
+		if dp <= 0.0:
+			return 0.0
+		return min(coefficient * sqrt(dp), max_flow_kgs)
+		if _head() <= 0.0:
+			return 0.0
+		return min(coefficient * sqrt(_head()), max_flow_kgs)
 	if _head() <= 0.0:
 		return 0.0
 	return min(coefficient * sqrt(_head()), max_flow_kgs)

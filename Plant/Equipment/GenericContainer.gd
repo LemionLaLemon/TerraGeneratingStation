@@ -6,12 +6,16 @@ var elevation: float = 0.0 # meters
 var temperature: float = 20.0 # deg k
 var volume: float = 1.0
 var vessel_cap: float = 0.0 # heat capcity J/K
+var ratedPressure: float = 0.0
 
 func _init(Elevation, Temperature, Volume = 1.0, Contents = {}):
 	self.elevation = Elevation
 	self.temperature = Temperature
 	self.contents = Contents
 	self.volume = Volume
+
+func getPressure():
+	return 0.0
 
 func heat_capacity():
 	var cap = vessel_cap

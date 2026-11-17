@@ -6,11 +6,15 @@ enum Materials {
 	Banana,
 	Pulp,
 	Water, # Natural Water
+	Air, # Environment Air
 	H2O, # Light Water
 	D2, # Hydrogen-2
 	D2O, # Heavy Water
 	K40, # Potassium-40
-	O # Oxygen (specific isotope not useful)
+	O, # Oxygen (specific isotope not useful)
+	O2, # Dioxygen
+	N2, #Dinitrogen
+	Ar # Argon
 }
 
 # bit masks
@@ -63,6 +67,42 @@ const Info = {
 	Materials.K40:   {"Density": 862.0, "SpecificHeat": 757.0, "State": States.Solid | States.Liquid},
 	Materials.O:     {"Density": 1.31, "SpecificHeat": 920.0, "State": States.Gas | States.Liquid | States.Solid},
 	Materials.H2O: {"Density": 998.2, "SpecificHeat": 4184.0, "State": States.Liquid | States.Solid | States.Gas},
+	Materials.Air: {
+		"Density": 1.184,
+		"SpecificHeat": 1005.0,
+		"State": States.Gas,
+		"Composition": {
+			Materials.N2: 0.7556,
+			Materials.O2: 0.2315,
+			Materials.Ar: 0.0129
+		}
+	},
+	Materials.N2: {
+		"Density": 1.145,
+		"SpecificHeat": 1040.0,
+		"State": States.Gas
+	},
+	Materials.O2: {
+		"Density": 1.308,
+		"SpecificHeat": 918.0,
+		"State": States.Gas
+	},
+	Materials.Ar: {
+		"Density": 1.633,
+		"SpecificHeat": 520.0,
+		"State": States.Gas
+	},
+}
+
+# Ideal gas law stuff
+const R = 8.314462
+const MolarMass = {
+	Materials.D2: 0.004028,
+	Materials.O: 0.031998,
+	Materials.Air: 0.02897,
+	Materials.N2: 0.028014,
+	Materials.O2: 0.031998,
+	Materials.Ar: 0.039948,
 }
 
 # Electrical

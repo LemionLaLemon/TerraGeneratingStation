@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtwdgyu02mnjk"]
+
+[ext_resource type="PackedScene" uid="uid://cv4mq313lxipx" path="res://blender-models/edgewisegauge.blend" id="1_jqdat"]
+[ext_resource type="Script" uid="uid://bc76q0iliy4l2" path="res://edgewisegauge.gd" id="2_g86ge"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jqdat"]
+viewport_path = NodePath("ScaleView")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g86ge"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_jqdat")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oc2pi"]
+viewport_path = NodePath("UnitView")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0oia"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_oc2pi")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqdat"]
+bg_color = Color(0.905882, 0.905882, 0.905882, 1)
+
+[node name="edgewisegauge" instance=ExtResource("1_jqdat")]
+script = ExtResource("2_g86ge")
+
+[node name="Needle" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.99601, 0.089242, 0, -0.089242, 0.99601, 0, 0, 0)
+
+[node name="Scale" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_g86ge")
+surface_material_override/1 = SubResource("StandardMaterial3D_n0oia")
+
+[node name="UnitView" type="SubViewport" parent="." index="5"]
+size = Vector2i(53, 1024)
+render_target_update_mode = 1
+
+[node name="Label" type="Label" parent="UnitView" index="0"]
+custom_minimum_size = Vector2(53, 1024)
+offset_right = 53.0
+offset_bottom = 1024.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_jqdat")
+text = "mPaA"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="ScaleView" type="SubViewport" parent="." index="6"]
+size = Vector2i(144, 1024)
+render_target_update_mode = 1
+
+[node name="Paper" type="ColorRect" parent="ScaleView" index="0"]
+custom_minimum_size = Vector2(144, 1024)
+offset_right = 144.0
+offset_bottom = 1024.0
+color = Color(0.905882, 0.905882, 0.905882, 1)
+
+[node name="Ticks" type="ColorRect" parent="ScaleView" index="1"]
+custom_minimum_size = Vector2(144, 1024)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.905882, 0.905882, 0.905882, 1)

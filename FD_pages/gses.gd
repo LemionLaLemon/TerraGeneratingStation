@@ -13,7 +13,7 @@ func refresh():
 	$TK_105_LEVEL.text = Common.sig((Plant.WaterTank.fill_fraction() * 5), 4)
 	$GS_101_LEVEL.text = Common.sig((Plant.SeparatorGirdlerSeparator.fill_fraction() * 5), 4)
 	$TK_107_LEVEL.text = Common.sig((Plant.SeparatorProduct.fill_fraction() * 5), 4)
-	$TK_110_LEVEL.text = Common.sig((Plant.DeuteriumTank.fill_fraction() * 5), 4)
+	$TK_110_LEVEL.text = Common.sig(Units.PatokPa(Plant.DeuteriumTank.getPressure()), 5)
 	$EL_101_POWER.text = Common.sig((Plant.D2Electrolyser.getLoadKw()), 4)
 	$TK_108_LEVEL.text = Common.sig((Plant.SeparatorEffluent.fill_fraction() * 5), 4)
 	$EL_101_LEVEL.text = Common.sig((Plant.D2Electrolyser.fill_fraction() * 5), 4)

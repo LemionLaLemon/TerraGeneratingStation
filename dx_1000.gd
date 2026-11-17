@@ -58,6 +58,11 @@ func _process(_dt):
 				continue
 			var c = channels[i]
 			var v = exprs[i].execute([Units], base)
-			screen.get_child(i).get_node("Value").text = "-" if exprs[i].has_execute_failed() else c.format % (v + c.offset)
+			var label = screen.get_child(i).get_node("Value")
+			if exprs[i].has_execute_failed():
+				label.text = "-"
+			else:
+				var s = Common.sig(v + c.offset, 6)
+				label.text = s if s == "Ol." or s == "Ul." else c.format % float(s)
 			$SubViewport/Screen/Graph.push(i, v + c.offset)
 			$SubViewport/Screen/Scale.set_cursor(i, v + c.offset)

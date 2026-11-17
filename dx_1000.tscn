@@ -364,6 +364,8 @@ default_color = Color(1, 0, 0, 1)
 
 [node name="1" type="Label3D" parent="PaperLabel" index="0"]
 transform = Transform3D(0.012, 0, 0, 0, 0.012, 0, 0, 0, 0.012, -0.04485, -0.04806, 0.02478)
+layers = 2
+render_priority = 1
 modulate = Color(0.097256, 0.097256, 0.097256, 1)
 outline_modulate = Color(0, 0, 0, 0)
 font_size = 64
@@ -371,6 +373,8 @@ horizontal_alignment = 0
 
 [node name="2" type="Label3D" parent="PaperLabel" index="1"]
 transform = Transform3D(0.012, 0, 0, 0, 0.012, 0, 0, 0, 0.012, -0.04485, -0.05382, 0.02478)
+layers = 2
+render_priority = 1
 modulate = Color(0.097256, 0.097256, 0.097256, 1)
 outline_modulate = Color(0, 0, 0, 0)
 font_size = 64
@@ -378,6 +382,8 @@ horizontal_alignment = 0
 
 [node name="3" type="Label3D" parent="PaperLabel" index="2"]
 transform = Transform3D(0.012, 0, 0, 0, 0.012, 0, 0, 0, 0.012, -0.04485, -0.05964, 0.02478)
+layers = 2
+render_priority = 1
 modulate = Color(0.097256, 0.097256, 0.097256, 1)
 outline_modulate = Color(0, 0, 0, 0)
 font_size = 64
@@ -385,6 +391,8 @@ horizontal_alignment = 0
 
 [node name="4" type="Label3D" parent="PaperLabel" index="3"]
 transform = Transform3D(0.012, 0, 0, 0, 0.012, 0, 0, 0, 0.012, -0.04485, -0.0654, 0.02478)
+layers = 2
+render_priority = 1
 modulate = Color(0.097256, 0.097256, 0.097256, 1)
 outline_modulate = Color(0, 0, 0, 0)
 font_size = 64

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=45 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://dtwdgyu02mnjk" path="res://edgewisegauge.tscn" id="18_8j1ou"]
 [ext_resource type="PackedScene" uid="uid://bjulspfjmm1jf" path="res://FD_pages/rp.tscn" id="18_o3hm7"]
 [ext_resource type="PackedScene" uid="uid://qfjj8822hpkn" path="res://FD_pages/tmp.tscn" id="19_xpof7"]
+[ext_resource type="PackedScene" uid="uid://cwyey88qgvkhg" path="res://FD_pages/sim.tscn" id="21_1q4c1"]
+[ext_resource type="PackedScene" uid="uid://b456i30lcq1ho" path="res://sbm.tscn" id="21_302uq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -609,7 +611,7 @@ vertical_alignment = 0
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "FD_E1"
+text = "FD-E1"
 horizontal_alignment = 0
 
 [node name="FD2" parent="ControlRoom/Electrical" instance=ExtResource("12_akxrc")]
@@ -634,7 +636,7 @@ vertical_alignment = 0
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "FD_E2"
+text = "FD-E2"
 horizontal_alignment = 0
 
 [node name="Blending and Distilling" type="Node3D" parent="ControlRoom"]
@@ -1454,4 +1456,82 @@ transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "NARROW RANGE"
+vertical_alignment = 0
+
+[node name="Node3D" type="Node3D" parent="ControlRoom"]
+
+[node name="FD" parent="ControlRoom/Node3D" instance=ExtResource("12_akxrc")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.45992, 0.670205, -2.49459)
+page = ExtResource("21_1q4c1")
+updateEvery = 0.25
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Node3D/FD"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Node3D/FD/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "SIMULATION CONTROLS
+HMI"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Node3D/FD/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD-SIM"
+horizontal_alignment = 0
+
+[node name="SBM" parent="ControlRoom/Node3D" instance=ExtResource("21_302uq")]
+transform = Transform3D(-1, -8.74228e-08, 0, 2.6054e-15, -2.98023e-08, -1, 8.74228e-08, -1, 2.98023e-08, -5.36, 0.485, -2.495)
+breakerName = "Accel32x"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Node3D/SBM"]
+transform = Transform3D(-1, -2.98023e-08, -1.39091e-08, -3.72529e-08, 1, -3.72529e-08, 7.35137e-08, -7.45058e-09, -1, 0, 0, -0.05)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Node3D/SBM/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "SIM TIME ACCELERATION
+x32"
+vertical_alignment = 0
+
+[node name="SBM3" parent="ControlRoom/Node3D" instance=ExtResource("21_302uq")]
+transform = Transform3D(-1, -8.74228e-08, 0, 2.6054e-15, -2.98023e-08, -1, 8.74228e-08, -1, 2.98023e-08, -5.36, 0.37, -2.495)
+breakerName = "Accel64x"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Node3D/SBM3"]
+transform = Transform3D(-1, -2.98023e-08, -1.39091e-08, -3.72529e-08, 1, -3.72529e-08, 7.35137e-08, -7.45058e-09, -1, 0, 0, -0.05)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Node3D/SBM3/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "SIM TIME ACCELERATION
+x64"
+vertical_alignment = 0
+
+[node name="SBM2" parent="ControlRoom/Node3D" instance=ExtResource("21_302uq")]
+transform = Transform3D(-1, -8.74228e-08, 0, 2.6054e-15, -2.98023e-08, -1, 8.74228e-08, -1, 2.98023e-08, -5.445, 0.485, -2.495)
+breakerName = "GridBO"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Node3D/SBM2"]
+transform = Transform3D(-1, -2.98023e-08, -1.39091e-08, -3.72529e-08, 1, -3.72529e-08, 7.35137e-08, -7.45058e-09, -1, 0, 0, -0.05)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Node3D/SBM2/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "GRID 
+LOSS OF VOLTAGE"
 vertical_alignment = 0

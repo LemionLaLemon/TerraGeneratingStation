@@ -16,11 +16,13 @@ grow_vertical = 2
 script = ExtResource("1_tpgru")
 
 [node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
 texture = ExtResource("2_81e8m")
 
 [node name="P_200_RPM" type="Label" parent="."]
+layout_mode = 0
 offset_left = 77.0
 offset_top = 245.0
 offset_right = 120.0
@@ -32,6 +34,7 @@ text = "1600"
 horizontal_alignment = 2
 
 [node name="P_201_RPM" type="Label" parent="."]
+layout_mode = 0
 offset_left = 231.0
 offset_top = 245.0
 offset_right = 274.0
@@ -43,6 +46,7 @@ text = "1600"
 horizontal_alignment = 2
 
 [node name="P_202_RPM" type="Label" parent="."]
+layout_mode = 0
 offset_left = 385.0
 offset_top = 245.0
 offset_right = 428.0
@@ -54,6 +58,7 @@ text = "1600"
 horizontal_alignment = 2
 
 [node name="P_203_RPM" type="Label" parent="."]
+layout_mode = 0
 offset_left = 539.0
 offset_top = 245.0
 offset_right = 582.0
@@ -65,6 +70,7 @@ text = "1600"
 horizontal_alignment = 2
 
 [node name="VESSEL_PRESS_N" type="Label" parent="."]
+layout_mode = 0
 offset_left = 518.0
 offset_top = 67.0
 offset_right = 585.0
@@ -76,6 +82,7 @@ text = "1600"
 horizontal_alignment = 2
 
 [node name="VESSEL_PRESS_W" type="Label" parent="."]
+layout_mode = 0
 offset_left = 518.0
 offset_top = 54.0
 offset_right = 585.0
@@ -87,6 +94,7 @@ text = "1600"
 horizontal_alignment = 2
 
 [node name="P_200" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 49.0
 offset_top = 208.0
 offset_right = 77.0
@@ -95,6 +103,7 @@ rotation = 1.5708
 texture = ExtResource("4_ad0nj")
 
 [node name="P_201" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 203.0
 offset_top = 208.0
 offset_right = 231.0
@@ -103,6 +112,7 @@ rotation = 1.5708
 texture = ExtResource("4_ad0nj")
 
 [node name="P_202" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 356.0
 offset_top = 208.0
 offset_right = 384.0
@@ -111,6 +121,7 @@ rotation = 1.5708
 texture = ExtResource("4_ad0nj")
 
 [node name="P_203" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 510.0
 offset_top = 208.0
 offset_right = 538.0
@@ -119,6 +130,7 @@ rotation = 1.5708
 texture = ExtResource("4_ad0nj")
 
 [node name="V_200" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 25.0
 offset_top = 142.0
 offset_right = 50.0
@@ -126,6 +138,7 @@ offset_bottom = 168.0
 texture = ExtResource("6_x00bv")
 
 [node name="V_201" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 142.0
 offset_right = 203.0
@@ -133,6 +146,7 @@ offset_bottom = 168.0
 texture = ExtResource("6_x00bv")
 
 [node name="V_202" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 331.0
 offset_top = 142.0
 offset_right = 356.0
@@ -140,6 +154,7 @@ offset_bottom = 168.0
 texture = ExtResource("6_x00bv")
 
 [node name="V_203" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 484.0
 offset_top = 142.0
 offset_right = 509.0

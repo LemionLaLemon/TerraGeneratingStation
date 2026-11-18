@@ -99,11 +99,19 @@ var V_205Breaker
 # Radwaste
 var EquipmentDrainCollectorTank
 
+# Sim parameter breakers
+var Accel32x
+var Accel64x
+var GridBO
+
 var links = []
 
 func _ready():
 	print(Common.Info[Common.Materials.Water].Density)
 	Grid = Bus.new(230_000, 60, true)
+	Accel32x = Breaker.new(Grid, null, false)
+	Accel64x = Breaker.new(Grid, null, false)
+	GridBO = Breaker.new(Grid, null, false)
 	# Environment
 	TGSAtmosphere = Atmosphere.new(Units.CtoK(AMBIENT_TEMPERATURE))
 	
@@ -240,7 +248,14 @@ func _ready():
 	print(TerraTokamak.Elongation )
 
 func _physics_process(dt):
-	dt = dt * 32
+	if Accel32x.isClosed():
+		dt = dt * 32
+	if Accel64x.isClosed():
+		dt = dt * 64
+	if GridBO.isClosed():
+		Grid.setEnergized(false)
+	else:
+		Grid.setEnergized(true)
 	for link in links:
 		link.step(dt)
 	BananaBlender.step(dt)

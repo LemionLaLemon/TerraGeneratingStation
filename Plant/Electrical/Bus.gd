@@ -5,6 +5,7 @@ var voltage: float = 120
 var nominalVoltage: float = 120
 var frequency: float = 60
 var isSource: bool = false
+var powered: bool = false # DO NOT use this for non source buses
 var feeds = []
 var taps = []
 var ratedAmps: float = 2000 # switchgear medium
@@ -15,10 +16,14 @@ func _init(Voltage = 120, Frequency = 60, IsSource = false, RatedAmps = 2000):
 	frequency = Frequency
 	isSource = IsSource
 	ratedAmps = RatedAmps
-	
+	powered = true
+
+func setEnergized(state: bool):
+	powered = state
+
 func energized():
 	if isSource:
-		return true
+		return powered
 	for link in feeds:
 		if link.closed and link.upstream.energized():
 			return true

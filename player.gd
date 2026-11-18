@@ -111,19 +111,15 @@ func _physics_process(dt):
 func _fitArm():
 	var v = get_viewport().get_visible_rect().size
 	var s = max(v.y * 0.5 / 1104.0, v.x * .5 / 2436.0) * 1.02
+	Arm.position -= armComp
 	Arm.scale = Vector2(s, s)
+	armComp = (armTip - armShoulder) * (1.0 - s)
+	Arm.pivot_offset = armShoulder
+	Arm.position += armComp
 
 func _swingArm():
 	if armTween:
 		armTween.kill()
-	var s = Arm.scale.x
-	armComp = (armTip - armShoulder) * (1.0 - s)
-	Arm.pivot_offset = armShoulder
-	Arm.position+= armComp
 	Arm.rotation_degrees = -40.0
 	armTween = create_tween()
 	armTween.tween_property(Arm, "rotation_degrees", 0.0, 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	armTween.tween_callback(func():
-		Arm.pivot_offset = armTip
-		Arm.position -= armComp
-		armComp = Vector2.ZERO)

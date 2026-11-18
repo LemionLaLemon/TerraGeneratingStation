@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
-[ext_resource type="PackedScene" uid="uid://cx3gjakrs0i8k" path="res://blender-models/plant.blend" id="4_u3cyc"]
 [ext_resource type="PackedScene" uid="uid://ckgx6i6g04d0a" path="res://blender-models/panel_symbols/transformer_winding.blend" id="8_73fnb"]
 [ext_resource type="Script" uid="uid://b5utvkg8nm2nk" path="res://player.gd" id="8_xlvrw"]
 [ext_resource type="PackedScene" uid="uid://bcqlf8d3fj51g" path="res://annunciatorpanel.tscn" id="9_5juve"]
@@ -18,11 +17,13 @@
 [ext_resource type="PackedScene" uid="uid://cgkls7e0p0a0n" path="res://FD_pages/ELEC2.tscn" id="15_17rhs"]
 [ext_resource type="PackedScene" uid="uid://l7collwbv7rk" path="res://FD_pages/gses.tscn" id="16_223my"]
 [ext_resource type="PackedScene" uid="uid://dtwdgyu02mnjk" path="res://edgewisegauge.tscn" id="18_8j1ou"]
+[ext_resource type="Texture2D" uid="uid://bvdsdwxpmbmn5" path="res://imported/Frame 6.png" id="18_i6j5g"]
 [ext_resource type="PackedScene" uid="uid://bjulspfjmm1jf" path="res://FD_pages/rp.tscn" id="18_o3hm7"]
 [ext_resource type="PackedScene" uid="uid://qfjj8822hpkn" path="res://FD_pages/tmp.tscn" id="19_xpof7"]
 [ext_resource type="PackedScene" uid="uid://cwyey88qgvkhg" path="res://FD_pages/sim.tscn" id="21_1q4c1"]
 [ext_resource type="PackedScene" uid="uid://b456i30lcq1ho" path="res://sbm.tscn" id="21_302uq"]
 [ext_resource type="Texture2D" uid="uid://d0qa4kf2or8be" path="res://imported/arm-removebg.png" id="23_aobyt"]
+[ext_resource type="PackedScene" uid="uid://pou1hkuuk8a4" path="res://plant.tscn" id="24_i6j5g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -167,16 +168,6 @@ format = "%d"
 offset = 0.0
 metadata/_custom_type_script = "uid://doddov2e23i40"
 
-[sub_resource type="Resource" id="Resource_17rhs"]
-script = ExtResource("13_akxrc")
-expression = "TerraTokamak.getPressure()"
-label_text = "REAC PRESSURE W"
-paper_label_text = "Vessel Pressure Wide Range"
-unit_text = "Pa"
-format = "%.2f"
-offset = 0.0
-metadata/_custom_type_script = "uid://doddov2e23i40"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlvrw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73fnb"]
@@ -231,8 +222,6 @@ shape = SubResource("CapsuleShape3D_73fnb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 fov = 80.0
 
-[node name="plant" parent="." instance=ExtResource("4_u3cyc")]
-
 [node name="ControlRoom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1, 8.5, -45.4)
 
@@ -274,12 +263,6 @@ transform = Transform3D(-0.934242, 0.147562, -0.324679, 0.00649367, 0.917274, 0.
 channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_8j1ou"), SubResource("Resource_o3hm7")])
 dx_ID = "VACU (GROUP 2)"
 chart_max = 110000.0
-
-[node name="BlenderDx1000" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-1, -3.20406e-08, 8.13397e-08, 0, 0.930418, 0.366501, -8.74228e-08, 0.366501, -0.930418, 0.341099, 0.46723, 0.116901)
-channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_17rhs")])
-dx_ID = "PRIM (GROUP 2)"
-updateEvery = 0.25
 
 [node name="Electrical" type="Node3D" parent="ControlRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.1, -8.5, 45.4)
@@ -941,6 +924,30 @@ text = "BL-101
 "
 horizontal_alignment = 0
 
+[node name="16mm_pushbutton26" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.68528, 0.0951017, -1.04726)
+breakerName = "PulpPumpBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton26"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton26/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "PULP
+PUMP"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton26/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "P-101"
+horizontal_alignment = 0
+
 [node name="16mm_pushbutton4" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.62162, 0.104749, -0.988277)
 breakerName = "PulpStillBreaker"
@@ -1347,6 +1354,16 @@ FILL HI"
 condition = "PulpTank.fill_fraction() > 0.8"
 litColor = Color(0.901961, 0.858824, 0.341176, 1)
 
+[node name="PointAndCall" type="CSGBox3D" parent="ControlRoom/Blending and Distilling"]
+transform = Transform3D(0.938608, -0.314945, 0.140794, -0.00728036, 0.389944, 0.920809, -0.344906, -0.865305, 0.363712, 2.60234, 0.555547, -0.539124)
+size = Vector3(0.13, 0.001, 0.065)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Decal" type="Decal" parent="ControlRoom/Blending and Distilling/PointAndCall"]
+transform = Transform3D(-1, 0, -1.78814e-07, -2.98023e-08, 1, -5.96046e-08, 1.19209e-07, 0, -1, -9.53674e-06, 0.00172043, -2.28882e-05)
+size = Vector3(0.129883, 0.0115625, 0.0654297)
+texture_albedo = ExtResource("18_i6j5g")
+
 [node name="Vacuums" type="Node3D" parent="ControlRoom"]
 
 [node name="FD2" parent="ControlRoom/Vacuums" instance=ExtResource("12_akxrc")]
@@ -1589,3 +1606,5 @@ offset_bottom = 1.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_i6j5g")
+
+[node name="plant" parent="." instance=ExtResource("24_i6j5g")]

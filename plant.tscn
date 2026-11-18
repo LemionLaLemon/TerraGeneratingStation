@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://pou1hkuuk8a4"]
+
+[ext_resource type="PackedScene" uid="uid://cx3gjakrs0i8k" path="res://blender-models/plant.blend" id="1_mbetm"]
+[ext_resource type="Shader" uid="uid://c1ne0d1e3tuhg" path="res://floor.gdshader" id="2_qljma"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mbetm"]
+render_priority = 0
+shader = ExtResource("2_qljma")
+shader_parameter/color1 = Color(0.448054, 0.463302, 0.516916, 1)
+shader_parameter/color2 = Color(0.498039, 0.513726, 0.568627, 1)
+shader_parameter/mortar = Color(0.435294, 0.45098, 0.501961, 1)
+shader_parameter/scale = 0.7
+shader_parameter/mortar_size = 0.002
+shader_parameter/mortar_smooth = 0.1
+shader_parameter/bias = 0.72
+shader_parameter/brick_width = 0.5
+shader_parameter/row_height = 0.5
+shader_parameter/offset_amount = 0.0
+shader_parameter/offset_frequency = 2
+shader_parameter/squash_amount = 1.0
+shader_parameter/squash_frequency = 2
+shader_parameter/roughness_value = 0.5
+shader_parameter/grain_size = 0.004
+shader_parameter/grain_amount = 0.08
+
+[node name="plant" instance=ExtResource("1_mbetm")]
+
+[node name="Plane_009" parent="." index="33"]
+surface_material_override/0 = SubResource("ShaderMaterial_mbetm")

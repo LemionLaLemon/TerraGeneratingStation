@@ -72,3 +72,25 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_q48s4")
 theme_override_font_sizes/font_size = 18
 text = "NOT ACTIVE"
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 97.0
+offset_right = 224.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_q48s4")
+theme_override_font_sizes/font_size = 18
+text = "SIMULATION TIME"
+
+[node name="SIMTIME" type="Label" parent="."]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 97.0
+offset_right = 523.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_q48s4")
+theme_override_font_sizes/font_size = 18
+text = "0H 0M 0S"

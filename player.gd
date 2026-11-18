@@ -21,6 +21,8 @@ var armTween
 var armTip = Vector2(1660, 800)
 var armShoulder = Vector2(3800, 1500)
 var armComp = Vector2.ZERO
+var armScale = Vector2.ONE
+var pokeTween
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -58,6 +60,8 @@ func _input(event):
 			cameraFOVZoomed = min(cameraFOVZoomed / 0.85, cameraFOVNormal)
 	if event is InputEventMouseButton and event.button_index != MOUSE_BUTTON_RIGHT and hovered:
 		hovered.input_event.emit(cam, event, hitPos, hitNormal, 0)
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and Arm.visible:
+		_pokeArm()
 
 func _process(dt):
 	var captured = Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and not rmbLock
@@ -113,6 +117,7 @@ func _fitArm():
 	var s = max(v.y * 0.5 / 1104.0, v.x * .5 / 2436.0) * 1.02
 	Arm.position -= armComp
 	Arm.scale = Vector2(s, s)
+	armScale = Arm.scale
 	armComp = (armTip - armShoulder) * (1.0 - s)
 	Arm.pivot_offset = armShoulder
 	Arm.position += armComp
@@ -123,3 +128,12 @@ func _swingArm():
 	Arm.rotation_degrees = -40.0
 	armTween = create_tween()
 	armTween.tween_property(Arm, "rotation_degrees", 0.0, 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+func _pokeArm():
+	if pokeTween:
+		pokeTween.kill()
+	Arm.scale = armScale
+	pokeTween = create_tween()
+	pokeTween.tween_property(Arm, "scale", armScale * 0.97, 0.04)
+	pokeTween.tween_property(Arm, "scale", armScale * 1.05, 0.05).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	pokeTween.tween_property(Arm, "scale", armScale, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)

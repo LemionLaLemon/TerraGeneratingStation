@@ -24,6 +24,8 @@ func _press():
 func _ready():
 	flag.set_surface_override_material(0, flag.get_active_material(0).duplicate())
 	breaker = Plant.get(breakerName)
+	collideArea.mouse_entered.connect(func(): Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND))
+	collideArea.mouse_exited.connect(func(): Input.set_default_cursor_shape(Input.CURSOR_ARROW))
 	if breaker == null:
 		push_error("Breaker na kaput")
 		return

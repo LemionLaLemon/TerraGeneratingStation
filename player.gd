@@ -6,14 +6,27 @@ var gravity = 9.8
 
 @onready var cam = $Camera3D
 @onready var cameraFOVNormal = cam.fov
+@onready var Arm = get_parent().get_node("CanvasLayer/Control/Arm")
+@onready var Dot = get_parent().get_node("CanvasLayer/Control/Dot")
 var cameraFOVZoomed: float = 25.0
 var zoomDefault: float = 25.0
 var zoomMin: float = 3.0
 var zoomSpeed: float = 180.0
 var rmbLock = false
+var hovered: CollisionObject3D = null
+var hitPos = Vector3.ZERO
+var hitNormal = Vector3.UP
+var reach = 3.0
+var armTween
+var armTip = Vector2(1660, 800)
+var armShoulder = Vector2(3800, 1500)
+var armComp = Vector2.ZERO
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	get_viewport().physics_object_picking = false
+	get_viewport().size_changed.connect(_fitArm)
+	_fitArm()
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -43,6 +56,17 @@ func _input(event):
 			cameraFOVZoomed = max(cameraFOVZoomed * 0.85, zoomMin)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			cameraFOVZoomed = min(cameraFOVZoomed / 0.85, cameraFOVNormal)
+	if event is InputEventMouseButton and event.button_index != MOUSE_BUTTON_RIGHT and hovered:
+		hovered.input_event.emit(cam, event, hitPos, hitNormal, 0)
+
+func _process(dt):
+	var captured = Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and not rmbLock
+	var rmb = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
+	var show = captured and rmb
+	if show and not Arm.visible:
+		_swingArm()
+	Arm.visible = show
+	Dot.visible = captured and not rmb
 
 func _physics_process(dt):
 	var dir = Vector3.ZERO
@@ -64,3 +88,42 @@ func _physics_process(dt):
 		cameraFOVZoomed = zoomDefault
 	
 	cam.fov = lerp(cam.fov, target, 1.0 - exp(-10.0 * dt))
+	
+	var obj = null
+	var pos = get_viewport().get_mouse_position()
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		pos = get_viewport().get_visible_rect().size / 2
+	var from = cam.project_ray_origin(pos)
+	var q = PhysicsRayQueryParameters3D.create(from, from + cam.project_ray_normal(pos) * reach)
+	q.exclude = [get_rid()]
+	var hit = get_world_3d().direct_space_state.intersect_ray(q)
+	if hit:
+		obj = hit.collider
+		hitPos = hit.position
+		hitNormal = hit.normal
+	if obj != hovered:
+		if hovered: 
+			hovered.mouse_exited.emit()
+		if obj: 
+			obj.mouse_entered.emit()
+		hovered = obj
+
+func _fitArm():
+	var v = get_viewport().get_visible_rect().size
+	var s = max(v.y * 0.5 / 1104.0, v.x * .5 / 2436.0) * 1.02
+	Arm.scale = Vector2(s, s)
+
+func _swingArm():
+	if armTween:
+		armTween.kill()
+	var s = Arm.scale.x
+	armComp = (armTip - armShoulder) * (1.0 - s)
+	Arm.pivot_offset = armShoulder
+	Arm.position+= armComp
+	Arm.rotation_degrees = -40.0
+	armTween = create_tween()
+	armTween.tween_property(Arm, "rotation_degrees", 0.0, 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	armTween.tween_callback(func():
+		Arm.pivot_offset = armTip
+		Arm.position -= armComp
+		armComp = Vector2.ZERO)

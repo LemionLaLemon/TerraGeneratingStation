@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=47 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://qfjj8822hpkn" path="res://FD_pages/tmp.tscn" id="19_xpof7"]
 [ext_resource type="PackedScene" uid="uid://cwyey88qgvkhg" path="res://FD_pages/sim.tscn" id="21_1q4c1"]
 [ext_resource type="PackedScene" uid="uid://b456i30lcq1ho" path="res://sbm.tscn" id="21_302uq"]
+[ext_resource type="Texture2D" uid="uid://d0qa4kf2or8be" path="res://imported/arm-removebg.png" id="23_aobyt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -180,6 +181,13 @@ metadata/_custom_type_script = "uid://doddov2e23i40"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73fnb"]
 albedo_color = Color(0.920025, 0.920025, 7.70092e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6j5g"]
+bg_color = Color(1, 1, 1, 0.329412)
+corner_radius_top_left = 1335
+corner_radius_top_right = 1335
+corner_radius_bottom_right = 1335
+corner_radius_bottom_left = 1335
 
 [node name="Node3D" type="Node3D"]
 
@@ -1535,3 +1543,49 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "GRID 
 LOSS OF VOLTAGE"
 vertical_alignment = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Arm" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1660.0
+offset_top = -800.0
+offset_right = 2436.0
+offset_bottom = 1104.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.309, 0.309)
+pivot_offset = Vector2(1660, 800)
+mouse_filter = 2
+texture = ExtResource("23_aobyt")
+
+[node name="Dot" type="Panel" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.5
+offset_top = -1.5
+offset_right = 1.5
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6j5g")

@@ -1920,7 +1920,7 @@ horizontal_alignment = 0
 [node name="edgewisegauge" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
 transform = Transform3D(-0.939692, -0.313653, -0.13638, 0, 0.398749, -0.91706, 0.34202, -0.861755, -0.374701, 1.5965, 0.487829, -0.0769522)
 expression = "TFMagnet.current / 1000"
-maxValue = 10.0
+maxValue = 13.0
 majorStep = 1.0
 unit = "K   I   L  O  A  M  P  S"
 
@@ -1934,15 +1934,14 @@ unit = "V  O  L  T  S"
 [node name="edgewisegauge3" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
 transform = Transform3D(-0.939692, -0.313653, -0.13638, 0, 0.398749, -0.91706, 0.34202, -0.861755, -0.374701, 1.53072, 0.487829, -0.0530108)
 expression = "TFMagnet.getEnergyMJ()"
-maxValue = 200.0
-majorStep = 20.0
+maxValue = 350.0
 minorDivisions = 3
 unit = "M  E  G  A   J   O  U  L  E  S"
 
 [node name="edgewisegauge4" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
 transform = Transform3D(-0.939692, -0.313653, -0.13638, 0, 0.398749, -0.91706, 0.34202, -0.861755, -0.374701, 1.49783, 0.487829, -0.0410401)
 expression = "TFMagnet.getFieldT()"
-maxValue = 6.0
+maxValue = 8.0
 majorStep = 1.0
 minorDivisions = 6
 unit = "T  E  S  L  A"
@@ -2072,8 +2071,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_i6j5g")
 [node name="controller" parent="." instance=ExtResource("30_otx46")]
 transform = Transform3D(-0.939693, -0.0867901, -0.330825, 2.98023e-07, 0.967268, -0.253758, 0.34202, -0.238455, -0.908934, -38.2983, 8.58098, -46.098)
 controllerName = "TFMagnetController"
-maxValue = 10000.0
+maxValue = 13000.0
 majorStep = 1000.0
+minorDivisions = 2
 unit = "A  M  P  E  R  E"
 
 [node name="Label2" type="CSGBox3D" parent="controller"]

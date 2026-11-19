@@ -266,9 +266,9 @@ func _ready():
 	TFMagnetTripRelay = Breaker.new(BusC, null, true)
 	TFPowerSupply = PowerSupply.new(CB_500, 300.0, 60000.0, 0.95)
 	TFDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
-	TFMagnet = Magnet.new(TFPowerSupply, CB_501, TFDumpResistor, TFMagnetTripRelay, 4.0, 0.0001, 50000.0)
-	TFMagnet.setpoint = 60000.0
-	TFMagnetController = PIDController.new(TFMagnet, "setpoint", TFMagnet, "current", 10000, 0, 0, 1)
+	TFMagnet = Magnet.new(TFPowerSupply, CB_501, TFDumpResistor, TFMagnetTripRelay, 4.0, 0.0001, 13000.0)
+	TFMagnetController = PIDController.new(TFMagnet, "setpoint", TFMagnet, "current", 13000, 0, 0, 0)
+	links.append(TFMagnetController)
 	
 	print("Ready")
 	print(TerraTokamak.MajorRadius)

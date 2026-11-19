@@ -8,7 +8,7 @@ var closed: bool = false
 @onready var solid = $Solid
 @onready var transparent = $Transparent
 @onready var normalSolidHeight = solid.position.y
-@onready var normalTransparentHeight = solid.position.y
+@onready var normalTransparentHeight = transparent.position.y
 var tween
 var held: bool = false
 

@@ -96,6 +96,14 @@ var V_203Breaker
 var V_204Breaker
 var V_205Breaker
 
+# Toroidal Field Magnets
+var CB_500
+var CB_501
+var TFPowerSupply
+var TFDumpResistor
+var TFMagnet
+var TFMagnetTripRelay
+
 # Radwaste
 var EquipmentDrainCollectorTank
 
@@ -160,6 +168,7 @@ func _ready():
 	SludgeValveBreaker = Breaker.new(BusA, null, false)
 	SludgePumpBreaker = Breaker.new(BusA, null, false)
 	SludgeValve = MotorOperatedValve.new(SludgeValveBreaker)
+	links.append(SludgeValve)
 	SludgePump = Pump.new(PulpStill, SludgeTank, 1.0, SludgePumpBreaker)
 	SludgePump.gates.append(SludgeValve)
 	links.append(SludgePump)
@@ -177,11 +186,13 @@ func _ready():
 	SeparatorSourcePump = Pump.new(WaterTank, SeparatorGirdlerSeparator, 1.0, SeparatorSourcePumpBreaker)
 	SeparatorRecirculationPump = Pump.new(SeparatorEffluent, SeparatorGirdlerSeparator, 1.0, SeparatorRecirculationPumpBreaker)
 	SeparatorRecirculationIsolationValve = MotorOperatedValve.new(SeparatorRecirculationIsolationValveBreaker)
+	links.append(SeparatorRecirculationIsolationValve)
 	SeparatorRecirculationPump.gates.append(SeparatorRecirculationIsolationValve)
 	links.append(SeparatorSourcePump)
 	links.append(SeparatorRecirculationPump)
 	SeparatorEffluentDischargeToRadwastePump = Pump.new(SeparatorEffluent, EquipmentDrainCollectorTank, 1.0, SeparatorEffluentDischargeToRadwastePumpBreaker)
 	SeparatorEffluentDischargeToRadwasteIsolationValve = MotorOperatedValve.new(SeparatorEffluentDischargeToRadwasteIsolationValveBreaker)
+	links.append(SeparatorEffluentDischargeToRadwasteIsolationValve)
 	SeparatorEffluentDischargeToRadwastePump.gates.append(SeparatorEffluentDischargeToRadwasteIsolationValve)
 	links.append(SeparatorEffluentDischargeToRadwastePump)
 	
@@ -221,14 +232,19 @@ func _ready():
 	V_205Breaker = Breaker.new(BusD, null, false)
 	
 	V_200 = MotorOperatedValve.new(V_200Breaker)
+	links.append(V_200)
 	P_200.gates.append(V_200)
 	V_201 = MotorOperatedValve.new(V_201Breaker)
+	links.append(V_201)
 	P_201.gates.append(V_201)
 	V_202 = MotorOperatedValve.new(V_202Breaker)
+	links.append(V_202)
 	P_202.gates.append(V_202)
 	V_203 = MotorOperatedValve.new(V_203Breaker)
+	links.append(V_203)
 	P_203.gates.append(V_203)
 	
+	# Turbo Molecular Pump Vacuums
 	P_204Breaker = Breaker.new(BusC, null, false)
 	P_205Breaker = Breaker.new(BusD, null, false)
 	P_204 = Pump.new(TerraTokamak, TGSAtmosphere, 1.0, P_204Breaker, 0.0, 100.0, 1.0e10)
@@ -237,9 +253,20 @@ func _ready():
 	links.append(P_205)
 	
 	V_204 = MotorOperatedValve.new(V_204Breaker)
+	links.append(V_204)
 	P_204.gates.append(V_204)
 	V_205 = MotorOperatedValve.new(V_205Breaker)
+	links.append(V_205)
 	P_205.gates.append(V_205)
+	
+	# Toroidal Field Magnet
+	CB_500 = Breaker.new(BusC, null, false)
+	CB_501 = Breaker.new(BusC, null, true)
+	TFMagnetTripRelay = Breaker.new(BusC, null, true)
+	TFPowerSupply = PowerSupply.new(CB_500, 300.0, 60000.0, 0.95)
+	TFDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
+	TFMagnet = Magnet.new(TFPowerSupply, CB_501, TFDumpResistor, TFMagnetTripRelay, 4.0, 0.0001, 50000.0)
+	TFMagnet.setpoint = 60000.0
 	
 	print("Ready")
 	print(TerraTokamak.MajorRadius)
@@ -262,3 +289,4 @@ func _physics_process(dt):
 	PulpStill.step(dt)
 	SeparatorGirdlerSeparator.step(dt)
 	D2Electrolyser.step(dt)
+	TFMagnet.step(dt)

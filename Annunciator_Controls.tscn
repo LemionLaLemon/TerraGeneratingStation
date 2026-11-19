@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ciodrawexood8" path="res://annunciator_controls.gd" id="1_rrjvc"]
 [ext_resource type="PackedScene" uid="uid://c7w4ei1bvp62" path="res://blender-models/annunciator_plate.blend" id="1_va2ab"]
-[ext_resource type="PackedScene" uid="uid://c1h3bowed7cw3" path="res://16_mm_round_pushbutton.tscn" id="2_rrjvc"]
+[ext_resource type="PackedScene" uid="uid://c1h3bowed7cw3" path="res://16_mm_round_pushbutton_ann.tscn" id="2_rrjvc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrjvc"]
 

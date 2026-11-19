@@ -26,20 +26,20 @@ func _init(Source, Sink, Coefficient, Supply, Head = 20.0, Speed = 0.0, Ratio = 
 	supply = Supply
 	supply.loads.append(getLoadKw)
 	previousEnergized = supply.energized()
+	started = previousEnergized
 	rated_head_m = Head
 	pumpSpeed = Speed
 	maxRatio = Ratio
 
 func _capacity():
 	if source is IdealContainer or sink is IdealContainer:
-		for gate in gates:
-			if not gate.isOpen():
-				return 0.0
-				
+		var f = _gateFactor()
+		if f <= 0.0:
+			return 0.0
 		if sink.getPressure() > source.getPressure() * maxRatio:
 			return 0.0
 		var rate = (rpm / ratedRpm) * pumpSpeed * source.total_mass() / source.volume
-		return min(rate, max_flow_kgs)
+		return f * min(rate, max_flow_kgs)
 	return super()
 
 func energized():
@@ -62,6 +62,7 @@ func step(dt):
 		
 	if previousEnergized == false and supply.energized():
 		started = true
+		timeSinceStart = 0.0
 	if previousEnergized == true and not supply.energized():
 		started = false
 	if started:

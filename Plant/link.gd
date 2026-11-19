@@ -16,10 +16,22 @@ func _init(from, to, max_flow = 1.0):
 	sink = to
 	max_flow_kgs  = max_flow
 
-func _capacity():
+func _gateFactor():
+	var f = 1.0
 	for gate in gates:
-		if not gate.isOpen():
+		if gate.has_method("getPosition"):
+			f *= gate.getPosition()
+		elif not gate.isOpen():
 			return 0.0
+	return f
+
+func _capacity():
+	var f = _gateFactor()
+	if f <= 0.0:
+		return 0.0
+	return f * _baseCapacity()
+
+func _baseCapacity():
 	if source is IdealContainer or sink is IdealContainer:
 		var dp = source.getPressure() - sink.getPressure()
 		if dp <= 0.0:
@@ -28,8 +40,6 @@ func _capacity():
 		if _head() <= 0.0:
 			return 0.0
 		return min(coefficient * sqrt(_head()), max_flow_kgs)
-	if _head() <= 0.0:
-		return 0.0
 	return min(coefficient * sqrt(_head()), max_flow_kgs)
 
 func step(dt):

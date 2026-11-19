@@ -1,8 +1,12 @@
+# THIS IS A MOMENTARY PUSHBUTTON!!!!
+# これは TOGGLED BUTTON　じゃないよ！ USE THE SQUARE ONE FOR THAT ばか
 extends Node3D
 
 signal pressed
 signal released
 
+@export var breakerName: String = ""
+var breaker
 @onready var collideArea = $StaticBody3D
 @onready var sound = $Sound
 @onready var solid = $Top
@@ -16,6 +20,9 @@ func _ready():
 	collideArea.mouse_exited.connect(func(): Input.set_default_cursor_shape(Input.CURSOR_ARROW))
 	collideArea.input_ray_pickable = true
 	collideArea.input_event.connect(_on_input_event)
+	breaker = Plant.get(breakerName)
+	if breaker == null:
+		push_error("Breaker na kaput")
 
 func _press(dx):
 	if tween:
@@ -28,6 +35,8 @@ func _on_input_event(camera, event, pos, normal, shape_idx):
 		held = true
 		sound.play()
 		_press(0.0025)
+		if breaker:
+			breaker.close()
 		pressed.emit()
 
 func _input(event):

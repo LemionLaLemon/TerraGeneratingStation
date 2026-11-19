@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://khcx3kgxwa8k"]
+
+[ext_resource type="PackedScene" uid="uid://4cgxk8mcewoh" path="res://blender-models/singlepilotlamp.blend" id="1_3do52"]
+[ext_resource type="Script" uid="uid://ckjjvmqdngdcf" path="res://singlepilotlamp.gd" id="2_7gmq1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfffg"]
+albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
+emission = Color(1, 1, 1, 1)
+
+[node name="singlepilotlamp" instance=ExtResource("1_3do52")]
+script = ExtResource("2_7gmq1")
+
+[node name="Lamp" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hfffg")

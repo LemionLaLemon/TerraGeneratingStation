@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=52 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -22,10 +22,13 @@
 [ext_resource type="PackedScene" uid="uid://dirgj6j336ngv" path="res://pilotlamp.tscn" id="18_iss77"]
 [ext_resource type="PackedScene" uid="uid://bjulspfjmm1jf" path="res://FD_pages/rp.tscn" id="18_o3hm7"]
 [ext_resource type="PackedScene" uid="uid://qfjj8822hpkn" path="res://FD_pages/tmp.tscn" id="19_xpof7"]
+[ext_resource type="PackedScene" uid="uid://khcx3kgxwa8k" path="res://singlepilotlamp.tscn" id="20_wncyr"]
 [ext_resource type="PackedScene" uid="uid://cwyey88qgvkhg" path="res://FD_pages/sim.tscn" id="21_1q4c1"]
 [ext_resource type="PackedScene" uid="uid://b456i30lcq1ho" path="res://sbm.tscn" id="21_302uq"]
 [ext_resource type="Texture2D" uid="uid://d0qa4kf2or8be" path="res://imported/arm-removebg.png" id="23_aobyt"]
 [ext_resource type="PackedScene" uid="uid://pou1hkuuk8a4" path="res://plant.tscn" id="24_i6j5g"]
+[ext_resource type="PackedScene" uid="uid://bgmmgtkblk0wy" path="res://collaredbutton.tscn" id="25_xb05w"]
+[ext_resource type="PackedScene" uid="uid://bouyo1wsu0i16" path="res://16_mm_round_pushbutton.tscn" id="26_pou65"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -631,6 +634,162 @@ modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "FD-E2"
 horizontal_alignment = 0
+
+[node name="Label3" type="CSGBox3D" parent="ControlRoom/Electrical"]
+transform = Transform3D(0.93358, 0.358368, 2.75994e-07, -1.74846e-07, 2.54312e-07, 1, 0.358368, -0.93358, 6.88007e-07, -44.6271, 9.455, -42.7617)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Electrical/Label3"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BUS A"
+font_size = 64
+vertical_alignment = 0
+
+[node name="edgewisegauge" parent="ControlRoom/Electrical/Label3" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, 0.0350075, -0.103451, -0.085)
+expression = "BusA.getVoltage() / 1000"
+maxValue = 6.0
+majorStep = 1.0
+minorDivisions = 6
+unit = "K   I   L    OV O L  T  S "
+previewValue = 4.16
+
+[node name="edgewisegauge2" parent="ControlRoom/Electrical/Label3" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, 7.47666e-06, -0.103451, -0.085)
+expression = "BusA.getLoad() / 1000"
+maxValue = 10.0
+majorStep = 2.0
+minorDivisions = 6
+unit = "M E G AW   AT  T  S"
+previewValue = 7.5
+
+[node name="edgewisegauge3" parent="ControlRoom/Electrical/Label3" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, -0.0349925, -0.103451, -0.085)
+expression = "BusA.getFrequency()"
+maxValue = 120.0
+minorDivisions = 6
+unit = "H E  R  T  Z"
+previewValue = 60.0
+
+[node name="Label9" type="CSGBox3D" parent="ControlRoom/Electrical"]
+transform = Transform3D(0.93358, 0.358368, 2.75994e-07, -1.74846e-07, 2.54312e-07, 1, 0.358368, -0.93358, 6.88007e-07, -44.4824, 9.455, -42.7061)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Electrical/Label9"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BUS D"
+font_size = 64
+vertical_alignment = 0
+
+[node name="edgewisegauge" parent="ControlRoom/Electrical/Label9" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, 0.0350075, -0.103451, -0.085)
+expression = "BusD.getVoltage() / 1000"
+maxValue = 50.0
+majorStep = 10.0
+minorDivisions = 6
+unit = "K   I   L    OV O L  T  S "
+previewValue = 34.5
+
+[node name="edgewisegauge2" parent="ControlRoom/Electrical/Label9" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, 7.47666e-06, -0.103451, -0.085)
+expression = "BusD.getLoad() / 1000"
+maxValue = 10.0
+majorStep = 2.0
+minorDivisions = 6
+unit = "M E G AW   AT  T  S"
+previewValue = 7.5
+
+[node name="edgewisegauge3" parent="ControlRoom/Electrical/Label9" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, -0.0349925, -0.103451, -0.085)
+expression = "BusD.getFrequency()"
+maxValue = 120.0
+minorDivisions = 6
+unit = "H E  R  T  Z"
+previewValue = 60.0
+
+[node name="Label10" type="CSGBox3D" parent="ControlRoom/Electrical"]
+transform = Transform3D(0.93358, 0.358368, 2.75994e-07, -1.74846e-07, 2.54312e-07, 1, 0.358368, -0.93358, 6.88007e-07, -44.3331, 9.455, -42.6488)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Electrical/Label10"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BUS C"
+font_size = 64
+vertical_alignment = 0
+
+[node name="edgewisegauge" parent="ControlRoom/Electrical/Label10" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, 0.0350075, -0.103451, -0.085)
+expression = "BusC.getVoltage() / 1000"
+maxValue = 50.0
+majorStep = 10.0
+minorDivisions = 6
+unit = "K   I   L    OV O L  T  S "
+previewValue = 34.5
+
+[node name="edgewisegauge2" parent="ControlRoom/Electrical/Label10" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, 7.47666e-06, -0.103451, -0.085)
+expression = "BusC.getLoad() / 1000"
+maxValue = 10.0
+majorStep = 2.0
+minorDivisions = 6
+unit = "M E G AW   AT  T  S"
+previewValue = 7.5
+
+[node name="edgewisegauge3" parent="ControlRoom/Electrical/Label10" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, -0.0349925, -0.103451, -0.085)
+expression = "BusC.getFrequency()"
+maxValue = 120.0
+minorDivisions = 6
+unit = "H E  R  T  Z"
+previewValue = 60.0
+
+[node name="Label8" type="CSGBox3D" parent="ControlRoom/Electrical"]
+transform = Transform3D(0.93358, 0.358368, 2.75994e-07, -1.74846e-07, 2.54312e-07, 1, 0.358368, -0.93358, 6.88007e-07, -44.7765, 9.455, -42.819)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Electrical/Label8"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BUS B"
+font_size = 64
+vertical_alignment = 0
+
+[node name="edgewisegauge" parent="ControlRoom/Electrical/Label8" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, 0.0350075, -0.103451, -0.085)
+expression = "BusB.getVoltage() / 1000"
+maxValue = 6.0
+majorStep = 1.0
+minorDivisions = 6
+unit = "K   I   L    OV O L  T  S "
+previewValue = 4.16
+
+[node name="edgewisegauge2" parent="ControlRoom/Electrical/Label8" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, 7.47666e-06, -0.103451, -0.085)
+expression = "BusB.getLoad() / 1000"
+maxValue = 10.0
+majorStep = 2.0
+minorDivisions = 6
+unit = "M E G AW   AT  T  S"
+previewValue = 7.5
+
+[node name="edgewisegauge3" parent="ControlRoom/Electrical/Label8" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-1, -1.78814e-07, 4.3015e-07, -2.38419e-07, 1, -5.96047e-07, -8.74228e-08, -2.98023e-07, -1, -0.0349925, -0.103451, -0.085)
+expression = "BusB.getFrequency()"
+maxValue = 120.0
+minorDivisions = 6
+unit = "H E  R  T  Z"
+previewValue = 60.0
 
 [node name="Blending and Distilling" type="Node3D" parent="ControlRoom"]
 
@@ -1359,6 +1518,13 @@ label = "TK-106
 FILL HI"
 condition = "SludgeTank.fill_fraction() > 0.8"
 
+[node name="annunciator_half_height9" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.49272, 3.21865, 2.70801)
+label = "TF FAST
+DISCHARGE INIT"
+condition = "not CB_501.isClosed()"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
 [node name="annunciator_half_height6" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
 transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.97911, 3.08978, 2.5799)
 label = "TK-108
@@ -1392,6 +1558,30 @@ label = "TK-104
 FILL HI"
 condition = "PulpTank.fill_fraction() > 0.8"
 litColor = Color(0.901961, 0.858824, 0.341176, 1)
+
+[node name="singlepilotlamp" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("20_wncyr")]
+transform = Transform3D(0.330825, -0.0867902, -0.939693, 0.253758, 0.967268, 2.18297e-07, 0.908934, -0.238455, 0.34202, 1.86229, 0.102875, -0.705884)
+condition = "TFMagnetTripRelay.isClosed()"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp"]
+transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, -7.45058e-09, 1, 1.49012e-08, -1, -7.45058e-09, 2.98023e-08, 0.0176582, -0.00199509, -0.000354767)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TF MAGNET TRIP
+RELAY"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RLY-501"
+horizontal_alignment = 0
 
 [node name="PointAndCall" type="CSGBox3D" parent="ControlRoom/Blending and Distilling"]
 transform = Transform3D(0.938608, -0.314945, 0.140794, -0.00728036, 0.389944, 0.920809, -0.344906, -0.865305, 0.363712, 2.60234, 0.555547, -0.539124)
@@ -1599,6 +1789,236 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "GRID 
 LOSS OF VOLTAGE"
 vertical_alignment = 0
+
+[node name="Magnets" type="Node3D" parent="ControlRoom"]
+
+[node name="FD4" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.934242, -0.324679, 0.147562, -0.00649381, 0.398203, 0.917275, -0.35658, -0.857915, 0.369909, 1.9888, 0.4863, -0.335584)
+page = ExtResource("19_xpof7")
+updateEvery = 0.25
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD4"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD4/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TURBO MOLECULAR PUMPS VACUUMS
+FLOW DIAGRAM"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD4/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD-TMP"
+horizontal_alignment = 0
+
+[node name="FD6" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.934242, -0.324679, 0.147562, -0.00649381, 0.398203, 0.917275, -0.35658, -0.857915, 0.369909, 1.7132, 0.488215, -0.230393)
+page = ExtResource("19_xpof7")
+updateEvery = 0.25
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD6"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD6/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TURBO MOLECULAR PUMPS VACUUMS
+FLOW DIAGRAM"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD6/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD-TMP"
+horizontal_alignment = 0
+
+[node name="FD5" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.934242, -0.324679, 0.147562, -0.00649381, 0.398203, 0.917275, -0.35658, -0.857915, 0.369909, 1.95413, 0.27074, -0.422513)
+page = ExtResource("19_xpof7")
+updateEvery = 0.25
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD5"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD5/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TURBO MOLECULAR PUMPS VACUUMS
+FLOW DIAGRAM"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD5/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD-TMP"
+horizontal_alignment = 0
+
+[node name="FD7" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.934242, -0.324679, 0.147562, -0.00649381, 0.398203, 0.917275, -0.35658, -0.857915, 0.369909, 1.67853, 0.272656, -0.317322)
+page = ExtResource("19_xpof7")
+updateEvery = 0.25
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD7"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD7/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TURBO MOLECULAR PUMPS VACUUMS
+FLOW DIAGRAM"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD7/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD-TMP"
+horizontal_alignment = 0
+
+[node name="16mm_pushbutton13" parent="ControlRoom/Magnets" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.330825, -0.0867903, -0.939692, 0.253758, 0.967268, 0, 0.908934, -0.238455, 0.34202, 1.92841, 0.100446, -0.729252)
+breakerName = "CB_500"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_pushbutton13"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton13/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TF MAGNET SUPPLY
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton13/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CB-500"
+horizontal_alignment = 0
+
+[node name="edgewisegauge" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.939692, -0.313653, -0.13638, 0, 0.398749, -0.91706, 0.34202, -0.861755, -0.374701, 1.5965, 0.487829, -0.0769522)
+expression = "TFMagnet.current / 1000"
+maxValue = 10.0
+majorStep = 1.0
+unit = "K   I   L  O  A  M  P  S"
+
+[node name="edgewisegauge2" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.939692, -0.313653, -0.13638, 0, 0.398749, -0.91706, 0.34202, -0.861755, -0.374701, 1.56361, 0.487829, -0.0649815)
+expression = "TFMagnet.voltage"
+maxValue = 350.0
+majorStep = 50.0
+unit = "V  O  L  T  S"
+
+[node name="edgewisegauge3" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.939692, -0.313653, -0.13638, 0, 0.398749, -0.91706, 0.34202, -0.861755, -0.374701, 1.53072, 0.487829, -0.0530108)
+expression = "TFMagnet.getEnergyMJ()"
+maxValue = 200.0
+majorStep = 20.0
+minorDivisions = 3
+unit = "M  E  G  A   J   O  U  L  E  S"
+
+[node name="edgewisegauge4" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.939692, -0.313653, -0.13638, 0, 0.398749, -0.91706, 0.34202, -0.861755, -0.374701, 1.49783, 0.487829, -0.0410401)
+expression = "TFMagnet.getFieldT()"
+maxValue = 6.0
+majorStep = 1.0
+minorDivisions = 6
+unit = "T  E  S  L  A"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets"]
+transform = Transform3D(0.935444, -0.324158, 0.140948, -3.92142e-08, 0.398749, 0.917061, -0.353475, -0.857858, 0.373008, 1.50614, 0.450734, -0.170867)
+size = Vector3(0.145, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TOROIDAL FIELD MAGNET
+PARAMETERS"
+vertical_alignment = 0
+
+[node name="16mm_round_pushbutton" parent="ControlRoom/Magnets" instance=ExtResource("26_pou65")]
+transform = Transform3D(0.330825, -0.0867902, -0.939693, 0.253758, 0.967268, 2.32355e-07, 0.908934, -0.238455, 0.34202, 1.8474, 0.091456, -0.746786)
+breakerName = "TFMagnetTripRelay"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_round_pushbutton"]
+transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, -7.45058e-09, 1, 1.49012e-08, -1, -7.45058e-09, 2.98023e-08, 0.0226582, -0.000849991, -0.000354767)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/16mm_round_pushbutton/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TF MAGNET TRIP
+RELAY RESET"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/16mm_round_pushbutton/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RLY-501"
+horizontal_alignment = 0
+
+[node name="collaredbutton" parent="ControlRoom" instance=ExtResource("25_xb05w")]
+transform = Transform3D(-0.939693, -0.0867904, -0.330825, 0, 0.967268, -0.253758, 0.34202, -0.238454, -0.908934, 1.91337, 0.103325, -0.771146)
+breakerName = "TFMagnetTripRelay"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/collaredbutton"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.74846e-09, -0.0125452, -0.02)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/collaredbutton/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TF FAST DISCHARGE"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/collaredbutton/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RLY-501"
+horizontal_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="ControlRoom/collaredbutton/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0180968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "DISARMED"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="ControlRoom/collaredbutton/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, -0.0046732, 0.00104, -0.00414)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "ARMED"
+horizontal_alignment = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

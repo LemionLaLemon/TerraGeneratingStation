@@ -16,6 +16,8 @@ var fontSize = 36
 var tickFontSize = 22
 
 var expr = Expression.new()
+var shown: float = NAN
+var response: float = 4.0 # response time
 
 @export var expression: String = "":
 	set(v):
@@ -65,9 +67,10 @@ func _process(dt):
 	if Engine.is_editor_hint():
 		return
 	var v = expr.execute([], Plant)
-	if expr.has_execute_failed():
+	if expr.has_execute_failed() or not (v is float or v is int):
 		return
-	setValue(v)
+	shown = v if is_nan(shown) else lerp(shown, float(v), 1.0 - exp(-response * dt))
+	setValue(shown)
 
 func valueToY(v):
 	return tickStart - (tickStart - tickEnd) * (v - minValue) / (maxValue - minValue)

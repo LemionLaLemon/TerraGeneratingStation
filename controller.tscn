@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://dfo266ycweh1b"]
+
+[ext_resource type="PackedScene" uid="uid://c7fjnre8ichc" path="res://blender-models/controller.blend" id="1_jldtq"]
+[ext_resource type="Script" uid="uid://cl22422778uj5" path="res://controller.gd" id="2_n1geg"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n1geg"]
+viewport_path = NodePath("ScaleView")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dd4ha"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_n1geg")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cp7gx"]
+viewport_path = NodePath("UnitView")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nclek"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_cp7gx")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5wrki"]
+viewport_path = NodePath("ScaleView")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xsijp"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_5wrki")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_my0pc"]
+viewport_path = NodePath("UnitView")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8borx"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_my0pc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dd4ha"]
+bg_color = Color(0.905882, 0.905882, 0.905882, 1)
+
+[node name="controller" instance=ExtResource("1_jldtq")]
+script = ExtResource("2_n1geg")
+
+[node name="ACTGAUGE" parent="." index="0"]
+surface_material_override/1 = SubResource("StandardMaterial3D_dd4ha")
+surface_material_override/2 = SubResource("StandardMaterial3D_nclek")
+
+[node name="ACTNEEDLE" parent="." index="1"]
+transform = Transform3D(0.8, 0, 0, 0, 0.796808, 0.0713936, 0, -0.0713936, 0.796808, -0.0096, -0.0285333, -0.00913333)
+
+[node name="DEMGAUGE" parent="." index="3"]
+surface_material_override/1 = SubResource("StandardMaterial3D_xsijp")
+surface_material_override/2 = SubResource("StandardMaterial3D_8borx")
+
+[node name="DEMNEEDLE" parent="." index="4"]
+transform = Transform3D(0.8, 0, 0, 0, 0.721466, 0.345669, 0, -0.345669, 0.721466, 0.0096, -0.0285333, -0.00913333)
+
+[node name="UnitView" type="SubViewport" parent="." index="9"]
+size = Vector2i(53, 1024)
+render_target_update_mode = 1
+
+[node name="Label" type="Label" parent="UnitView" index="0"]
+custom_minimum_size = Vector2(53, 1024)
+offset_right = 53.0
+offset_bottom = 1024.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_dd4ha")
+text = "mPaA"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="ScaleView" type="SubViewport" parent="." index="10"]
+size = Vector2i(144, 1024)
+render_target_update_mode = 1
+
+[node name="Paper" type="ColorRect" parent="ScaleView" index="0"]
+custom_minimum_size = Vector2(144, 1024)
+offset_right = 144.0
+offset_bottom = 1024.0
+color = Color(0.905882, 0.905882, 0.905882, 1)
+
+[node name="Ticks" type="ColorRect" parent="ScaleView" index="1"]
+custom_minimum_size = Vector2(144, 1024)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.905882, 0.905882, 0.905882, 1)

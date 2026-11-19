@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=53 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://pou1hkuuk8a4" path="res://plant.tscn" id="24_i6j5g"]
 [ext_resource type="PackedScene" uid="uid://bgmmgtkblk0wy" path="res://collaredbutton.tscn" id="25_xb05w"]
 [ext_resource type="PackedScene" uid="uid://bouyo1wsu0i16" path="res://16_mm_round_pushbutton.tscn" id="26_pou65"]
+[ext_resource type="PackedScene" uid="uid://dfo266ycweh1b" path="res://controller.tscn" id="30_otx46"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3253y"]
 sky_top_color = Color(0.413116, 0.483979, 0.582584, 1)
@@ -1960,7 +1961,7 @@ PARAMETERS"
 vertical_alignment = 0
 
 [node name="16mm_round_pushbutton" parent="ControlRoom/Magnets" instance=ExtResource("26_pou65")]
-transform = Transform3D(0.330825, -0.0867902, -0.939693, 0.253758, 0.967268, 2.32355e-07, 0.908934, -0.238455, 0.34202, 1.8474, 0.091456, -0.746786)
+transform = Transform3D(0.330825, -0.0867901, -0.939693, 0.253758, 0.967268, 3.14832e-07, 0.908934, -0.238455, 0.34202, 1.8474, 0.091456, -0.746786)
 breakerName = "TFMagnetTripRelay"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_round_pushbutton"]
@@ -2067,3 +2068,30 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_i6j5g")
 
 [node name="plant" parent="." instance=ExtResource("24_i6j5g")]
+
+[node name="controller" parent="." instance=ExtResource("30_otx46")]
+transform = Transform3D(-0.939693, -0.0867901, -0.330825, 2.98023e-07, 0.967268, -0.253758, 0.34202, -0.238455, -0.908934, -38.2983, 8.58098, -46.098)
+controllerName = "TFMagnetController"
+maxValue = 10000.0
+majorStep = 1000.0
+unit = "A  M  P  E  R  E"
+
+[node name="Label2" type="CSGBox3D" parent="controller"]
+transform = Transform3D(-1, -1.49012e-08, -1.39091e-08, -1.49012e-08, 1, -7.45058e-09, 7.35137e-08, -7.45058e-09, -1, 6.40355e-11, 0.014858, -0.065)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="controller/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TF MAGNET CURRENT
+CONTROLLER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="controller/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "C-TF"
+horizontal_alignment = 0

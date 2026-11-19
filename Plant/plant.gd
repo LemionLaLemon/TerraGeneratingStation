@@ -103,6 +103,7 @@ var TFPowerSupply
 var TFDumpResistor
 var TFMagnet
 var TFMagnetTripRelay
+var TFMagnetController
 
 # Radwaste
 var EquipmentDrainCollectorTank
@@ -267,6 +268,7 @@ func _ready():
 	TFDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
 	TFMagnet = Magnet.new(TFPowerSupply, CB_501, TFDumpResistor, TFMagnetTripRelay, 4.0, 0.0001, 50000.0)
 	TFMagnet.setpoint = 60000.0
+	TFMagnetController = PIDController.new(TFMagnet, "setpoint", TFMagnet, "current", 10000, 0, 0, 1)
 	
 	print("Ready")
 	print(TerraTokamak.MajorRadius)

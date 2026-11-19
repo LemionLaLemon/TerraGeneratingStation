@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=49 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -16,8 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://bfnexndfjnxuc" path="res://annunciator_half_height.tscn" id="15_8hm71"]
 [ext_resource type="PackedScene" uid="uid://cgkls7e0p0a0n" path="res://FD_pages/ELEC2.tscn" id="15_17rhs"]
 [ext_resource type="PackedScene" uid="uid://l7collwbv7rk" path="res://FD_pages/gses.tscn" id="16_223my"]
+[ext_resource type="PackedScene" uid="uid://2klfcrl6vka2" path="res://valvecontrol.tscn" id="17_iss77"]
 [ext_resource type="PackedScene" uid="uid://dtwdgyu02mnjk" path="res://edgewisegauge.tscn" id="18_8j1ou"]
 [ext_resource type="Texture2D" uid="uid://bvdsdwxpmbmn5" path="res://imported/Frame 6.png" id="18_i6j5g"]
+[ext_resource type="PackedScene" uid="uid://dirgj6j336ngv" path="res://pilotlamp.tscn" id="18_iss77"]
 [ext_resource type="PackedScene" uid="uid://bjulspfjmm1jf" path="res://FD_pages/rp.tscn" id="18_o3hm7"]
 [ext_resource type="PackedScene" uid="uid://qfjj8822hpkn" path="res://FD_pages/tmp.tscn" id="19_xpof7"]
 [ext_resource type="PackedScene" uid="uid://cwyey88qgvkhg" path="res://FD_pages/sim.tscn" id="21_1q4c1"]
@@ -827,12 +829,12 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "P-103"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton14" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
-transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.79947, 0.127525, -0.938186)
+[node name="16mm_pushbutton14" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.79454, 0.12339, -0.951735)
 breakerName = "SeparatorRecirculationIsolationValveBreaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton14"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0326546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -840,7 +842,7 @@ material = SubResource("StandardMaterial3D_xlvrw")
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "RECIRCULATION ISOL.
+text = "RECIRCULATION
 VALVE"
 vertical_alignment = 0
 
@@ -850,6 +852,10 @@ modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "V-102"
 horizontal_alignment = 0
+
+[node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton14" instance=ExtResource("18_iss77")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015, 0, 6.55671e-10)
+condition = "SeparatorRecirculationIsolationValve.isOpen()"
 
 [node name="16mm_pushbutton16" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.7337, 0.127525, -0.914244)
@@ -875,12 +881,12 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "P-104"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton17" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
-transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.65852, 0.127525, -0.886883)
+[node name="16mm_pushbutton17" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.65359, 0.12339, -0.900432)
 breakerName = "SeparatorEffluentDischargeToRadwasteIsolationValveBreaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton17"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0326546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -888,7 +894,7 @@ material = SubResource("StandardMaterial3D_xlvrw")
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "RADWASTE ISOL.
+text = "ISOLATION
 VALVE"
 vertical_alignment = 0
 
@@ -898,6 +904,10 @@ modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "V-103"
 horizontal_alignment = 0
+
+[node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton17" instance=ExtResource("18_iss77")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015, 0, 6.55671e-10)
+condition = "SeparatorEffluentDischargeToRadwasteIsolationValve.isOpen()"
 
 [node name="16mm_pushbutton2" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.69679, 0.104749, -1.01564)
@@ -972,12 +982,12 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "E-101"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton5" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
-transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.61011, 0.0951014, -1.01989)
+[node name="16mm_pushbutton5" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
+transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.60518, 0.0909668, -1.03344)
 breakerName = "SludgeValveBreaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton5"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0326546, -0.000827484, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -985,7 +995,7 @@ material = SubResource("StandardMaterial3D_xlvrw")
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "SLUDGE
+text = "SLUDGE ISOLATION
 VALVE"
 vertical_alignment = 0
 
@@ -995,6 +1005,10 @@ modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "V-101"
 horizontal_alignment = 0
+
+[node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton5" instance=ExtResource("18_iss77")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015, 0, 6.55671e-10)
+condition = "SludgeValve.isOpen()"
 
 [node name="16mm_pushbutton6" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.328771, -0.0942735, -0.939692, 0.275637, 0.961262, 0, 0.90329, -0.259014, 0.34202, 2.54433, 0.0951014, -0.995949)
@@ -1044,12 +1058,12 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "P-200"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton18" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+[node name="16mm_pushbutton18" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.330825, -0.0867903, -0.939692, 0.253758, 0.967268, 0, 0.908934, -0.238455, 0.34202, 2.35858, 0.103983, -0.89231)
 breakerName = "V_200Breaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton18"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0326546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -1068,12 +1082,16 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "V-200"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton19" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+[node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton18" instance=ExtResource("18_iss77")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015, 0, 6.55671e-10)
+condition = "V_200.isOpen()"
+
+[node name="16mm_pushbutton19" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.330825, -0.0867903, -0.939692, 0.253758, 0.967268, 0, 0.908934, -0.238455, 0.34202, 2.2928, 0.103983, -0.868369)
 breakerName = "V_201Breaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton19"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0326546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -1082,7 +1100,8 @@ transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "ISOLATION
-VALVE"
+VALVE
+"
 vertical_alignment = 0
 
 [node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton19/Label2"]
@@ -1092,12 +1111,16 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "V-201"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton20" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+[node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton19" instance=ExtResource("18_iss77")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015, 0, 6.55671e-10)
+condition = "V_201.isOpen()"
+
+[node name="16mm_pushbutton20" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.330825, -0.0867903, -0.939692, 0.253758, 0.967268, 0, 0.908934, -0.238455, 0.34202, 2.22702, 0.103983, -0.844427)
 breakerName = "V_202Breaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton20"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0326546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -1115,6 +1138,10 @@ modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "V-202"
 horizontal_alignment = 0
+
+[node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton20" instance=ExtResource("18_iss77")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015, 0, 6.55671e-10)
+condition = "V_202.isOpen()"
 
 [node name="16mm_pushbutton22" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.330825, -0.0867903, -0.939692, 0.253758, 0.967268, 0, 0.908934, -0.238455, 0.34202, 2.31761, 0.123015, -0.800199)
@@ -1164,12 +1191,12 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "P-205"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton24" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+[node name="16mm_pushbutton24" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.330825, -0.0867903, -0.939692, 0.253758, 0.967268, 0, 0.908934, -0.238455, 0.34202, 2.26341, 0.131896, -0.744445)
 breakerName = "V_205Breaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton24"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0326546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -1188,12 +1215,16 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "V-205"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton25" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+[node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton24" instance=ExtResource("18_iss77")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015, 0, 6.55671e-10)
+condition = "V_205.isOpen()"
+
+[node name="16mm_pushbutton25" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.330825, -0.0867903, -0.939692, 0.253758, 0.967268, 0, 0.908934, -0.238455, 0.34202, 2.32919, 0.131896, -0.768386)
 breakerName = "V_204Breaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton25"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0326546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -1212,12 +1243,16 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "V-204"
 horizontal_alignment = 0
 
-[node name="16mm_pushbutton21" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
+[node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton25" instance=ExtResource("18_iss77")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015, 0, 6.55671e-10)
+condition = "V_204.isOpen()"
+
+[node name="16mm_pushbutton21" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.330825, -0.0867903, -0.939692, 0.253758, 0.967268, 0, 0.908934, -0.238455, 0.34202, 2.16124, 0.103983, -0.820486)
 breakerName = "V_203Breaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton21"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0176546, 0.000349998, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, 0, -1, -7.45058e-09, 2.98023e-08, 0.0326546, 0.000349998, -0.000205994)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -1235,6 +1270,10 @@ modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "V-203"
 horizontal_alignment = 0
+
+[node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton21" instance=ExtResource("18_iss77")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015, 0, 6.55671e-10)
+condition = "V_203.isOpen()"
 
 [node name="16mm_pushbutton8" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.330825, -0.0867903, -0.939692, 0.253758, 0.967268, 0, 0.908934, -0.238455, 0.34202, 2.28122, 0.0951014, -0.900181)

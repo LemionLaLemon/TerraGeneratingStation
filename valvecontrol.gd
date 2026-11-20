@@ -30,14 +30,9 @@ func _ready():
 	collideArea.input_ray_pickable = true
 	collideArea.input_event.connect(_on_input_event)
 
-func _process(_dt):
-	if breaker and closed != breaker.isClosed():
-		closed = breaker.isClosed()
-		_press()
-
 func _on_input_event(camera, event, pos, normal, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		closed = not closed
 		sound.play()
-		breaker.open() if breaker.isClosed() else breaker.close()
+		breaker.open() if closed else breaker.close()
 		_press()

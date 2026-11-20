@@ -86,10 +86,21 @@ func setValue(v):
 	var f = clamp((v - minValue) / (maxValue - minValue), 0.0, 1.0)
 	needle.rotation_degrees.x = lerp(minNeedleAngle, maxNeedleAngle, f)
 	
+# Stacks the unit text one character per line, so the narrow label reads vertically.
+# "_" is a word gap (one blank line). Plain spaces are dropped (they used to fake letter spacing).
+func verticalText(s: String) -> String:
+	var chars := PackedStringArray()
+	for c in s:
+		if c == "_":
+			chars.append("")
+		elif c != " ":
+			chars.append(c)
+	return "\n".join(chars)
+
 func refreshViews():
 	if not is_node_ready():
 		return
-	unitLabel.text = unit
+	unitLabel.text = verticalText(unit)
 	ticks.queue_redraw()
 	await get_tree().process_frame
 	scaleView.render_target_update_mode = SubViewport.UPDATE_ONCE

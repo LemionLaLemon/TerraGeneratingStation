@@ -27,14 +27,13 @@ var response: float = 4.0 # response time
 @onready var man = $MAN
 var normalY = 0.024
 var pressedY = 0.02
-var restY = {}       # button -> its resting position.y
-var pressTweens = {} # button -> its running press tween
+var restY = {}
+var pressTweens = {}
 var raiseHeld: bool = false
 var lowerHeld: bool = false
-var modeShown = null # last AUTO/MAN state shown on the buttons
-@export var rate: float = 0.1 # fraction of the scale moved per second while RAISE/LOWER is held
+var modeShown = null
+@export var rate: float = 0.1
 
-# The controller owns its setpoint (demand). RAISE/LOWER will change this later.
 var setpoint: float = 50.0:
 	set(v):
 		setpoint = clamp(v, minValue, maxValue)
@@ -69,9 +68,11 @@ var setpoint: float = 50.0:
 @onready var demNeedle = $DEMNEEDLE
 @onready var actNeedle = $ACTNEEDLE
 @onready var scaleView = $ScaleView
-@onready var unitView = $UnitView
+@onready var demUnitView = $DemUnitView
+@onready var actUnitView = $ActUnitView
 @onready var ticks = $ScaleView/Ticks
-@onready var unitLabel = $UnitView/Label
+@onready var demUnitLabel = $DemUnitView/Label
+@onready var actUnitLabel = $ActUnitView/Label
 
 func _ready():
 	if not Engine.is_editor_hint():
@@ -85,7 +86,8 @@ func _ready():
 	ticks.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	if not ticks.draw.is_connected(drawTicks):
 		ticks.draw.connect(drawTicks)
-	unitLabel.add_theme_font_size_override("font_size", fontSize)
+	demUnitLabel.add_theme_font_size_override("font_size", fontSize)
+	actUnitLabel.add_theme_font_size_override("font_size", fontSize)
 	refreshViews()
 	setDemand(setpoint)
 	setActual(previewActual)
@@ -107,7 +109,6 @@ func _process(dt):
 	demShown = d if is_nan(demShown) else lerp(demShown, float(d), 1.0 - exp(-response * dt))
 	setDemand(demShown)
 
-# ---- Buttons ----
 func _setupButton(btn, handler):
 	restY[btn] = btn.position.y
 	var body = btn.get_node("StaticBody3D")
@@ -126,7 +127,6 @@ func _pressButton(btn, down):
 func _isLeftPress(event):
 	return event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
 
-# AUTO and MAN latch: the one you pressed stays down, the other pops up (done in _process)
 func _onAuto(camera, event, pos, normal, shape_idx):
 	if _isLeftPress(event) and controller:
 		controller.setAuto()
@@ -135,7 +135,6 @@ func _onMan(camera, event, pos, normal, shape_idx):
 	if _isLeftPress(event) and controller:
 		controller.setManual()
 
-# RAISE and LOWER are momentary: down while the mouse is held
 func _onRaise(camera, event, pos, normal, shape_idx):
 	if _isLeftPress(event):
 		raiseHeld = true
@@ -177,14 +176,25 @@ func setActual(v):
 		return
 	actNeedle.rotation_degrees.x = needleAngle(v)
 
+func verticalText(s: String) -> String:
+	var chars := PackedStringArray()
+	for c in s:
+		if c == "_":
+			chars.append("")
+		elif c != " ":
+			chars.append(c)
+	return "\n".join(chars)
+
 func refreshViews():
 	if not is_node_ready():
 		return
-	unitLabel.text = unit
+	demUnitLabel.text = verticalText(unit + "_DEM")
+	actUnitLabel.text = verticalText(unit + "_ACT")
 	ticks.queue_redraw()
 	await get_tree().process_frame
 	scaleView.render_target_update_mode = SubViewport.UPDATE_ONCE
-	unitView.render_target_update_mode = SubViewport.UPDATE_ONCE
+	demUnitView.render_target_update_mode = SubViewport.UPDATE_ONCE
+	actUnitView.render_target_update_mode = SubViewport.UPDATE_ONCE
 
 func drawTicks():
 	var font = ticks.get_theme_default_font()

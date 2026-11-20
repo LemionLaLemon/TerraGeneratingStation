@@ -1064,7 +1064,7 @@ horizontal_alignment = 0
 
 [node name="16mm_pushbutton14" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.79446, 0.124358, -0.95195)
-breakerName = "SeparatorRecirculationIsolationValveBreaker"
+breakerName = "SeparatorRecirculationIsolationValve"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton14"]
 transform = Transform3D(0, -1.49012e-08, 1, -1.49012e-08, 1, 1.49012e-08, -1, 0, 0, 0.0326538, 0.000499725, -0.000205994)
@@ -1088,7 +1088,7 @@ horizontal_alignment = 0
 
 [node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton14" instance=ExtResource("18_iss77")]
 transform = Transform3D(-5.96046e-08, 1.49012e-08, -1, 0, 1, -1.49012e-08, 1, 7.45058e-09, 0, 0.0149994, -0.000312805, 0)
-condition = "SeparatorRecirculationIsolationValve.isOpen()"
+floatCondition = "SeparatorRecirculationIsolationValve.getPosition()"
 
 [node name="16mm_pushbutton16" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.73369, 0.127634, -0.914268)
@@ -1116,7 +1116,7 @@ horizontal_alignment = 0
 
 [node name="16mm_pushbutton17" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.65355, 0.123944, -0.900555)
-breakerName = "SeparatorEffluentDischargeToRadwasteIsolationValveBreaker"
+breakerName = "SeparatorEffluentDischargeToRadwasteIsolationValve"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton17"]
 transform = Transform3D(0, -1.49012e-08, 1, -1.49012e-08, 1, 1.49012e-08, -1, 0, 0, 0.0326576, 0.000499725, -0.000205994)
@@ -1141,6 +1141,7 @@ horizontal_alignment = 0
 [node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton17" instance=ExtResource("18_iss77")]
 transform = Transform3D(-5.96046e-08, 1.49012e-08, -1, 0, 1, -1.49012e-08, 1, 7.45058e-09, 0, 0.0150032, 0.000114441, 0)
 condition = "SeparatorEffluentDischargeToRadwasteIsolationValve.isOpen()"
+floatCondition = "SeparatorEffluentDischargeToRadwasteIsolationValve.getPosition()"
 
 [node name="16mm_pushbutton2" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.69701, 0.102109, -1.01505)
@@ -1217,7 +1218,7 @@ horizontal_alignment = 0
 
 [node name="16mm_pushbutton5" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.60523, 0.0903254, -1.0333)
-breakerName = "SludgeValveBreaker"
+breakerName = "SludgeValve"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton5"]
 transform = Transform3D(0, -1.49012e-08, 1, -1.49012e-08, 1, 1.49012e-08, -1, 0, 0, 0.0326576, 0.000499725, -0.000204086)
@@ -1241,7 +1242,7 @@ horizontal_alignment = 0
 
 [node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton5" instance=ExtResource("18_iss77")]
 transform = Transform3D(-5.96046e-08, 1.49012e-08, -1, 0, 1, -1.49012e-08, 1, 7.45058e-09, 0, 0.0149994, 0.00134277, 3.8147e-06)
-condition = "SludgeValve.isOpen()"
+floatCondition = "SludgeValve.getPosition()"
 
 [node name="16mm_pushbutton6" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.54446, 0.0936012, -0.995613)
@@ -1293,7 +1294,7 @@ horizontal_alignment = 0
 
 [node name="16mm_pushbutton18" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.35882, 0.101123, -0.891674)
-breakerName = "V_200Breaker"
+breakerName = "V_200"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton18"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326538, 0.000499725, -0.000205994)
@@ -1317,11 +1318,11 @@ horizontal_alignment = 0
 
 [node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton18" instance=ExtResource("18_iss77")]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.00328255, 1.90735e-06)
-condition = "V_200.isOpen()"
+floatCondition = "V_200.getPosition()"
 
 [node name="16mm_pushbutton19" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.29306, 0.100929, -0.867691)
-breakerName = "V_201Breaker"
+breakerName = "V_201"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton19"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326576, 0.000499725, -0.000204086)
@@ -1346,11 +1347,11 @@ horizontal_alignment = 0
 
 [node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton19" instance=ExtResource("18_iss77")]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.00348473, 0)
-condition = "V_201.isOpen()"
+floatCondition = "V_201.getPosition()"
 
 [node name="16mm_pushbutton20" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.22729, 0.100736, -0.8437)
-breakerName = "V_202Breaker"
+breakerName = "V_202"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton20"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326538, 0.000499725, -0.000209808)
@@ -1374,7 +1375,7 @@ horizontal_alignment = 0
 
 [node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton20" instance=ExtResource("18_iss77")]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149956, 0.00368309, 0)
-condition = "V_202.isOpen()"
+floatCondition = "V_202.getPosition()"
 
 [node name="16mm_pushbutton22" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.31801, 0.118289, -0.799145)
@@ -1426,7 +1427,7 @@ horizontal_alignment = 0
 
 [node name="16mm_pushbutton24" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.26389, 0.126196, -0.743176)
-breakerName = "V_205Breaker"
+breakerName = "V_205"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton24"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326538, 0.000501633, -0.000205994)
@@ -1450,11 +1451,11 @@ horizontal_alignment = 0
 
 [node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton24" instance=ExtResource("18_iss77")]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.0062027, 1.90735e-06)
-condition = "V_205.isOpen()"
+floatCondition = "V_205.getPosition()"
 
 [node name="16mm_pushbutton25" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.32965, 0.12639, -0.767162)
-breakerName = "V_204Breaker"
+breakerName = "V_204"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton25"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326576, 0.000495911, -0.000204086)
@@ -1478,11 +1479,11 @@ horizontal_alignment = 0
 
 [node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton25" instance=ExtResource("18_iss77")]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.00600052, 1.90735e-06)
-condition = "V_204.isOpen()"
+floatCondition = "V_204.getPosition()"
 
 [node name="16mm_pushbutton21" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.16153, 0.100542, -0.819717)
-breakerName = "V_203Breaker"
+breakerName = "V_203"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton21"]
 transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326576, 0.000501633, -0.000205994)
@@ -1506,7 +1507,7 @@ horizontal_alignment = 0
 
 [node name="pilotlamp" parent="ControlRoom/Blending and Distilling/16mm_pushbutton21" instance=ExtResource("18_iss77")]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.00388336, 1.90735e-06)
-condition = "V_203.isOpen()"
+floatCondition = "V_203.getPosition()"
 
 [node name="16mm_pushbutton8" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.28141, 0.0928278, -0.899673)
@@ -1584,7 +1585,7 @@ horizontal_alignment = 0
 controls = NodePath("Controls")
 
 [node name="Controls" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("11_5c1cw")]
-transform = Transform3D(0.935426, -0.0818558, 0.343916, 7.45058e-09, 0.972825, 0.231543, -0.353523, -0.216591, 0.910006, 2.42732, 0.0799494, -1.01266)
+transform = Transform3D(0.935426, -0.0818558, 0.343916, 7.45058e-09, 0.972825, 0.231543, -0.353523, -0.216591, 0.910006, 2.01573, 0.0799494, -0.85711)
 
 [node name="annunciator_half_height5" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
 transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.95951, 3.21865, 2.52883)
@@ -1957,108 +1958,8 @@ vertical_alignment = 0
 
 [node name="Magnets" type="Node3D" parent="ControlRoom"]
 
-[node name="FD4" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365637, 1.98837, 0.486814, -0.336716)
-page = ExtResource("19_xpof7")
-updateEvery = 0.25
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD4"]
-transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
-size = Vector3(0.1, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD4/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "TURBO MOLECULAR PUMPS VACUUMS
-FLOW DIAGRAM"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD4/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "FD-TMP"
-horizontal_alignment = 0
-
-[node name="FD6" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365637, 1.71273, 0.488785, -0.231647)
-page = ExtResource("19_xpof7")
-updateEvery = 0.25
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD6"]
-transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
-size = Vector3(0.1, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD6/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "TURBO MOLECULAR PUMPS VACUUMS
-FLOW DIAGRAM"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD6/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "FD-TMP"
-horizontal_alignment = 0
-
-[node name="FD5" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 7.45058e-09, 0.390877, 0.920443, -0.353525, -0.861005, 0.365637, 1.95431, 0.270523, -0.422035)
-page = ExtResource("19_xpof7")
-updateEvery = 0.25
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD5"]
-transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
-size = Vector3(0.1, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD5/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "TURBO MOLECULAR PUMPS VACUUMS
-FLOW DIAGRAM"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD5/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "FD-TMP"
-horizontal_alignment = 0
-
-[node name="FD7" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 7.45058e-09, 0.390877, 0.920443, -0.353525, -0.861005, 0.365637, 1.67867, 0.272495, -0.316967)
-page = ExtResource("19_xpof7")
-updateEvery = 0.25
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD7"]
-transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
-size = Vector3(0.1, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD7/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "TURBO MOLECULAR PUMPS VACUUMS
-FLOW DIAGRAM"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD7/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "FD-TMP"
-horizontal_alignment = 0
-
 [node name="FD8" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 7.45058e-09, 0.390877, 0.920443, -0.353525, -0.861005, 0.365637, 1.13612, 0.272495, -0.111923)
+transform = Transform3D(0.935425, -0.325399, 0.138185, 7.45058e-09, 0.390877, 0.920443, -0.353525, -0.861005, 0.365637, 1.4261, 0.272495, -0.221516)
 page = ExtResource("19_xpof7")
 updateEvery = 0.25
 
@@ -2076,6 +1977,31 @@ FLOW DIAGRAM"
 vertical_alignment = 0
 
 [node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD8/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD-TMP"
+horizontal_alignment = 0
+
+[node name="FD9" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.935425, -0.325399, 0.138185, 7.45058e-09, 0.390877, 0.920443, -0.353525, -0.861005, 0.365637, 1.45788, 0.484197, -0.137419)
+page = ExtResource("19_xpof7")
+updateEvery = 0.25
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD9"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD9/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TURBO MOLECULAR PUMPS VACUUMS
+FLOW DIAGRAM"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD9/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -2179,91 +2105,91 @@ text = "CB-504"
 horizontal_alignment = 0
 
 [node name="edgewisegauge" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.5889, 0.437205, -0.0970639)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.07532, 0.437205, -0.280897)
 expression = "EFMagnet.current / 1000"
 maxValue = 10.0
 majorStep = 1.0
 unit = "KILOAMPS"
 
 [node name="edgewisegauge9" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.44859, 0.437205, -0.0440352)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.78534, 0.437205, -0.171304)
 expression = "CSMagnet.current / 1000"
 maxValue = 10.0
 majorStep = 1.0
 unit = "KILOAMPS"
 
 [node name="edgewisegauge5" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.56403, 0.271525, -0.162879)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.05045, 0.271525, -0.346712)
 expression = "TFMagnet.current / 1000"
 maxValue = 13.0
 majorStep = 1.0
 unit = "KILOAMPS"
 
 [node name="edgewisegauge13" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.42372, 0.271525, -0.10985)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.76047, 0.271525, -0.237119)
 expression = "VSMagnet.current / 1000"
 maxValue = 13.0
 majorStep = 1.0
 unit = "KILOAMPS"
 
 [node name="edgewisegauge2" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.55601, 0.437205, -0.0850934)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.04243, 0.437205, -0.268926)
 expression = "EFMagnet.voltage"
 maxValue = 350.0
 majorStep = 50.0
 unit = "VOLTS"
 
 [node name="edgewisegauge10" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.4157, 0.437205, -0.0320647)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.75245, 0.437205, -0.159334)
 expression = "CSMagnet.voltage"
 maxValue = 350.0
 majorStep = 50.0
 unit = "VOLTS"
 
 [node name="edgewisegauge6" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.53114, 0.271525, -0.150908)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.01756, 0.271525, -0.334741)
 expression = "TFMagnet.voltage"
 maxValue = 350.0
 majorStep = 50.0
 unit = "VOLTS"
 
 [node name="edgewisegauge14" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.39083, 0.271525, -0.0978792)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.72758, 0.271525, -0.225148)
 expression = "VSMagnet.voltage"
 maxValue = 350.0
 majorStep = 50.0
 unit = "VOLTS"
 
 [node name="edgewisegauge3" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.52312, 0.437205, -0.0731191)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.00954, 0.437205, -0.256952)
 expression = "EFMagnet.getEnergyMJ()"
 maxValue = 350.0
 minorDivisions = 3
 unit = "MEGAJOULES"
 
 [node name="edgewisegauge11" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.38281, 0.437205, -0.0200903)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.71956, 0.437205, -0.147359)
 expression = "CSMagnet.getEnergyMJ()"
 maxValue = 350.0
 minorDivisions = 3
 unit = "MEGAJOULES"
 
 [node name="edgewisegauge7" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.49825, 0.271525, -0.138934)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.98467, 0.271525, -0.322767)
 expression = "TFMagnet.getEnergyMJ()"
 maxValue = 350.0
 minorDivisions = 3
 unit = "MEGAJOULES"
 
 [node name="edgewisegauge15" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.35794, 0.271525, -0.0859053)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.69469, 0.271525, -0.213174)
 expression = "VSMagnet.getEnergyMJ()"
 maxValue = 350.0
 minorDivisions = 3
 unit = "MEGAJOULES"
 
 [node name="edgewisegauge4" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.49023, 0.437205, -0.0611485)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.97665, 0.437205, -0.244981)
 expression = "EFMagnet.getFieldT()"
 maxValue = 8.0
 majorStep = 1.0
@@ -2271,7 +2197,7 @@ minorDivisions = 6
 unit = "TESLA"
 
 [node name="edgewisegauge12" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.34992, 0.437205, -0.00811975)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.68667, 0.437205, -0.135389)
 expression = "CSMagnet.getFieldT()"
 maxValue = 8.0
 majorStep = 1.0
@@ -2279,7 +2205,7 @@ minorDivisions = 6
 unit = "TESLA"
 
 [node name="edgewisegauge8" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.46536, 0.271525, -0.126963)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.95178, 0.271525, -0.310796)
 expression = "TFMagnet.getFieldT()"
 maxValue = 8.0
 majorStep = 1.0
@@ -2287,7 +2213,7 @@ minorDivisions = 6
 unit = "TESLA"
 
 [node name="edgewisegauge16" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.32505, 0.271525, -0.0739343)
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.6618, 0.271525, -0.201203)
 expression = "VSMagnet.getFieldT()"
 maxValue = 8.0
 majorStep = 1.0
@@ -2295,7 +2221,7 @@ minorDivisions = 6
 unit = "TESLA"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets"]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365638, 1.49769, 0.395696, -0.193222)
+transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365638, 1.97476, 0.395696, -0.37352)
 size = Vector3(0.145, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -2308,7 +2234,7 @@ PARAMETERS"
 vertical_alignment = 0
 
 [node name="Label4" type="CSGBox3D" parent="ControlRoom/Magnets"]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365638, 1.3527, 0.395696, -0.138426)
+transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365638, 1.68945, 0.395696, -0.265695)
 size = Vector3(0.145, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -2321,7 +2247,7 @@ PARAMETERS"
 vertical_alignment = 0
 
 [node name="Label3" type="CSGBox3D" parent="ControlRoom/Magnets"]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365638, 1.47213, 0.225414, -0.260865)
+transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365638, 1.9492, 0.225414, -0.441163)
 size = Vector3(0.145, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -2334,7 +2260,7 @@ PARAMETERS"
 vertical_alignment = 0
 
 [node name="Label5" type="CSGBox3D" parent="ControlRoom/Magnets"]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365638, 1.32714, 0.225414, -0.206069)
+transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365638, 1.66389, 0.225414, -0.333338)
 size = Vector3(0.145, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -2626,7 +2552,7 @@ breakerName = "Accel32x"
 
 [node name="T_CenterLeft_valvecontrol" parent="ControlRoom/Templates" instance=ExtResource("17_iss77")]
 transform = Transform3D(0, 0, -1, 0.246585, 0.969121, 0, 0.969121, -0.246585, 0, 0.131378, 0.101257, -0.237827)
-breakerName = "SeparatorRecirculationIsolationValveBreaker"
+breakerName = "SeparatorRecirculationIsolationValve"
 
 [node name="pilotlamp" parent="ControlRoom/Templates/T_CenterLeft_valvecontrol" instance=ExtResource("18_iss77")]
 transform = Transform3D(-5.96046e-08, 1.49012e-08, -1, 0, 1, -1.49012e-08, 1, 7.45058e-09, 0, 0.0149994, -0.000312805, 0)
@@ -2754,7 +2680,7 @@ horizontal_alignment = 0
 [node name="controller4" parent="." instance=ExtResource("30_otx46")]
 transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, -38.593, 8.58098, -45.9866)
 controllerName = "VSMagnetController"
-maxValue = 13000.0
+maxValue = 10000.0
 majorStep = 1000.0
 minorDivisions = 2
 unit = "AMPERE"
@@ -2810,8 +2736,9 @@ horizontal_alignment = 0
 [node name="controller3" parent="." instance=ExtResource("30_otx46")]
 transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, -38.538, 8.61803, -45.841)
 controllerName = "CSMagnetController"
+minValue = -10000.0
 maxValue = 10000.0
-majorStep = 1000.0
+majorStep = 2000.0
 minorDivisions = 2
 unit = "AMPERE"
 

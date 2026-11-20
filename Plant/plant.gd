@@ -233,9 +233,48 @@ func _ready():
 	D2ElectrolyserFeedPump.ratedKw = 0.5
 	links.append(D2ElectrolyserFeedPump)
 	
+	# Toroidal Field Magnet
+	CB_500 = Breaker.new(BusC, null, false)
+	CB_501 = Breaker.new(BusC, null, true)
+	TFMagnetTripRelay = Breaker.new(BusC, null, true)
+	TFPowerSupply = PowerSupply.new(CB_500, 300.0, 60000.0, 0.95)
+	TFDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
+	TFMagnet = Magnet.new(TFPowerSupply, CB_501, TFDumpResistor, TFMagnetTripRelay, 4.0, 0.0001, 13000.0)
+	TFMagnetController = PIDController.new(TFMagnet, "setpoint", TFMagnet, "current", 13000, 0, 0, 0)
+	links.append(TFMagnetController)
+	
+	# Equilibrium Field Magnet
+	CB_502 = Breaker.new(BusC, null, false)
+	CB_503 = Breaker.new(BusC, null, true)
+	EFMagnetTripRelay = Breaker.new(BusC, null, true)
+	EFPowerSupply = PowerSupply.new(CB_502, 300.0, 60000.0, 0.95)
+	EFDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
+	EFMagnet = Magnet.new(EFPowerSupply, CB_503, EFDumpResistor, EFMagnetTripRelay, 4.0, 0.0001, 10000.0)
+	EFMagnetController = PIDController.new(EFMagnet, "setpoint", EFMagnet, "current", 10000, 0, 0, 0)
+	links.append(EFMagnetController)
+	
+	# Central Solenoid
+	CB_504 = Breaker.new(BusD, null, false)
+	CB_505 = Breaker.new(BusD, null, true)
+	CSMagnetTripRelay = Breaker.new(BusD, null, true)
+	CSPowerSupply = PowerSupply.new(CB_504, 600.0, 60000.0, 0.95)
+	CSDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
+	CSMagnet = Magnet.new(CSPowerSupply, CB_505, CSDumpResistor, CSMagnetTripRelay, 4.0, 0.0001, 10000.0)
+	CSMagnetController = PIDController.new(CSMagnet, "setpoint", CSMagnet, "current", 10000, 0, 0, 0)
+	links.append(CSMagnetController)
+		
+	# Vertical Stability
+	CB_506 = Breaker.new(BusD, null, false)
+	CB_507 = Breaker.new(BusD, null, true)
+	VSMagnetTripRelay = Breaker.new(BusD, null, true)
+	VSPowerSupply = PowerSupply.new(CB_506, 600.0, 60000.0, 0.95)
+	VSDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
+	VSMagnet = Magnet.new(VSPowerSupply, CB_507, VSDumpResistor, VSMagnetTripRelay, 0.5, 0.0001, 10000.0)
+	VSMagnetController = PIDController.new(VSMagnet, "setpoint", VSMagnet, "current", 10000, 0, 0, 0)
+	links.append(VSMagnetController)
 	
 	# Primary Systems
-	TerraTokamak = Tokamak.new(8, Units.CtoK(AMBIENT_TEMPERATURE), Units.PsitoPa(30), {Common.Materials.Air: 21400})
+	TerraTokamak = Tokamak.new(8, Units.CtoK(AMBIENT_TEMPERATURE), Units.PsitoPa(30), TFMagnet, EFMagnet, CSMagnet, VSMagnet, Plant.get_tree().current_scene.find_child("PlasmaVolume", true, false).get_active_material(0), {Common.Materials.D2: 0.0003}) # Common.Materials.Air: 21400, 
 	
 	# Roughing Pump Vacuums
 	P_200Breaker = Breaker.new(BusC, null, false)
@@ -286,46 +325,6 @@ func _ready():
 	links.append(V_205)
 	P_205.gates.append(V_205)
 	
-	# Toroidal Field Magnet
-	CB_500 = Breaker.new(BusC, null, false)
-	CB_501 = Breaker.new(BusC, null, true)
-	TFMagnetTripRelay = Breaker.new(BusC, null, true)
-	TFPowerSupply = PowerSupply.new(CB_500, 300.0, 60000.0, 0.95)
-	TFDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
-	TFMagnet = Magnet.new(TFPowerSupply, CB_501, TFDumpResistor, TFMagnetTripRelay, 4.0, 0.0001, 13000.0)
-	TFMagnetController = PIDController.new(TFMagnet, "setpoint", TFMagnet, "current", 13000, 0, 0, 0)
-	links.append(TFMagnetController)
-	
-	# Equilibrium Field Magnet
-	CB_502 = Breaker.new(BusC, null, false)
-	CB_503 = Breaker.new(BusC, null, true)
-	EFMagnetTripRelay = Breaker.new(BusC, null, true)
-	EFPowerSupply = PowerSupply.new(CB_502, 300.0, 60000.0, 0.95)
-	EFDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
-	EFMagnet = Magnet.new(EFPowerSupply, CB_503, EFDumpResistor, EFMagnetTripRelay, 4.0, 0.0001, 10000.0)
-	EFMagnetController = PIDController.new(EFMagnet, "setpoint", EFMagnet, "current", 10000, 0, 0, 0)
-	links.append(EFMagnetController)
-	
-	# Central Solenoid
-	CB_504 = Breaker.new(BusD, null, false)
-	CB_505 = Breaker.new(BusD, null, true)
-	CSMagnetTripRelay = Breaker.new(BusD, null, true)
-	CSPowerSupply = PowerSupply.new(CB_504, 600.0, 60000.0, 0.95)
-	CSDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
-	CSMagnet = Magnet.new(CSPowerSupply, CB_505, CSDumpResistor, CSMagnetTripRelay, 4.0, 0.0001, 10000.0)
-	CSMagnetController = PIDController.new(CSMagnet, "setpoint", CSMagnet, "current", 13000, 0, 0, 0)
-	links.append(CSMagnetController)
-		
-	# Vertical Stability
-	CB_506 = Breaker.new(BusD, null, false)
-	CB_507 = Breaker.new(BusD, null, true)
-	VSMagnetTripRelay = Breaker.new(BusD, null, true)
-	VSPowerSupply = PowerSupply.new(CB_506, 600.0, 60000.0, 0.95)
-	VSDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
-	VSMagnet = Magnet.new(VSPowerSupply, CB_507, VSDumpResistor, VSMagnetTripRelay, 4.0, 0.0001, 10000.0)
-	VSMagnetController = PIDController.new(VSMagnet, "setpoint", VSMagnet, "current", 13000, 0, 0, 0)
-	links.append(VSMagnetController)
-	
 	print("Ready")
 	print(TerraTokamak.MajorRadius)
 	print(TerraTokamak.MinorRadius)
@@ -351,3 +350,5 @@ func _physics_process(dt):
 	EFMagnet.step(dt)
 	CSMagnet.step(dt)
 	VSMagnet.step(dt)
+	TerraTokamak.step(dt)
+	print(TerraTokamak.plasmaCurrent, " ", TerraTokamak.plasmaShift, " ", TerraTokamak.disrupting)

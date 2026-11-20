@@ -36,7 +36,7 @@ func setDemand(v):
 	if auto:
 		setpoint = v
 	else:
-		out = clamp(v / multiply, 0.0, 1.0)
+		out = clamp(v / multiply, -1.0, 1.0)
 
 func getDemand():
 	return setpoint if auto else out * multiply
@@ -56,7 +56,7 @@ func step(dt):
 	var d = (pv - _prev) / dt
 	_prev = pv
 	var u = kp * e + _i - kd*d
-	out = clamp(u, 0.0, 1.0)
+	out = clamp(u, -1.0, 1.0)
 	if out == u:
 		_i += ki * e * dt
 	controlEquipment.set(controlProperty, out * multiply)

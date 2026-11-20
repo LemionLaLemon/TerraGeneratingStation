@@ -40,7 +40,7 @@ func _on_input_event(camera, event, pos, normal, shape_idx):
 		held = true
 		closed = not closed
 		sound.play()
-		breaker.open() if closed else breaker.close()
+		breaker.close() if closed else breaker.open()
 		_setColor()
 		_press()
 		

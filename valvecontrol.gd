@@ -34,5 +34,7 @@ func _on_input_event(camera, event, pos, normal, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		closed = not closed
 		sound.play()
-		breaker.open() if closed else breaker.close()
+		print(breaker.isClosed())
+		breaker.close() if closed else breaker.open()
+		print(breaker.isClosed())
 		_press()

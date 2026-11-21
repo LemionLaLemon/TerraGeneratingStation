@@ -139,6 +139,10 @@ var Accel32x
 var Accel64x
 var GridBO
 
+# "Breakers"
+var CSPrechargeButton
+var CSDischargeButton
+
 var links = []
 
 func _ready():
@@ -260,8 +264,6 @@ func _ready():
 	CSPowerSupply = PowerSupply.new(CB_504, 600.0, 60000.0, 0.95)
 	CSDumpResistor = DumpResistor.new(0.1, 50.0, Units.CtoK(AMBIENT_TEMPERATURE))
 	CSMagnet = Magnet.new(CSPowerSupply, CB_505, CSDumpResistor, CSMagnetTripRelay, 4.0, 0.0001, 10000.0)
-	CSMagnetController = PIDController.new(CSMagnet, "setpoint", CSMagnet, "current", 10000, 0, 0, 0)
-	links.append(CSMagnetController)
 		
 	# Vertical Stability
 	CB_506 = Breaker.new(BusD, null, false)
@@ -275,6 +277,12 @@ func _ready():
 	
 	# Primary Systems
 	TerraTokamak = Tokamak.new(8, Units.CtoK(AMBIENT_TEMPERATURE), Units.PsitoPa(30), TFMagnet, EFMagnet, CSMagnet, VSMagnet, Plant.get_tree().current_scene.find_child("PlasmaVolume", true, false).get_active_material(0), {Common.Materials.D2: 0.0003}) # Common.Materials.Air: 21400, 
+	
+	# cringe controller needs tokamak
+	CSMagnetController = PIDController.new(CSMagnet, "setpoint", CSMagnet, "current", 10000, 0, 0, 0)
+	links.append(CSMagnetController)
+	CSDischargeButton = Breaker.new(BusC, null, false)
+	CSPrechargeButton = Breaker.new(BusC, null, false)
 	
 	# Roughing Pump Vacuums
 	P_200Breaker = Breaker.new(BusC, null, false)
@@ -342,6 +350,15 @@ func _physics_process(dt):
 		Grid.setEnergized(true)
 	for link in links:
 		link.step(dt)
+	
+	# cheating
+	if CSDischargeButton.isClosed() and CSMagnet.current <= -9990.0 and TFMagnet.getFieldT() >= 1.0 and TerraTokamak.getPressure() < 0.05:
+		CSMagnetController.setDemand(10000)
+		CSDischargeButton.open()
+	elif CSPrechargeButton.isClosed() and TerraTokamak.plasmaCurrent <= 0.0:
+		CSMagnetController.setDemand(-10000)
+		CSPrechargeButton.open()
+	
 	BananaBlender.step(dt)
 	PulpStill.step(dt)
 	SeparatorGirdlerSeparator.step(dt)
@@ -351,4 +368,3 @@ func _physics_process(dt):
 	CSMagnet.step(dt)
 	VSMagnet.step(dt)
 	TerraTokamak.step(dt)
-	print(TerraTokamak.plasmaCurrent, " ", TerraTokamak.plasmaShift, " ", TerraTokamak.disrupting)

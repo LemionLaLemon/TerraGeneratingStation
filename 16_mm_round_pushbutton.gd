@@ -1,11 +1,17 @@
 # THIS IS A MOMENTARY PUSHBUTTON!!!!
 # これは TOGGLED BUTTON　じゃないよ！ USE THE SQUARE ONE FOR THAT ばか
+@tool
 extends Node3D
 
 signal pressed
 signal released
 
 @export var breakerName: String = ""
+@export var buttonColor: Color = "#2c2c2c":
+	set(v):
+		buttonColor = v
+		if is_node_ready():
+			_topMaterial().albedo_color = v
 var breaker
 @onready var collideArea = $StaticBody3D
 @onready var sound = $Sound
@@ -13,9 +19,19 @@ var breaker
 @onready var normalSolidHeight = solid.position.y
 var tween
 var held: bool = false
+var topMaterial
+
+func _topMaterial():
+	if topMaterial == null:
+		var src = $Top.get_surface_override_material(0)
+		if src == null:
+			src = $Top.get_active_material(0)
+		topMaterial = src.duplicate()
+		$Top.set_surface_override_material(0, topMaterial)
+	return topMaterial
 
 func _ready():
-	solid.set_surface_override_material(0, solid.get_active_material(0).duplicate())
+	_topMaterial().albedo_color = buttonColor
 	collideArea.mouse_entered.connect(func(): Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND))
 	collideArea.mouse_exited.connect(func(): Input.set_default_cursor_shape(Input.CURSOR_ARROW))
 	collideArea.input_ray_pickable = true

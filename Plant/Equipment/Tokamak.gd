@@ -53,6 +53,8 @@ var bvFlatTop: float
 var gapOut: float
 var gapIn: float
 var plasmaQ95: float = 15.0
+var pNBI: float = 0.0
+var I_cd: = 14.0
 
 # Tokamak
 var lockout: bool = false
@@ -85,7 +87,7 @@ func step(dt):
 	var area = plasmaMinor * plasmaMinor * plasmaElong * PI # m^2
 	var vol = 2.0 * PI * rMaj * area # m^3
 	var bt = TF.getFieldT() * TF.majorRadius / rMaj
-	var vloop = -CS_PLASMA_M * (CS.current - lastCS) / dt
+	var vloop = CS_PLASMA_M * (CS.current - lastCS) / dt
 	lastCS = CS.current
 	
 	var d2mol = contents.get(Common.Materials.D2, 0.0) / Common.MolarMass[Common.Materials.D2]
@@ -106,14 +108,14 @@ func step(dt):
 		var lp = MU0 * rMaj * (log(8.0 * rMaj / plasmaMinor) - 1.5)
 		var eta = 5.2e-5 * 17.0 / pow(max(plasmaTemp, 5.0), 1.5)
 		var rp = eta * 2.0 * PI * rMaj / area
-		var ipInf = vloop / rp
+		var ipInf = vloop / rp + I_cd
 		plasmaCurrent = ipInf + (plasmaCurrent - ipInf) * exp(-dt * rp / lp)
 		if plasmaCurrent < 1000.0:
 			plasmaCurrent = 0.0
 			plasmaTemp = 0.0
 		else:
 			var heatCap = max(3.0 * ne * vol * EV, 1.0)
-			var tEq = plasmaCurrent * plasmaCurrent * rp * TAU_E / heatCap
+			var tEq = (plasmaCurrent * plasmaCurrent * rp * pNBI) * TAU_E / heatCap # (p_ohm + p_nbi)  * tau_e / heatcap
 			plasmaTemp += (clamp(tEq, 5.0, 20000.0) - plasmaTemp) * (1.0 - exp(-dt / TAU_E))
 			var bvReq = MU0 * plasmaCurrent / (4.0 * PI * rMaj) * (log(8.0 * rMaj / plasmaMinor) - 0.7)
 			var bv = EF.getFieldT() * EF_FIELD_SCALE
@@ -122,6 +124,7 @@ func step(dt):
 			plasmaQ95 = 5.0 * plasmaMinor * plasmaMinor * bt * (1.0 + plasmaElong * plasmaElong) / 2.0 / (rMaj * plasmaCurrent / 1.0e6)
 			if plasmaQ95 < Q_MIN or plasmaShift > gapOut or plasmaShift < -gapIn or ne < NE_MIN:
 				disrupting = 0.001
+				print("DISRUPT q=", plasmaQ95, " shift=", plasmaShift, " gaps=", gapIn, " ", gapOut, " ne=", ne)
 	elif disrupting > 0.0:
 		disrupting += dt / DISRUPT_TIME
 		plasmaCurrent *= exp(-dt / 0.1)
@@ -143,4 +146,3 @@ func step(dt):
 	MaterialOverride.set_shader_parameter("q95", clamp(plasmaQ95, 1.0, 15.0))
 	MaterialOverride.set_shader_parameter("collapse", disrupting)
 	MaterialOverride.set_shader_parameter("major_radius", plasmaMajor + plasmaShift)
-	print(vloop, " ", plasmaCurrent, " ", disrupting, " ", lockout)

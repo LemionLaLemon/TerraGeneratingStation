@@ -95,7 +95,7 @@ const Info = {
 }
 
 # Ideal gas law stuff
-const R = 8.314462
+const R = 8.314462 # joules
 const MolarMass = {
 	Materials.D2: 0.004028,
 	Materials.O: 0.031998,

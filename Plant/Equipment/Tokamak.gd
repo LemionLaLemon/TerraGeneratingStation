@@ -23,6 +23,9 @@ var EF
 var CS
 var VS
 
+# Neutral Beams
+var beams = []
+
 # Constants
 const MU0 = 4.0e-7 * PI
 const CS_PLASMA_M = 0.04
@@ -33,6 +36,7 @@ const BREAKDOWN_PURITY = 0.9
 const BREAKDOWN_PRESSURE = 0.05
 const EV = 1.602176634e-19 
 const TAU_E = 1.0
+const TAU_P = 30.0
 const EF_FIELD_SCALE = 0.07
 const Q_MIN = 2.0
 const NE_MIN = 1.0e17
@@ -40,6 +44,13 @@ const DISRUPT_TIME = 0.6
 const IP_FLATTOP = 14.0e6
 const NE_REF = 3.0e19
 const TE_REF = 1000.0
+const NBCD_GAMMA = 0.2
+const P_LH = 12.0e6
+const ROT_MAX = 49.0
+const ROT_REF_P = 20.0e6
+const TAU_ROT = 2.0
+const ELM_PERIOD = 1.5
+const ELM_LEN = 0.15
 
 # Plasma Variables
 var plasmaCurrent: float = 0.0
@@ -54,7 +65,11 @@ var gapOut: float
 var gapIn: float
 var plasmaQ95: float = 15.0
 var pNBI: float = 0.0
-var I_cd: = 14.0
+var plasmaH: float = 0.0
+var plasmaRot: float = 0.0
+var elmClock: float = 0.0
+var elmPulse: float = 0.0
+var plasmaAngle: float = 0.0
 
 # Tokamak
 var lockout: bool = false
@@ -96,6 +111,15 @@ func step(dt):
 	if pTotal > 0.0:
 		purity = d2mol * Common.R * temperature / volume / pTotal
 	var ne = 2.0 * d2mol * AVOGADRO / vol
+	pNBI = 0.0
+	for beam in beams:
+		var frac = beam.absorbedFraction(ne, 2.0 * plasmaMinor)
+		pNBI += beam.power * frac
+		add(Common.Materials.D2, beam.gasKgs * frac * dt)
+	var iCD = NBCD_GAMMA * pNBI / max(ne / 1.0e20, 0.01) / rMaj
+
+	if plasmaCurrent > 0.0:
+		contents[Common.Materials.D2] = contents.get(Common.Materials.D2, 0.0) * exp(-dt / TAU_P)
 
 	if vloop < BREAKDOWN_VLOOP:
 		lockout = false
@@ -108,15 +132,18 @@ func step(dt):
 		var lp = MU0 * rMaj * (log(8.0 * rMaj / plasmaMinor) - 1.5)
 		var eta = 5.2e-5 * 17.0 / pow(max(plasmaTemp, 5.0), 1.5)
 		var rp = eta * 2.0 * PI * rMaj / area
-		var ipInf = vloop / rp + I_cd
+		var ipInf = vloop / rp + iCD
 		plasmaCurrent = ipInf + (plasmaCurrent - ipInf) * exp(-dt * rp / lp)
 		if plasmaCurrent < 1000.0:
 			plasmaCurrent = 0.0
 			plasmaTemp = 0.0
 		else:
 			var heatCap = max(3.0 * ne * vol * EV, 1.0)
-			var tEq = (plasmaCurrent * plasmaCurrent * rp * pNBI) * TAU_E / heatCap # (p_ohm + p_nbi)  * tau_e / heatcap
-			plasmaTemp += (clamp(tEq, 5.0, 20000.0) - plasmaTemp) * (1.0 - exp(-dt / TAU_E))
+			var pHeat = plasmaCurrent * plasmaCurrent * rp + pNBI
+			plasmaH += (smoothstep(0.8 * P_LH, 1.2 * P_LH, pHeat) - plasmaH) * (1.0 - exp(-dt / 1.0))
+			var tauE = TAU_E * (1.0 + plasmaH)
+			var tEq = pHeat * tauE / heatCap # (p_ohm + p_nbi)  * tau_e / heatcap
+			plasmaTemp += (clamp(tEq, 5.0, 20000.0) - plasmaTemp) * (1.0 - exp(-dt / tauE))
 			var bvReq = MU0 * plasmaCurrent / (4.0 * PI * rMaj) * (log(8.0 * rMaj / plasmaMinor) - 0.7)
 			var bv = EF.getFieldT() * EF_FIELD_SCALE
 			var err = clamp((bvReq - bv) / bvFlatTop, -1.5, 1.5)
@@ -136,6 +163,25 @@ func step(dt):
 	if plasmaCurrent <= 0.0:
 		plasmaShift = 0.0
 		plasmaQ95 = 15.0
+		plasmaH = 0.0
+		plasmaRot = 0.0
+		elmClock = 0.0
+		elmPulse = 0.0
+	
+	var rotTarget = ROT_MAX * clamp(pNBI / ROT_REF_P, 0.0, 1.0)
+	plasmaRot += (rotTarget - plasmaRot) * (1.0 - exp(-dt / TAU_ROT))
+	plasmaAngle = fmod(plasmaAngle + plasmaRot * dt, TAU)
+	
+	elmPulse = 0.0
+	if plasmaH > 0.8:
+		elmClock += dt
+		if elmClock >= ELM_PERIOD:
+			elmClock -= ELM_PERIOD
+			contents[Common.Materials.D2] = contents.get(Common.Materials.D2, 0.0) * 0.97
+		if elmClock < ELM_LEN:
+			elmPulse = sin(PI * elmClock / ELM_LEN)
+		else:
+			elmClock = 0.0
 	
 	var ipFrac = plasmaCurrent / IP_FLATTOP
 	MaterialOverride.set_shader_parameter("plasma_current", clamp(ipFrac, 0.0, 1.0))
@@ -146,3 +192,8 @@ func step(dt):
 	MaterialOverride.set_shader_parameter("q95", clamp(plasmaQ95, 1.0, 15.0))
 	MaterialOverride.set_shader_parameter("collapse", disrupting)
 	MaterialOverride.set_shader_parameter("major_radius", plasmaMajor + plasmaShift)
+	MaterialOverride.set_shader_parameter("h_mode", plasmaH)
+	MaterialOverride.set_shader_parameter("elm", elmPulse)
+	MaterialOverride.set_shader_parameter("turbulence", lerp(0.8, 0.25, plasmaH))
+	MaterialOverride.set_shader_parameter("toroidal_speed", 0.0)
+	MaterialOverride.set_shader_parameter("toroidal_angle", plasmaAngle)

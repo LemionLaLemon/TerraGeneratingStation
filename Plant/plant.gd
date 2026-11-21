@@ -131,6 +131,15 @@ var VSDumpResistor
 var VSMagnet
 var VSMagnetTripRelay
 var VSMagnetController
+
+# Neutral Beams
+var NeutralBeamC
+var NeutralBeamD
+var NeutralBeamCBreaker
+var NeutralBeamDBreaker
+var NeutralBeamCController
+var NeutralBeamDController
+
 # Radwaste
 var EquipmentDrainCollectorTank
 
@@ -230,7 +239,7 @@ func _ready():
 	# Electrolysis
 	D2ElectrolyserBreaker = Breaker.new(BusB, null, false)
 	D2ElectrolyserFeedPumpBreaker = Breaker.new(BusB, null, false)
-	DeuteriumTank = IdealContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), Units.PsitoPa(10000), 1.0, {Common.Materials.D2: 12.0})
+	DeuteriumTank = IdealContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), Units.PsitoPa(10000), 1.0, {Common.Materials.D2: 120.0})
 	OxygenVent = GenericContainer.new(0, Units.CtoK(AMBIENT_TEMPERATURE), 1_000_000_000)
 	D2Electrolyser = Electrolyser.new(0, Units.CtoK(AMBIENT_TEMPERATURE), D2ElectrolyserBreaker, DeuteriumTank, OxygenVent)
 	D2ElectrolyserFeedPump = Pump.new(SeparatorProduct, D2Electrolyser, 1.0, D2ElectrolyserFeedPumpBreaker, 5.0)
@@ -283,6 +292,20 @@ func _ready():
 	links.append(CSMagnetController)
 	CSDischargeButton = Breaker.new(BusC, null, false)
 	CSPrechargeButton = Breaker.new(BusC, null, false)
+	
+	# Neutral Beams
+	NeutralBeamCBreaker = Breaker.new(BusC, null, false)
+	NeutralBeamDBreaker = Breaker.new(BusD, null, false)
+	NeutralBeamC = NeutralBeam.new(NeutralBeamCBreaker, DeuteriumTank, 10.0e6, 1.0e5, 0.3)
+	NeutralBeamD = NeutralBeam.new(NeutralBeamDBreaker, DeuteriumTank, 10.0e6, 1.0e5, 0.3)
+	links.append(NeutralBeamC)
+	links.append(NeutralBeamD)
+	NeutralBeamCController = PIDController.new(NeutralBeamC, "demand", NeutralBeamC, "powerMW", 10.0, 0, 0, 0)
+	NeutralBeamDController = PIDController.new(NeutralBeamD, "demand", NeutralBeamD, "powerMW", 10.0, 0, 0, 0)
+	links.append(NeutralBeamCController)
+	links.append(NeutralBeamDController)
+	TerraTokamak.beams.append(NeutralBeamC)
+	TerraTokamak.beams.append(NeutralBeamD)
 	
 	# Roughing Pump Vacuums
 	P_200Breaker = Breaker.new(BusC, null, false)

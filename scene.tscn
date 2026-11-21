@@ -316,8 +316,9 @@ material = SubResource("StandardMaterial3D_y2354")
 size = Vector2i(640, 400)
 
 [node name="InCoreCamera" type="Camera3D" parent="ControlRoom/InCoreCamera/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.946784, 0.321869, 0, -0.321869, 0.946784, 0, 19.9527, 19.482)
-fov = 100.0
+transform = Transform3D(1, 0, 0, 0, 0.946784, 0.611551, 0, -0.321869, 1.79889, 0, 19.972, 19.5388)
+fov = 110.0
+near = 0.001
 
 [node name="BLSP_dx1000_1" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
 transform = Transform3D(-0.935425, 0.138185, -0.325399, -7.45058e-09, 0.920443, 0.390877, 0.353525, 0.365636, -0.861005, 2.56279, 0.303029, -0.637241)
@@ -2715,6 +2716,113 @@ condition = "TerraTokamak.getPressure() <= 1.0e-4"
 transform = Transform3D(-1, 0, -8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -3.82137e-15, -1, 4.37114e-08, 0, 1.12, 3.61)
 label = "EVAC"
 condition = "TerraTokamak.getPressure() > 1.0e-4"
+
+[node name="Neutral Beams" type="Node3D" parent="ControlRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.1, -8.5, 45.4)
+
+[node name="16mm_pushbutton17" parent="ControlRoom/Neutral Beams" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, -38.7563, 8.60103, -45.9084)
+breakerName = "NeutralBeamDBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Neutral Beams/16mm_pushbutton17"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0176582, 0.000501633, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Neutral Beams/16mm_pushbutton17/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "NEUTRAL BEAM B
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Neutral Beams/16mm_pushbutton17/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CB-601"
+horizontal_alignment = 0
+
+[node name="16mm_pushbutton18" parent="ControlRoom/Neutral Beams" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, -38.7013, 8.63808, -45.7628)
+breakerName = "NeutralBeamCBreaker"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Neutral Beams/16mm_pushbutton18"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0176582, 0.000501633, -0.000205994)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Neutral Beams/16mm_pushbutton18/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "NEUTRAL BEAM A
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Neutral Beams/16mm_pushbutton18/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CB-600"
+horizontal_alignment = 0
+
+[node name="controller5" parent="ControlRoom/Neutral Beams" instance=ExtResource("30_otx46")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, -38.8362, 8.58098, -45.8947)
+controllerName = "NeutralBeamDController"
+maxValue = 10.0
+majorStep = 1.0
+minorDivisions = 6
+unit = "MEGAWATTS"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Neutral Beams/controller5"]
+transform = Transform3D(-1, -2.23517e-08, 2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 5.96046e-08, 1.49012e-08, -1, 1.90735e-06, 0.0164413, -0.0649986)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Neutral Beams/controller5/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "NEUTRAL BEAM DEMAND
+CONTROLLER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Neutral Beams/controller5/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "C-NBB"
+horizontal_alignment = 0
+
+[node name="controller6" parent="ControlRoom/Neutral Beams" instance=ExtResource("30_otx46")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, -38.7812, 8.61803, -45.7491)
+controllerName = "NeutralBeamCController"
+maxValue = 10.0
+majorStep = 1.0
+minorDivisions = 6
+unit = "MEGAWATTS"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Neutral Beams/controller6"]
+transform = Transform3D(-1, -2.23517e-08, 2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 5.96046e-08, 1.49012e-08, -1, 1.90735e-06, 0.0164413, -0.0649986)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Neutral Beams/controller6/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "NEUTRAL BEAM DEMAND
+CONTROLLER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Neutral Beams/controller6/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "C-NBA"
+horizontal_alignment = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

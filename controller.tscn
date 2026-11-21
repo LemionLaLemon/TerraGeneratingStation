@@ -36,20 +36,23 @@ bg_color = Color(0.905882, 0.905882, 0.905882, 1)
 
 [node name="controller" instance=ExtResource("1_jldtq")]
 script = ExtResource("2_n1geg")
+previewActual = 0.0
 
 [node name="ACTGAUGE" parent="." index="0"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.0096, -0.0237333, -0.00913333)
 surface_material_override/1 = SubResource("StandardMaterial3D_dd4ha")
 surface_material_override/2 = SubResource("StandardMaterial3D_nclek")
 
 [node name="ACTNEEDLE" parent="." index="1"]
-transform = Transform3D(0.8, 0, 0, 0, 0.796808, 0.0713936, 0, -0.0713936, 0.796808, -0.0096, -0.0285333, -0.00913333)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.0096, -0.0245493, -0.0094903)
 
 [node name="DEMGAUGE" parent="." index="3"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.0096, -0.0237333, -0.00913333)
 surface_material_override/1 = SubResource("StandardMaterial3D_xsijp")
 surface_material_override/2 = SubResource("StandardMaterial3D_8borx")
 
 [node name="DEMNEEDLE" parent="." index="4"]
-transform = Transform3D(0.8, 0, 0, 0, 0.721466, 0.345669, 0, -0.345669, 0.721466, 0.0096, -0.0285333, -0.00913333)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.00966216, -0.025, -0.009)
 
 [node name="DemUnitView" type="SubViewport" parent="." index="9"]
 size = Vector2i(53, 1024)

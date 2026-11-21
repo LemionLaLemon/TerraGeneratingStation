@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dpxrstjdnv05b"]
+[gd_scene load_steps=58 format=3 uid="uid://dpxrstjdnv05b"]
 
 [ext_resource type="Script" uid="uid://ci0fc4prf16l8" path="res://spawn_banana.gd" id="1_nxogm"]
 [ext_resource type="PackedScene" uid="uid://sjyn56p4d1dk" path="res://imported/banana.tscn" id="2_3253y"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://pou1hkuuk8a4" path="res://plant.tscn" id="24_i6j5g"]
 [ext_resource type="PackedScene" uid="uid://bgmmgtkblk0wy" path="res://collaredbutton.tscn" id="25_xb05w"]
 [ext_resource type="PackedScene" uid="uid://bouyo1wsu0i16" path="res://16_mm_round_pushbutton.tscn" id="26_pou65"]
+[ext_resource type="PackedScene" uid="uid://br75vuksfnd6k" path="res://FD_pages/plasma.tscn" id="26_yjo7n"]
 [ext_resource type="PackedScene" uid="uid://cwlyri8ojyao1" path="res://bisiannunciatorhalfheight.tscn" id="29_llic6"]
 [ext_resource type="PackedScene" uid="uid://dfo266ycweh1b" path="res://controller.tscn" id="30_otx46"]
 [ext_resource type="Shader" uid="uid://u4bgdppbif02" path="res://plasma.gdshader" id="plasma_shader"]
@@ -62,11 +63,16 @@ radius = 0.4
 height = 1.6
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m7jmp"]
-viewport_path = NodePath("ControlRoom/InCoreCamera/SubViewport")
+viewport_path = NodePath("ControlRoom/BigPanelCenter/InCoreCamera/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2354"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_m7jmp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlvrw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73fnb"]
+albedo_color = Color(0.920025, 0.920025, 7.70092e-07, 1)
 
 [sub_resource type="Resource" id="Resource_gu47o"]
 script = ExtResource("13_akxrc")
@@ -177,11 +183,6 @@ unit_text = "PaA"
 format = "%d"
 offset = 0.0
 metadata/_custom_type_script = "uid://doddov2e23i40"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlvrw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73fnb"]
-albedo_color = Color(0.920025, 0.920025, 7.70092e-07, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6j5g"]
 bg_color = Color(1, 1, 1, 0.329412)
@@ -307,44 +308,45 @@ fov = 80.0
 [node name="ControlRoom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1, 8.5, -45.4)
 
-[node name="InCoreCamera" type="CSGBox3D" parent="ControlRoom"]
-transform = Transform3D(0, 0, -1, 1, 0, 0, 0, -1, 0, -0.496726, 1.85056, 3.60988)
+[node name="BigPanelCenter" type="Node3D" parent="ControlRoom"]
+
+[node name="InCoreCamera" type="CSGBox3D" parent="ControlRoom/BigPanelCenter"]
+transform = Transform3D(0, 0, -1, 1, 0, 0, 0, -1, 0, -0.496727, 1.85056, 3.60988)
 size = Vector3(1.3, 0.03, 2)
 material = SubResource("StandardMaterial3D_y2354")
 
-[node name="SubViewport" type="SubViewport" parent="ControlRoom/InCoreCamera"]
+[node name="SubViewport" type="SubViewport" parent="ControlRoom/BigPanelCenter/InCoreCamera"]
 size = Vector2i(640, 400)
 
-[node name="InCoreCamera" type="Camera3D" parent="ControlRoom/InCoreCamera/SubViewport"]
+[node name="InCoreCamera" type="Camera3D" parent="ControlRoom/BigPanelCenter/InCoreCamera/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.946784, 0.611551, 0, -0.321869, 1.79889, 0, 19.972, 19.5388)
 fov = 110.0
 near = 0.001
 
-[node name="BLSP_dx1000_1" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-0.935425, 0.138185, -0.325399, -7.45058e-09, 0.920443, 0.390877, 0.353525, 0.365636, -0.861005, 2.56279, 0.303029, -0.637241)
-channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_gu47o"), SubResource("Resource_8hm71"), SubResource("Resource_223my"), SubResource("Resource_1q4c1")])
-dx_ID = "BLSP (GROUP 1)"
-updateEvery = 0.25
-chart_max = 5.0
+[node name="annunciator_half_height" parent="ControlRoom/BigPanelCenter" instance=ExtResource("29_llic6")]
+transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, -4.37114e-08, -1, 3.82137e-15, -1, 4.37114e-08, -0.5, 1.12, 3.61)
+label = "BAKE"
+condition = "false"
 
-[node name="BLSP_dx1000_2" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-0.935425, 0.138185, -0.325399, -7.45058e-09, 0.920443, 0.390877, 0.353525, 0.365636, -0.861005, 2.58527, 0.44569, -0.580971)
-channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_aobyt"), SubResource("Resource_i6j5g"), SubResource("Resource_g6g5t"), SubResource("Resource_iss77")])
-dx_ID = "GSES (GROUP 1)"
-updateEvery = 0.25
-chart_max = 5.0
+[node name="annunciator_half_height3" parent="ControlRoom/BigPanelCenter" instance=ExtResource("29_llic6")]
+transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, -4.37114e-08, -1, 3.82137e-15, -1, 4.37114e-08, -1, 1.12, 3.61)
+label = "OPER"
+condition = "TerraTokamak.getPressure() <= 0.05"
 
-[node name="BLSP_dx1000_3" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-0.935425, 0.138185, -0.325399, -7.45058e-09, 0.920443, 0.390877, 0.353525, 0.365636, -0.861005, 2.17042, 0.365726, -0.460491)
-channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_xpof7"), SubResource("Resource_xpof7")])
-dx_ID = "VACU (GROUP 2)"
-chart_max = 150.0
+[node name="annunciator_half_height2" parent="ControlRoom/BigPanelCenter" instance=ExtResource("29_llic6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -3.82137e-15, -1, 4.37114e-08, 0, 1.12, 3.61)
+label = "EVAC"
+condition = "TerraTokamak.getPressure() > 1.0e-4 and not TerraTokamak.getPressure() <= 0.05"
 
-[node name="BLSP_dx1000_4" parent="ControlRoom" instance=ExtResource("12_5c1cw")]
-transform = Transform3D(-0.935425, 0.138185, -0.325399, -7.45058e-09, 0.920443, 0.390877, 0.353525, 0.365636, -0.861005, 2.14868, 0.22767, -0.51495)
-channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_8j1ou"), SubResource("Resource_o3hm7")])
-dx_ID = "VACU (GROUP 2)"
-chart_max = 110000.0
+[node name="annunciator_half_height4" parent="ControlRoom/BigPanelCenter" instance=ExtResource("29_llic6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -3.82137e-15, -1, 4.37114e-08, 0, 0.98, 3.61)
+label = "L MODE"
+condition = "TerraTokamak.getPressure() > 1.0e-4 and not TerraTokamak.plasmaH > 0.8"
+
+[node name="annunciator_half_height5" parent="ControlRoom/BigPanelCenter" instance=ExtResource("29_llic6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -3.82137e-15, -1, 4.37114e-08, -0.5, 0.98, 3.61)
+label = "H MODE"
+condition = "TerraTokamak.plasmaH > 0.8"
 
 [node name="Electrical" type="Node3D" parent="ControlRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.1, -8.5, 45.4)
@@ -598,69 +600,6 @@ material = SubResource("StandardMaterial3D_73fnb")
 transform = Transform3D(0.935425, 0.0818558, -0.343916, -7.45058e-09, 0.972825, 0.231543, 0.353523, -0.216591, 0.910005, -43.7149, 8.62478, -46.2852)
 size = Vector3(0.005, 0.001, 0.0335547)
 material = SubResource("StandardMaterial3D_73fnb")
-
-[node name="Annunciator" parent="ControlRoom/Electrical" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.095, 11.575, -42.06)
-controls = NodePath("Controls")
-
-[node name="annunciator" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.437355, 0.0764918, -0.960206)
-label = "BUS B
-UNDERVOLTAGE"
-condition = "BusB.getVoltage() < 0.95 * BusB.getNominalVoltage()"
-litColor = Color(0.901714, 0.181276, 0.246103, 1)
-
-[node name="annunciator4" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, 0.0294351, 0.0764918, -0.781023)
-label = "BUS A
-UNDERVOLTAGE"
-condition = "BusA.getVoltage() < 0.95 * BusA.getNominalVoltage()"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator6" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.0286753, -0.305518, -0.62964)
-label = "BUS C
-UNDERVOLTAGE"
-condition = "BusC.getVoltage() < 0.95 * BusA.getNominalVoltage()"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator5" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("10_fy5k1")]
-transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.496166, -0.31012, -0.807)
-label = "BUS D
-UNDERVOLTAGE"
-condition = "BusD.getVoltage() < 0.95 * BusA.getNominalVoltage()"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="Controls" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("11_5c1cw")]
-transform = Transform3D(0.935425, 0.0818558, -0.343916, -7.45058e-09, 0.972824, 0.231543, 0.353523, -0.216591, 0.910005, 0.883678, -2.99398, -4.22912)
-
-[node name="annunciator_half_height" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, 2.99131e-05, -0.116815, -0.704419)
-label = "BUS A
-LOAD HI"
-condition = "BusA.getLoading() > 80"
-litColor = Color(0.901961, 0.858824, 0.341176, 1)
-
-[node name="annunciator_half_height3" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.46676, -0.116815, -0.883603)
-label = "BUS B
-LOAD HI"
-condition = "BusB.getLoading() > 80"
-litColor = Color(0.901961, 0.858824, 0.341176, 1)
-
-[node name="annunciator_half_height4" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.52487, -0.498825, -0.73222)
-label = "BUS D
-LOAD HI"
-condition = "BusD.getLoading() > 80"
-litColor = Color(0.901961, 0.858824, 0.341176, 1)
-
-[node name="annunciator_half_height5" parent="ControlRoom/Electrical/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.0580799, -0.498825, -0.553036)
-label = "BUS C
-LOAD HI"
-condition = "BusC.getLoading() > 80"
-litColor = Color(0.901961, 0.858824, 0.341176, 1)
 
 [node name="FD" parent="ControlRoom/Electrical" instance=ExtResource("12_akxrc")]
 transform = Transform3D(0.935425, 0.325399, -0.138185, -7.45058e-09, 0.390877, 0.920443, 0.353525, -0.861005, 0.365637, -43.7353, 8.77244, -46.0792)
@@ -1583,210 +1522,6 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "P-203"
 horizontal_alignment = 0
 
-[node name="Annunciator" parent="ControlRoom/Blending and Distilling" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
-controls = NodePath("Controls")
-
-[node name="Controls" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("11_5c1cw")]
-transform = Transform3D(0.935426, -0.0818558, 0.343916, 7.45058e-09, 0.972825, 0.231543, -0.353523, -0.216591, 0.910006, 2.01573, 0.0799494, -0.85711)
-
-[node name="annunciator_half_height5" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.95951, 3.21865, 2.52883)
-label = "TK-106
-FILL HI"
-condition = "SludgeTank.fill_fraction() > 0.8"
-
-[node name="annunciator_half_height9" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.49272, 3.21865, 2.70801)
-label = "EF FAST
-DISCHARGE INIT"
-condition = "not CB_503.isClosed()"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator_half_height11" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.02593, 3.21865, 2.88719)
-label = "CS FAST
-DISCHARGE INIT"
-condition = "not CB_505.isClosed()"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator_half_height12" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.04553, 3.08978, 2.93826)
-label = "VS FAST
-DISCHARGE INIT"
-condition = "not CB_507.isClosed()"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator_half_height10" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.51232, 3.08978, 2.75908)
-label = "TF FAST
-DISCHARGE INIT"
-condition = "not CB_501.isClosed()"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator_half_height6" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.97911, 3.08978, 2.5799)
-label = "TK-108
-FILL HI"
-condition = "SeparatorEffluent.fill_fraction() > 0.8"
-
-[node name="annunciator_half_height7" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.99871, 2.96091, 2.63097)
-label = "P-204
-UNDERSPEED"
-condition = "P_204Breaker.isClosed() and P_204.getRpm() < 0.9 * P_204.getRatedRpm() and P_204.getTimeSinceStart() > 10"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator_half_height8" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.01832, 2.83204, 2.68204)
-label = "P-205
-UNDERSPEED"
-condition = "P_205Breaker.isClosed() and P_205.getRpm() < 0.9 * P_205.getRatedRpm() and P_205.getTimeSinceStart() > 10"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator_half_height2" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.4263, 3.21865, 2.34964)
-label = "BL-101
-FILL HI"
-condition = "BananaBlender.fill_fraction() > 0.8"
-litColor = Color(0.901961, 0.180392, 0.247059, 1)
-
-[node name="annunciator_half_height3" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("15_8hm71")]
-transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.44591, 3.08978, 2.40071)
-label = "TK-104
-FILL HI"
-condition = "PulpTank.fill_fraction() > 0.8"
-litColor = Color(0.901961, 0.858824, 0.341176, 1)
-
-[node name="singlepilotlamp" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("20_wncyr")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.84358, 0.102875, -0.698813)
-condition = "TFMagnetTripRelay.isClosed()"
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp"]
-transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "TF MAGNET TRIP
-RELAY"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "RLY-501"
-horizontal_alignment = 0
-
-[node name="singlepilotlamp4" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("20_wncyr")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.56763, 0.102875, -0.594523)
-condition = "VSMagnetTripRelay.isClosed()"
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp4"]
-transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp4/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "VS MAGNET TRIP
-RELAY"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp4/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "RLY-507"
-horizontal_alignment = 0
-
-[node name="singlepilotlamp2" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("20_wncyr")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.89861, 0.139922, -0.553212)
-condition = "EFMagnetTripRelay.isClosed()"
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp2"]
-transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp2/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "EF MAGNET TRIP
-RELAY"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp2/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "RLY-503"
-horizontal_alignment = 0
-
-[node name="singlepilotlamp3" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("20_wncyr")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.62266, 0.139922, -0.448922)
-condition = "CSMagnetTripRelay.isClosed()"
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp3"]
-transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp3/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "CS MAGNET TRIP
-RELAY"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp3/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "RLY-505"
-horizontal_alignment = 0
-
-[node name="singlepilotlamp5" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("20_wncyr")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.63642, 0.149184, -0.412522)
-condition = "TerraTokamak.plasmaCurrent > 0.0"
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp5"]
-transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp5/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "CS MAGNET PRECHARGE
-INTERLOCK"
-vertical_alignment = 0
-
-[node name="singlepilotlamp6" parent="ControlRoom/Blending and Distilling/Annunciator" instance=ExtResource("20_wncyr")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.57094, 0.149184, -0.387775)
-condition = "CSMagnet.current > -9990.0 or TFMagnet.getFieldT() < 1.0 or TerraTokamak.getPressure() > 0.05"
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp6"]
-transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/Annunciator/singlepilotlamp6/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "CS MAGNET DISCHARGE
-INTERLOCK"
-vertical_alignment = 0
-
 [node name="PointAndCall" type="CSGBox3D" parent="ControlRoom/Blending and Distilling"]
 transform = Transform3D(0.935424, -0.325399, 0.138185, 0, 0.390878, 0.920442, -0.353525, -0.861005, 0.365637, 2.60262, 0.555214, -0.538387)
 size = Vector3(0.13, 0.001, 0.065)
@@ -1844,6 +1579,20 @@ modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "P-204"
 horizontal_alignment = 0
+
+[node name="BLSP_dx1000_1" parent="ControlRoom/Blending and Distilling" instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-0.935425, 0.138185, -0.325399, -7.45058e-09, 0.920443, 0.390877, 0.353525, 0.365636, -0.861005, 2.56279, 0.303029, -0.637241)
+channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_gu47o"), SubResource("Resource_8hm71"), SubResource("Resource_223my"), SubResource("Resource_1q4c1")])
+dx_ID = "BLSP (GROUP 1)"
+updateEvery = 0.25
+chart_max = 5.0
+
+[node name="BLSP_dx1000_2" parent="ControlRoom/Blending and Distilling" instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-0.935425, 0.138185, -0.325399, -7.45058e-09, 0.920443, 0.390877, 0.353525, 0.365636, -0.861005, 2.58527, 0.44569, -0.580971)
+channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_aobyt"), SubResource("Resource_i6j5g"), SubResource("Resource_g6g5t"), SubResource("Resource_iss77")])
+dx_ID = "GSES (GROUP 1)"
+updateEvery = 0.25
+chart_max = 5.0
 
 [node name="Vacuums" type="Node3D" parent="ControlRoom"]
 
@@ -2018,19 +1767,31 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "V-206"
 horizontal_alignment = 0
 
-[node name="Node3D" type="Node3D" parent="ControlRoom"]
+[node name="VAC_dx1000" parent="ControlRoom/Vacuums" instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-0.935425, 0.138185, -0.325399, -7.45058e-09, 0.920443, 0.390877, 0.353525, 0.365636, -0.861005, 2.17042, 0.365726, -0.460491)
+channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_xpof7"), SubResource("Resource_xpof7")])
+dx_ID = "VACU (GROUP 2)"
+chart_max = 150.0
 
-[node name="FD" parent="ControlRoom/Node3D" instance=ExtResource("12_akxrc")]
+[node name="VAC_dx10001" parent="ControlRoom/Vacuums" instance=ExtResource("12_5c1cw")]
+transform = Transform3D(-0.935425, 0.138185, -0.325399, -7.45058e-09, 0.920443, 0.390877, 0.353525, 0.365636, -0.861005, 2.14868, 0.22767, -0.51495)
+channels = Array[ExtResource("13_akxrc")]([SubResource("Resource_8j1ou"), SubResource("Resource_o3hm7")])
+dx_ID = "VACU (GROUP 2)"
+chart_max = 110000.0
+
+[node name="Backpanel" type="Node3D" parent="ControlRoom"]
+
+[node name="FD" parent="ControlRoom/Backpanel" instance=ExtResource("12_akxrc")]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -5.45992, 0.670205, -2.49445)
 page = ExtResource("21_1q4c1")
 updateEvery = 0.25
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Node3D/FD"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Backpanel/FD"]
 transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
 size = Vector3(0.1, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/Node3D/FD/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Backpanel/FD/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -2038,23 +1799,23 @@ text = "SIMULATION CONTROLS
 HMI"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Node3D/FD/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Backpanel/FD/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "FD-SIM"
 horizontal_alignment = 0
 
-[node name="SBM" parent="ControlRoom/Node3D" instance=ExtResource("21_302uq")]
+[node name="SBM" parent="ControlRoom/Backpanel" instance=ExtResource("21_302uq")]
 transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -5.36, 0.485, -2.49445)
 breakerName = "Accel32x"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Node3D/SBM"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Backpanel/SBM"]
 transform = Transform3D(-1, -2.98023e-08, -1.39091e-08, -3.72529e-08, 1, -3.72529e-08, 7.35137e-08, -7.45058e-09, -1, 0, 0.000499725, -0.0500002)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/Node3D/SBM/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Backpanel/SBM/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -2062,16 +1823,16 @@ text = "SIM TIME ACCELERATION
 x32"
 vertical_alignment = 0
 
-[node name="SBM3" parent="ControlRoom/Node3D" instance=ExtResource("21_302uq")]
+[node name="SBM3" parent="ControlRoom/Backpanel" instance=ExtResource("21_302uq")]
 transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -5.36, 0.37, -2.49445)
 breakerName = "Accel64x"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Node3D/SBM3"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Backpanel/SBM3"]
 transform = Transform3D(-1, -2.98023e-08, -1.39091e-08, -3.72529e-08, 1, -3.72529e-08, 7.35137e-08, -7.45058e-09, -1, 0, 0.000499725, -0.0500002)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/Node3D/SBM3/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Backpanel/SBM3/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -2079,16 +1840,16 @@ text = "SIM TIME ACCELERATION
 x64"
 vertical_alignment = 0
 
-[node name="SBM2" parent="ControlRoom/Node3D" instance=ExtResource("21_302uq")]
+[node name="SBM2" parent="ControlRoom/Backpanel" instance=ExtResource("21_302uq")]
 transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -5.445, 0.485, -2.49445)
 breakerName = "GridBO"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Node3D/SBM2"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Backpanel/SBM2"]
 transform = Transform3D(-1, -2.98023e-08, -1.39091e-08, -3.72529e-08, 1, -3.72529e-08, 7.35137e-08, -7.45058e-09, -1, 0, 0.000499725, -0.0500002)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/Node3D/SBM2/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Backpanel/SBM2/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -2096,271 +1857,24 @@ text = "GRID
 LOSS OF VOLTAGE"
 vertical_alignment = 0
 
+[node name="SBM4" parent="ControlRoom/Backpanel" instance=ExtResource("21_302uq")]
+transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -5.53, 0.485, -2.49445)
+breakerName = "ICMODE1"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Backpanel/SBM4"]
+transform = Transform3D(-1, -2.98023e-08, -1.39091e-08, -3.72529e-08, 1, -3.72529e-08, 7.35137e-08, -7.45058e-09, -1, 0, 0.000499725, -0.0500002)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Backpanel/SBM4/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "INITIAL CONDITION
+PLASMA"
+vertical_alignment = 0
+
 [node name="Magnets" type="Node3D" parent="ControlRoom"]
-
-[node name="FD8" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 7.45058e-09, 0.390877, 0.920443, -0.353525, -0.861005, 0.365637, 1.4261, 0.272495, -0.221516)
-page = ExtResource("19_xpof7")
-updateEvery = 0.25
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD8"]
-transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
-size = Vector3(0.1, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD8/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "TURBO MOLECULAR PUMPS VACUUMS
-FLOW DIAGRAM"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD8/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "FD-TMP"
-horizontal_alignment = 0
-
-[node name="FD9" parent="ControlRoom/Magnets" instance=ExtResource("12_akxrc")]
-transform = Transform3D(0.935425, -0.325399, 0.138185, 7.45058e-09, 0.390877, 0.920443, -0.353525, -0.861005, 0.365637, 1.45788, 0.484197, -0.137419)
-page = ExtResource("19_xpof7")
-updateEvery = 0.25
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/FD9"]
-transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
-size = Vector3(0.1, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/FD9/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "TURBO MOLECULAR PUMPS VACUUMS
-FLOW DIAGRAM"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/FD9/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "FD-TMP"
-horizontal_alignment = 0
-
-[node name="16mm_pushbutton13" parent="ControlRoom/Magnets" instance=ExtResource("11_fy5k1")]
-transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.90965, 0.101035, -0.722311)
-breakerName = "CB_500"
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_pushbutton13"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0176582, 0.000501633, -0.000205994)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton13/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "TF MAGNET SUPPLY
-BREAKER"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton13/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "CB-500"
-horizontal_alignment = 0
-
-[node name="16mm_pushbutton16" parent="ControlRoom/Magnets" instance=ExtResource("11_fy5k1")]
-transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.6337, 0.101035, -0.618022)
-breakerName = "CB_506"
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_pushbutton16"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0176582, 0.000501633, -0.000205994)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton16/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "VS MAGNET SUPPLY
-BREAKER"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton16/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "CB-506"
-horizontal_alignment = 0
-
-[node name="16mm_pushbutton14" parent="ControlRoom/Magnets" instance=ExtResource("11_fy5k1")]
-transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.96468, 0.138082, -0.576711)
-breakerName = "CB_502"
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_pushbutton14"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0176582, 0.000501633, -0.000205994)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton14/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "EF MAGNET SUPPLY
-BREAKER"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton14/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "CB-502"
-horizontal_alignment = 0
-
-[node name="16mm_pushbutton15" parent="ControlRoom/Magnets" instance=ExtResource("11_fy5k1")]
-transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.68873, 0.138082, -0.472421)
-breakerName = "CB_504"
-
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_pushbutton15"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0176582, 0.000501633, -0.000205994)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton15/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "CS MAGNET SUPPLY
-BREAKER"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton15/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "CB-504"
-horizontal_alignment = 0
-
-[node name="edgewisegauge" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.07532, 0.437205, -0.280897)
-expression = "EFMagnet.current / 1000"
-maxValue = 10.0
-majorStep = 1.0
-unit = "KILOAMPS"
-
-[node name="edgewisegauge9" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.78534, 0.437205, -0.171304)
-expression = "CSMagnet.current / 1000"
-minValue = -10.0
-maxValue = 10.0
-majorStep = 2.0
-unit = "KILOAMPS"
-
-[node name="edgewisegauge5" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.05045, 0.271525, -0.346712)
-expression = "TFMagnet.current / 1000"
-maxValue = 13.0
-majorStep = 1.0
-unit = "KILOAMPS"
-
-[node name="edgewisegauge13" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.76047, 0.271525, -0.237119)
-expression = "VSMagnet.current / 1000"
-maxValue = 13.0
-majorStep = 1.0
-unit = "KILOAMPS"
-
-[node name="edgewisegauge2" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.04243, 0.437205, -0.268926)
-expression = "EFMagnet.voltage"
-maxValue = 350.0
-majorStep = 50.0
-unit = "VOLTS"
-
-[node name="edgewisegauge10" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.75245, 0.437205, -0.159334)
-expression = "CSMagnet.voltage"
-minValue = -350.0
-maxValue = 350.0
-majorStep = 50.0
-unit = "VOLTS"
-
-[node name="edgewisegauge6" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.01756, 0.271525, -0.334741)
-expression = "TFMagnet.voltage"
-maxValue = 350.0
-majorStep = 50.0
-unit = "VOLTS"
-
-[node name="edgewisegauge14" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.72758, 0.271525, -0.225148)
-expression = "VSMagnet.voltage"
-maxValue = 350.0
-majorStep = 50.0
-unit = "VOLTS"
-
-[node name="edgewisegauge3" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.00954, 0.437205, -0.256952)
-expression = "EFMagnet.getEnergyMJ()"
-maxValue = 350.0
-minorDivisions = 3
-unit = "MEGAJOULES"
-
-[node name="edgewisegauge11" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.71956, 0.437205, -0.147359)
-expression = "CSMagnet.getEnergyMJ()"
-maxValue = 350.0
-minorDivisions = 3
-unit = "MEGAJOULES"
-
-[node name="edgewisegauge7" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.98467, 0.271525, -0.322767)
-expression = "TFMagnet.getEnergyMJ()"
-maxValue = 350.0
-minorDivisions = 3
-unit = "MEGAJOULES"
-
-[node name="edgewisegauge15" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.69469, 0.271525, -0.213174)
-expression = "VSMagnet.getEnergyMJ()"
-maxValue = 350.0
-minorDivisions = 3
-unit = "MEGAJOULES"
-
-[node name="edgewisegauge4" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.97665, 0.437205, -0.244981)
-expression = "EFMagnet.getFieldT()"
-maxValue = 8.0
-majorStep = 1.0
-minorDivisions = 6
-unit = "TESLA"
-
-[node name="edgewisegauge12" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.68667, 0.437205, -0.135389)
-expression = "CSMagnet.getFieldT()"
-maxValue = 8.0
-majorStep = 1.0
-minorDivisions = 6
-unit = "TESLA"
-
-[node name="edgewisegauge8" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.95178, 0.271525, -0.310796)
-expression = "TFMagnet.getFieldT()"
-maxValue = 8.0
-majorStep = 1.0
-minorDivisions = 6
-unit = "TESLA"
-
-[node name="edgewisegauge16" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
-transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.6618, 0.271525, -0.201203)
-expression = "VSMagnet.getFieldT()"
-maxValue = 8.0
-majorStep = 1.0
-minorDivisions = 6
-unit = "TESLA"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets"]
 transform = Transform3D(0.935425, -0.325399, 0.138185, 0, 0.390878, 0.920443, -0.353525, -0.861005, 0.365638, 1.97476, 0.395696, -0.37352)
@@ -2414,8 +1928,368 @@ text = "VERTICAL STABILITY MAGNET
 PARAMETERS"
 vertical_alignment = 0
 
+[node name="singlepilotlamp" parent="ControlRoom/Magnets" instance=ExtResource("20_wncyr")]
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.84358, 0.102875, -0.698814)
+condition = "TFMagnetTripRelay.isClosed()"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/singlepilotlamp"]
+transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/singlepilotlamp/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TF MAGNET TRIP
+RELAY"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/singlepilotlamp/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RLY-501"
+horizontal_alignment = 0
+
+[node name="singlepilotlamp4" parent="ControlRoom/Magnets" instance=ExtResource("20_wncyr")]
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.56763, 0.102875, -0.594524)
+condition = "VSMagnetTripRelay.isClosed()"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/singlepilotlamp4"]
+transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/singlepilotlamp4/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "VS MAGNET TRIP
+RELAY"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/singlepilotlamp4/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RLY-507"
+horizontal_alignment = 0
+
+[node name="singlepilotlamp2" parent="ControlRoom/Magnets" instance=ExtResource("20_wncyr")]
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.89861, 0.139922, -0.553211)
+condition = "EFMagnetTripRelay.isClosed()"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/singlepilotlamp2"]
+transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/singlepilotlamp2/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "EF MAGNET TRIP
+RELAY"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/singlepilotlamp2/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RLY-503"
+horizontal_alignment = 0
+
+[node name="singlepilotlamp3" parent="ControlRoom/Magnets" instance=ExtResource("20_wncyr")]
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.62266, 0.139922, -0.448921)
+condition = "CSMagnetTripRelay.isClosed()"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/singlepilotlamp3"]
+transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/singlepilotlamp3/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CS MAGNET TRIP
+RELAY"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/singlepilotlamp3/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "RLY-505"
+horizontal_alignment = 0
+
+[node name="singlepilotlamp5" parent="ControlRoom/Magnets" instance=ExtResource("20_wncyr")]
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.63642, 0.149183, -0.412521)
+condition = "TerraTokamak.plasmaCurrent > 0.0"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/singlepilotlamp5"]
+transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/singlepilotlamp5/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CS MAGNET PRECHARGE
+INTERLOCK"
+vertical_alignment = 0
+
+[node name="singlepilotlamp6" parent="ControlRoom/Magnets" instance=ExtResource("20_wncyr")]
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.57094, 0.149183, -0.387775)
+condition = "CSMagnet.current > -9990.0 or TFMagnet.getFieldT() < 1.0 or TerraTokamak.getPressure() > 0.05"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/singlepilotlamp6"]
+transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/singlepilotlamp6/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CS MAGNET DISCHARGE
+INTERLOCK"
+vertical_alignment = 0
+
+[node name="16mm_pushbutton13" parent="ControlRoom/Magnets" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.90965, 0.101035, -0.722313)
+breakerName = "CB_500"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_pushbutton13"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326582, 0.000501633, -0.000205993)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton13/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TF MAGNET SUPPLY
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton13/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CB-500"
+horizontal_alignment = 0
+
+[node name="pilotlamp" parent="ControlRoom/Magnets/16mm_pushbutton13" instance=ExtResource("18_iss77")]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.0062027, 1.90735e-06)
+condition = "TFPowerSupply.available()"
+
+[node name="16mm_pushbutton16" parent="ControlRoom/Magnets" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.6337, 0.101035, -0.618023)
+breakerName = "CB_506"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_pushbutton16"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326582, 0.000501633, -0.000205993)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton16/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "VS MAGNET SUPPLY
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton16/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CB-506"
+horizontal_alignment = 0
+
+[node name="pilotlamp" parent="ControlRoom/Magnets/16mm_pushbutton16" instance=ExtResource("18_iss77")]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.0062027, 1.90735e-06)
+condition = "VSPowerSupply.available()"
+
+[node name="16mm_pushbutton14" parent="ControlRoom/Magnets" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.96468, 0.138082, -0.57671)
+breakerName = "CB_502"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_pushbutton14"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326582, 0.000501633, -0.000205993)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton14/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "EF MAGNET SUPPLY
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton14/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CB-502"
+horizontal_alignment = 0
+
+[node name="pilotlamp" parent="ControlRoom/Magnets/16mm_pushbutton14" instance=ExtResource("18_iss77")]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.0062027, 1.90735e-06)
+condition = "EFPowerSupply.available()"
+
+[node name="16mm_pushbutton15" parent="ControlRoom/Magnets" instance=ExtResource("11_fy5k1")]
+transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.68873, 0.138082, -0.47242)
+breakerName = "CB_504"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_pushbutton15"]
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326582, 0.000501633, -0.000205993)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton15/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CS MAGNET SUPPLY
+BREAKER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/16mm_pushbutton15/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CB-504"
+horizontal_alignment = 0
+
+[node name="pilotlamp" parent="ControlRoom/Magnets/16mm_pushbutton15" instance=ExtResource("18_iss77")]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.0062027, 1.90735e-06)
+condition = "CSPowerSupply.available()"
+
+[node name="edgewisegauge" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.07532, 0.437205, -0.280895)
+expression = "EFMagnet.current / 1000"
+maxValue = 10.0
+majorStep = 1.0
+unit = "KILOAMPS"
+
+[node name="edgewisegauge9" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.78534, 0.437205, -0.171303)
+expression = "CSMagnet.current / 1000"
+minValue = -10.0
+maxValue = 10.0
+majorStep = 2.0
+unit = "KILOAMPS"
+
+[node name="edgewisegauge5" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.05045, 0.271525, -0.34671)
+expression = "TFMagnet.current / 1000"
+maxValue = 13.0
+majorStep = 1.0
+unit = "KILOAMPS"
+
+[node name="edgewisegauge13" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.76047, 0.271525, -0.237118)
+expression = "VSMagnet.current / 1000"
+maxValue = 13.0
+majorStep = 1.0
+unit = "KILOAMPS"
+
+[node name="edgewisegauge2" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.04243, 0.437205, -0.268925)
+expression = "EFMagnet.voltage"
+maxValue = 350.0
+majorStep = 50.0
+unit = "VOLTS"
+
+[node name="edgewisegauge10" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.75245, 0.437205, -0.159332)
+expression = "CSMagnet.voltage"
+minValue = -350.0
+maxValue = 350.0
+majorStep = 50.0
+unit = "VOLTS"
+
+[node name="edgewisegauge6" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.01756, 0.271525, -0.33474)
+expression = "TFMagnet.voltage"
+maxValue = 350.0
+majorStep = 50.0
+unit = "VOLTS"
+
+[node name="edgewisegauge14" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.72758, 0.271525, -0.225147)
+expression = "VSMagnet.voltage"
+maxValue = 350.0
+majorStep = 50.0
+unit = "VOLTS"
+
+[node name="edgewisegauge3" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 2.00954, 0.437205, -0.25695)
+expression = "EFMagnet.getEnergyMJ()"
+maxValue = 350.0
+minorDivisions = 3
+unit = "MEGAJOULES"
+
+[node name="edgewisegauge11" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.71956, 0.437205, -0.147358)
+expression = "CSMagnet.getEnergyMJ()"
+maxValue = 350.0
+minorDivisions = 3
+unit = "MEGAJOULES"
+
+[node name="edgewisegauge7" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.98467, 0.271525, -0.322765)
+expression = "TFMagnet.getEnergyMJ()"
+maxValue = 350.0
+minorDivisions = 3
+unit = "MEGAJOULES"
+
+[node name="edgewisegauge15" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.69469, 0.271525, -0.213173)
+expression = "VSMagnet.getEnergyMJ()"
+maxValue = 350.0
+minorDivisions = 3
+unit = "MEGAJOULES"
+
+[node name="edgewisegauge4" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.97665, 0.437205, -0.24498)
+expression = "EFMagnet.getFieldT()"
+maxValue = 8.0
+majorStep = 1.0
+minorDivisions = 6
+unit = "TESLA"
+
+[node name="edgewisegauge12" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.68667, 0.437205, -0.135387)
+expression = "CSMagnet.getFieldT()"
+maxValue = 8.0
+majorStep = 1.0
+minorDivisions = 6
+unit = "TESLA"
+
+[node name="edgewisegauge8" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.95178, 0.271525, -0.310795)
+expression = "TFMagnet.getFieldT()"
+maxValue = 8.0
+majorStep = 1.0
+minorDivisions = 6
+unit = "TESLA"
+
+[node name="edgewisegauge16" parent="ControlRoom/Magnets" instance=ExtResource("18_8j1ou")]
+transform = Transform3D(-0.935425, -0.325399, -0.138185, 0, 0.390878, -0.920442, 0.353525, -0.861005, -0.365637, 1.6618, 0.271525, -0.201202)
+expression = "VSMagnet.getFieldT()"
+maxValue = 8.0
+majorStep = 1.0
+minorDivisions = 6
+unit = "TESLA"
+
 [node name="16mm_round_pushbutton" parent="ControlRoom/Magnets" instance=ExtResource("26_pou65")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.82869, 0.0914564, -0.739713)
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.82869, 0.0914564, -0.739712)
 breakerName = "TFMagnetTripRelay"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_round_pushbutton"]
@@ -2439,7 +2313,7 @@ text = "RLY-501"
 horizontal_alignment = 0
 
 [node name="16mm_round_pushbutton4" parent="ControlRoom/Magnets" instance=ExtResource("26_pou65")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.55274, 0.0914564, -0.635424)
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.55274, 0.0914564, -0.635426)
 breakerName = "VSMagnetTripRelay"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_round_pushbutton4"]
@@ -2463,7 +2337,7 @@ text = "RLY-507"
 horizontal_alignment = 0
 
 [node name="16mm_round_pushbutton2" parent="ControlRoom/Magnets" instance=ExtResource("26_pou65")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.88372, 0.128503, -0.594113)
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.88372, 0.128503, -0.594112)
 breakerName = "EFMagnetTripRelay"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_round_pushbutton2"]
@@ -2487,7 +2361,7 @@ text = "RLY-503"
 horizontal_alignment = 0
 
 [node name="16mm_round_pushbutton3" parent="ControlRoom/Magnets" instance=ExtResource("26_pou65")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.60777, 0.128503, -0.489823)
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.60777, 0.128503, -0.489822)
 breakerName = "CSMagnetTripRelay"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/16mm_round_pushbutton3"]
@@ -2536,7 +2410,7 @@ text = "C-CS"
 horizontal_alignment = 0
 
 [node name="16mm_round_pushbutton6" parent="ControlRoom/Magnets" instance=ExtResource("26_pou65")]
-transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.55605, 0.137765, -0.428676)
+transform = Transform3D(0.343916, -0.0818558, -0.935426, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 1.55605, 0.137765, -0.428677)
 breakerName = "CSPrechargeButton"
 buttonColor = Color(1, 1, 1, 1)
 
@@ -2560,152 +2434,236 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "C-CS"
 horizontal_alignment = 0
 
-[node name="collaredbutton" parent="ControlRoom" instance=ExtResource("25_xb05w")]
-transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.89466, 0.103325, -0.764075)
+[node name="collaredbutton" parent="ControlRoom/Magnets" instance=ExtResource("25_xb05w")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.89466, 0.103325, -0.764076)
 breakerName = "TFMagnetTripRelay"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/collaredbutton"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/collaredbutton"]
 transform = Transform3D(-1, 0, 8.9407e-08, -7.45058e-09, 1, 0, -8.9407e-08, -1.49012e-08, -1, 1.90735e-06, -0.0119991, -0.0199966)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/collaredbutton/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/collaredbutton/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "TF FAST DISCHARGE"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/collaredbutton/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/collaredbutton/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "RLY-501"
 horizontal_alignment = 0
 
-[node name="Label3D3" type="Label3D" parent="ControlRoom/collaredbutton/Label2"]
+[node name="Label3D3" type="Label3D" parent="ControlRoom/Magnets/collaredbutton/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0180968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "DISARMED"
 horizontal_alignment = 0
 
-[node name="Label3D4" type="Label3D" parent="ControlRoom/collaredbutton/Label2"]
+[node name="Label3D4" type="Label3D" parent="ControlRoom/Magnets/collaredbutton/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, -0.0046732, 0.00104, -0.00414)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "ARMED"
 horizontal_alignment = 0
 
-[node name="collaredbutton4" parent="ControlRoom" instance=ExtResource("25_xb05w")]
-transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.61871, 0.103325, -0.659785)
+[node name="collaredbutton4" parent="ControlRoom/Magnets" instance=ExtResource("25_xb05w")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.61871, 0.103325, -0.659786)
 breakerName = "VSMagnetTripRelay"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/collaredbutton4"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/collaredbutton4"]
 transform = Transform3D(-1, 0, 8.9407e-08, -7.45058e-09, 1, 0, -8.9407e-08, -1.49012e-08, -1, 1.90735e-06, -0.0119991, -0.0199966)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/collaredbutton4/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/collaredbutton4/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "VS FAST DISCHARGE"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/collaredbutton4/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/collaredbutton4/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "RLY-507"
 horizontal_alignment = 0
 
-[node name="Label3D3" type="Label3D" parent="ControlRoom/collaredbutton4/Label2"]
+[node name="Label3D3" type="Label3D" parent="ControlRoom/Magnets/collaredbutton4/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0180968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "DISARMED"
 horizontal_alignment = 0
 
-[node name="Label3D4" type="Label3D" parent="ControlRoom/collaredbutton4/Label2"]
+[node name="Label3D4" type="Label3D" parent="ControlRoom/Magnets/collaredbutton4/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, -0.0046732, 0.00104, -0.00414)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "ARMED"
 horizontal_alignment = 0
 
-[node name="collaredbutton2" parent="ControlRoom" instance=ExtResource("25_xb05w")]
-transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.94969, 0.140372, -0.618474)
+[node name="collaredbutton2" parent="ControlRoom/Magnets" instance=ExtResource("25_xb05w")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.94969, 0.140372, -0.618473)
 breakerName = "EFMagnetTripRelay"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/collaredbutton2"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/collaredbutton2"]
 transform = Transform3D(-1, 0, 8.9407e-08, -7.45058e-09, 1, 0, -8.9407e-08, -1.49012e-08, -1, 1.90735e-06, -0.0119991, -0.0199966)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/collaredbutton2/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/collaredbutton2/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "EF FAST DISCHARGE"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/collaredbutton2/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/collaredbutton2/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "RLY-503"
 horizontal_alignment = 0
 
-[node name="Label3D3" type="Label3D" parent="ControlRoom/collaredbutton2/Label2"]
+[node name="Label3D3" type="Label3D" parent="ControlRoom/Magnets/collaredbutton2/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0180968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "DISARMED"
 horizontal_alignment = 0
 
-[node name="Label3D4" type="Label3D" parent="ControlRoom/collaredbutton2/Label2"]
+[node name="Label3D4" type="Label3D" parent="ControlRoom/Magnets/collaredbutton2/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, -0.0046732, 0.00104, -0.00414)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "ARMED"
 horizontal_alignment = 0
 
-[node name="collaredbutton3" parent="ControlRoom" instance=ExtResource("25_xb05w")]
-transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.67374, 0.140372, -0.514184)
+[node name="collaredbutton3" parent="ControlRoom/Magnets" instance=ExtResource("25_xb05w")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.67374, 0.140372, -0.514183)
 breakerName = "CSMagnetTripRelay"
 
-[node name="Label2" type="CSGBox3D" parent="ControlRoom/collaredbutton3"]
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/collaredbutton3"]
 transform = Transform3D(-1, 0, 8.9407e-08, -7.45058e-09, 1, 0, -8.9407e-08, -1.49012e-08, -1, 1.90735e-06, -0.0119991, -0.0199966)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
-[node name="Label3D" type="Label3D" parent="ControlRoom/collaredbutton3/Label2"]
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/collaredbutton3/Label2"]
 transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "CS FAST DISCHARGE"
 vertical_alignment = 0
 
-[node name="Label3D2" type="Label3D" parent="ControlRoom/collaredbutton3/Label2"]
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/collaredbutton3/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "RLY-505"
 horizontal_alignment = 0
 
-[node name="Label3D3" type="Label3D" parent="ControlRoom/collaredbutton3/Label2"]
+[node name="Label3D3" type="Label3D" parent="ControlRoom/Magnets/collaredbutton3/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0180968, 0.00104, -0.00414001)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "DISARMED"
 horizontal_alignment = 0
 
-[node name="Label3D4" type="Label3D" parent="ControlRoom/collaredbutton3/Label2"]
+[node name="Label3D4" type="Label3D" parent="ControlRoom/Magnets/collaredbutton3/Label2"]
 transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, -0.0046732, 0.00104, -0.00414)
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "ARMED"
+horizontal_alignment = 0
+
+[node name="controller" parent="ControlRoom/Magnets" instance=ExtResource("30_otx46")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.783, 0.0809803, -0.690899)
+controllerName = "TFMagnetController"
+maxValue = 13000.0
+majorStep = 1000.0
+minorDivisions = 2
+unit = "A  M  P  E  R  E"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/controller"]
+transform = Transform3D(-1, -2.23517e-08, 2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 5.96046e-08, 1.49012e-08, -1, 1.90735e-06, 0.0164413, -0.0649986)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/controller/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TF MAGNET CURRENT
+CONTROLLER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/controller/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "C-TF"
+horizontal_alignment = 0
+
+[node name="controller4" parent="ControlRoom/Magnets" instance=ExtResource("30_otx46")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.507, 0.0809803, -0.586597)
+controllerName = "VSMagnetController"
+maxValue = 10000.0
+majorStep = 1000.0
+minorDivisions = 2
+unit = "AMPERE"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/controller4"]
+transform = Transform3D(-1, -2.23517e-08, 2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 5.96046e-08, 1.49012e-08, -1, 1.90735e-06, 0.0164413, -0.0649986)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/controller4/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "VS MAGNET CURRENT
+CONTROLLER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/controller4/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "C-VS"
+horizontal_alignment = 0
+
+[node name="controller2" parent="ControlRoom/Magnets" instance=ExtResource("30_otx46")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 1.838, 0.11803, -0.5453)
+controllerName = "EFMagnetController"
+maxValue = 10000.0
+majorStep = 1000.0
+minorDivisions = 2
+unit = "A  M  P  E  R  E"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Magnets/controller2"]
+transform = Transform3D(-1, -2.23517e-08, 2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 5.96046e-08, 1.49012e-08, -1, 1.90735e-06, 0.0164413, -0.0649986)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Magnets/controller2/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "EF MAGNET CURRENT
+CONTROLLER"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Magnets/controller2/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "C-EF"
 horizontal_alignment = 0
 
 [node name="Templates" type="Node3D" parent="ControlRoom"]
@@ -2793,34 +2751,6 @@ transform = Transform3D(1, 0, 0, 0, 0.969121, 0.246585, 0, -0.246585, 0.969121, 
 size = Vector3(0.005, 0.001, 0.0335547)
 material = SubResource("StandardMaterial3D_73fnb")
 
-[node name="annunciator_half_height" parent="ControlRoom" instance=ExtResource("29_llic6")]
-transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, -4.37114e-08, -1, 3.82137e-15, -1, 4.37114e-08, -0.5, 1.12, 3.61)
-label = "BAKE"
-condition = "TerraTokamak.getPressure() > 1.0e-4"
-
-[node name="Label3" type="CSGBox3D" parent="ControlRoom/annunciator_half_height"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.01, 0.0900001)
-size = Vector3(0.145, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="ControlRoom/annunciator_half_height/Label3"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "REACTOR MODE
-STATUS INDICATION"
-vertical_alignment = 0
-
-[node name="annunciator_half_height3" parent="ControlRoom" instance=ExtResource("29_llic6")]
-transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, -4.37114e-08, -1, 3.82137e-15, -1, 4.37114e-08, -1, 1.12, 3.61)
-label = "OPER"
-condition = "TerraTokamak.getPressure() <= 1.0e-4"
-
-[node name="annunciator_half_height2" parent="ControlRoom" instance=ExtResource("29_llic6")]
-transform = Transform3D(-1, 0, -8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -3.82137e-15, -1, 4.37114e-08, 0, 1.12, 3.61)
-label = "EVAC"
-condition = "TerraTokamak.getPressure() > 1.0e-4"
-
 [node name="Neutral Beams" type="Node3D" parent="ControlRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.1, -8.5, 45.4)
 
@@ -2829,7 +2759,7 @@ transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.
 breakerName = "NeutralBeamDBreaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Neutral Beams/16mm_pushbutton17"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0176582, 0.000501633, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326582, 0.000501633, -0.000205993)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -2848,12 +2778,16 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "CB-601"
 horizontal_alignment = 0
 
+[node name="pilotlamp" parent="ControlRoom/Neutral Beams/16mm_pushbutton17" instance=ExtResource("18_iss77")]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.0062027, 1.90735e-06)
+condition = "NeutralBeamD.energized()"
+
 [node name="16mm_pushbutton18" parent="ControlRoom/Neutral Beams" instance=ExtResource("11_fy5k1")]
 transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, -38.7013, 8.63808, -45.7628)
 breakerName = "NeutralBeamCBreaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Neutral Beams/16mm_pushbutton18"]
-transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0176582, 0.000501633, -0.000205994)
+transform = Transform3D(-2.98023e-08, -2.98023e-08, 1, -1.49012e-08, 1, -1.49012e-08, -1, -1.49012e-08, 5.96046e-08, 0.0326582, 0.000501633, -0.000205993)
 size = Vector3(0.065, 0.001, 0.015)
 material = SubResource("StandardMaterial3D_xlvrw")
 
@@ -2871,6 +2805,10 @@ modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "CB-600"
 horizontal_alignment = 0
+
+[node name="pilotlamp" parent="ControlRoom/Neutral Beams/16mm_pushbutton18" instance=ExtResource("18_iss77")]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09, -5.96046e-08, 0.0149994, 0.0062027, 1.90735e-06)
+condition = "NeutralBeamC.energized()"
 
 [node name="controller5" parent="ControlRoom/Neutral Beams" instance=ExtResource("30_otx46")]
 transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, -38.8362, 8.58098, -45.8947)
@@ -2928,6 +2866,231 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "C-NBA"
 horizontal_alignment = 0
 
+[node name="FD8" parent="ControlRoom/Neutral Beams" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.935425, -0.325399, 0.138185, 7.45058e-09, 0.390877, 0.920443, -0.353525, -0.861005, 0.365637, -38.6739, 8.7725, -45.6215)
+page = ExtResource("19_xpof7")
+updateEvery = 0.25
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Neutral Beams/FD8"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Neutral Beams/FD8/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TURBO MOLECULAR PUMPS VACUUMS
+FLOW DIAGRAM"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Neutral Beams/FD8/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD-TMP"
+horizontal_alignment = 0
+
+[node name="FD9" parent="ControlRoom/Neutral Beams" instance=ExtResource("12_akxrc")]
+transform = Transform3D(0.935425, -0.325399, 0.138185, 7.45058e-09, 0.390877, 0.920443, -0.353525, -0.861005, 0.365637, -38.6421, 8.9842, -45.5374)
+page = ExtResource("26_yjo7n")
+updateEvery = 0.25
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Neutral Beams/FD9"]
+transform = Transform3D(1, -1.19209e-07, 3.42727e-07, 0, 0.999999, 0, 0, -2.98023e-07, 1, 7.62768e-06, 0.0254707, -0.0950002)
+size = Vector3(0.1, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Neutral Beams/FD9/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "PLASMA AND VESSEL
+STATUS INDICATION"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Neutral Beams/FD9/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0486768, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "FD-PLV"
+horizontal_alignment = 0
+
+[node name="AnnunciatorLeft" parent="ControlRoom" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
+controls = NodePath("Controls")
+
+[node name="Controls" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("11_5c1cw")]
+transform = Transform3D(0.935426, -0.0818558, 0.343916, 7.45058e-09, 0.972825, 0.231543, -0.353523, -0.216591, 0.910006, 2.01573, 0.0799494, -0.85711)
+
+[node name="annunciator_half_height5" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.95951, 3.21865, 2.52883)
+label = "TK-106
+FILL HI"
+condition = "SludgeTank.fill_fraction() > 0.8"
+
+[node name="annunciator_half_height9" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.49272, 3.21865, 2.70801)
+label = "EF FAST
+DISCHARGE INIT"
+condition = "not CB_503.isClosed()"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator_half_height11" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.02593, 3.21865, 2.88719)
+label = "CS FAST
+DISCHARGE INIT"
+condition = "not CB_505.isClosed()"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator_half_height12" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.04553, 3.08978, 2.93826)
+label = "VS FAST
+DISCHARGE INIT"
+condition = "not CB_507.isClosed()"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator_half_height10" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.51232, 3.08978, 2.75908)
+label = "TF FAST
+DISCHARGE INIT"
+condition = "not CB_501.isClosed()"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator_half_height6" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.97911, 3.08978, 2.5799)
+label = "TK-108
+FILL HI"
+condition = "SeparatorEffluent.fill_fraction() > 0.8"
+
+[node name="annunciator_half_height7" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 2.99871, 2.96091, 2.63097)
+label = "P-204
+UNDERSPEED"
+condition = "P_204Breaker.isClosed() and P_204.getRpm() < 0.9 * P_204.getRatedRpm() and P_204.getTimeSinceStart() > 10"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator_half_height8" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.01832, 2.83204, 2.68204)
+label = "P-205
+UNDERSPEED"
+condition = "P_205Breaker.isClosed() and P_205.getRpm() < 0.9 * P_205.getRatedRpm() and P_205.getTimeSinceStart() > 10"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator_half_height2" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.4263, 3.21865, 2.34964)
+label = "BL-101
+FILL HI"
+condition = "BananaBlender.fill_fraction() > 0.8"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator_half_height3" parent="ControlRoom/AnnunciatorLeft" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.93358, -0.329879, 0.140025, -3.41588e-08, -0.390731, -0.920505, 0.358368, -0.859365, 0.364779, 3.44591, 3.08978, 2.40071)
+label = "TK-104
+FILL HI"
+condition = "PulpTank.fill_fraction() > 0.8"
+litColor = Color(0.901961, 0.858824, 0.341176, 1)
+
+[node name="AnnunciatorRight" parent="ControlRoom" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.995, 3.075, 3.34)
+controls = NodePath("Controls")
+
+[node name="annunciator" parent="ControlRoom/AnnunciatorRight" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.437355, 0.0764918, -0.960206)
+label = "BUS B
+UNDERVOLTAGE"
+condition = "BusB.getVoltage() < 0.95 * BusB.getNominalVoltage()"
+litColor = Color(0.901714, 0.181276, 0.246103, 1)
+
+[node name="annunciator4" parent="ControlRoom/AnnunciatorRight" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, 0.0294351, 0.0764918, -0.781023)
+label = "BUS A
+UNDERVOLTAGE"
+condition = "BusA.getVoltage() < 0.95 * BusA.getNominalVoltage()"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator6" parent="ControlRoom/AnnunciatorRight" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.0286753, -0.305518, -0.62964)
+label = "BUS C
+UNDERVOLTAGE"
+condition = "BusC.getVoltage() < 0.95 * BusA.getNominalVoltage()"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="annunciator5" parent="ControlRoom/AnnunciatorRight" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-0.933581, 0.32988, -0.140025, -5.96046e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.496166, -0.31012, -0.807)
+label = "BUS D
+UNDERVOLTAGE"
+condition = "BusD.getVoltage() < 0.95 * BusA.getNominalVoltage()"
+litColor = Color(0.901961, 0.180392, 0.247059, 1)
+
+[node name="Controls" parent="ControlRoom/AnnunciatorRight" instance=ExtResource("11_5c1cw")]
+transform = Transform3D(0.935425, 0.0818558, -0.343916, -7.45058e-09, 0.972824, 0.231543, 0.353523, -0.216591, 0.910005, 0.883678, -2.99398, -4.22912)
+
+[node name="annunciator_half_height" parent="ControlRoom/AnnunciatorRight" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, 2.99131e-05, -0.116815, -0.704419)
+label = "BUS A
+LOAD HI"
+condition = "BusA.getLoading() > 80"
+litColor = Color(0.901961, 0.858824, 0.341176, 1)
+
+[node name="annunciator_half_height3" parent="ControlRoom/AnnunciatorRight" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.46676, -0.116815, -0.883603)
+label = "BUS B
+LOAD HI"
+condition = "BusB.getLoading() > 80"
+litColor = Color(0.901961, 0.858824, 0.341176, 1)
+
+[node name="annunciator_half_height4" parent="ControlRoom/AnnunciatorRight" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.52487, -0.498825, -0.73222)
+label = "BUS D
+LOAD HI"
+condition = "BusD.getLoading() > 80"
+litColor = Color(0.901961, 0.858824, 0.341176, 1)
+
+[node name="annunciator_half_height5" parent="ControlRoom/AnnunciatorRight" instance=ExtResource("15_8hm71")]
+transform = Transform3D(-0.933581, 0.329879, -0.140025, -5.89987e-08, -0.390731, -0.920505, -0.358368, -0.859365, 0.364779, -0.0580799, -0.498825, -0.553036)
+label = "BUS C
+LOAD HI"
+condition = "BusC.getLoading() > 80"
+litColor = Color(0.901961, 0.858824, 0.341176, 1)
+
+[node name="AnnunciatorCenter" parent="ControlRoom" node_paths=PackedStringArray("controls") instance=ExtResource("9_5juve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.995, 3.075, 3.34)
+controls = NodePath("Controls")
+
+[node name="annunciator" parent="ControlRoom/AnnunciatorCenter" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-1, -8.74228e-08, 0, 3.41588e-08, -0.390731, -0.920505, 8.04731e-08, -0.920505, 0.390731, 4.71265, 0.0764914, -0.0202026)
+label = "PLASMA
+DISRUPTION
+"
+condition = "TerraTokamak.disrupting > 0.0"
+litColor = Color(0.901714, 0.181276, 0.246103, 1)
+
+[node name="annunciator4" parent="ControlRoom/AnnunciatorCenter" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-1, -8.74228e-08, 0, 3.41588e-08, -0.390731, -0.920505, 8.04731e-08, -0.920505, 0.390731, 4.71265, -0.18125, 0.0892021)
+label = "PLASMA
+SHIFT
+"
+condition = "abs(TerraTokamak.plasmaShift) > 0.8 * TerraTokamak.gapIn"
+litColor = Color(0.901961, 0.858824, 0.341176, 1)
+
+[node name="annunciator5" parent="ControlRoom/AnnunciatorCenter" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-1, -8.74228e-08, 0, 3.41588e-08, -0.390731, -0.920505, 8.04731e-08, -0.920505, 0.390731, 4.21265, -0.18125, 0.0892021)
+label = "PLASMA
+LOW DENSITY"
+condition = "TerraTokamak.plasmaCurrent > 0.0 and TerraTokamak.ne < 3.0e17"
+litColor = Color(0.901961, 0.858824, 0.341176, 1)
+
+[node name="annunciator2" parent="ControlRoom/AnnunciatorCenter" instance=ExtResource("10_fy5k1")]
+transform = Transform3D(-1, -8.74228e-08, 0, 3.41588e-08, -0.390731, -0.920505, 8.04731e-08, -0.920505, 0.390731, 4.21265, 0.0764914, -0.0202026)
+label = "SAFETY MARGIN
+Q95 LOW
+< 2.0"
+condition = "TerraTokamak.plasmaCurrent > 0.0 and TerraTokamak.plasmaQ95 < 2.5"
+litColor = Color(0.901714, 0.181276, 0.246103, 1)
+
+[node name="Controls" parent="ControlRoom/AnnunciatorCenter" instance=ExtResource("11_5c1cw")]
+transform = Transform3D(0.999999, 0, 0, 0, 0.972775, 0.231748, 0, -0.231748, 0.972776, 3.39809, -2.99239, -3.65837)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
@@ -2975,90 +3138,6 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_i6j5g")
 
 [node name="plant" parent="." instance=ExtResource("24_i6j5g")]
-
-[node name="controller" parent="." instance=ExtResource("30_otx46")]
-transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, -38.317, 8.58098, -46.0909)
-controllerName = "TFMagnetController"
-maxValue = 13000.0
-majorStep = 1000.0
-minorDivisions = 2
-unit = "A  M  P  E  R  E"
-
-[node name="Label2" type="CSGBox3D" parent="controller"]
-transform = Transform3D(-1, -2.23517e-08, 2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 5.96046e-08, 1.49012e-08, -1, 1.90735e-06, 0.0164413, -0.0649986)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="controller/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "TF MAGNET CURRENT
-CONTROLLER"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="controller/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "C-TF"
-horizontal_alignment = 0
-
-[node name="controller4" parent="." instance=ExtResource("30_otx46")]
-transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, -38.593, 8.58098, -45.9866)
-controllerName = "VSMagnetController"
-maxValue = 10000.0
-majorStep = 1000.0
-minorDivisions = 2
-unit = "AMPERE"
-
-[node name="Label2" type="CSGBox3D" parent="controller4"]
-transform = Transform3D(-1, -2.23517e-08, 2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 5.96046e-08, 1.49012e-08, -1, 1.90735e-06, 0.0164413, -0.0649986)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="controller4/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "VS MAGNET CURRENT
-CONTROLLER"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="controller4/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "C-VS"
-horizontal_alignment = 0
-
-[node name="controller2" parent="." instance=ExtResource("30_otx46")]
-transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, -38.262, 8.61803, -45.9453)
-controllerName = "EFMagnetController"
-maxValue = 10000.0
-majorStep = 1000.0
-minorDivisions = 2
-unit = "A  M  P  E  R  E"
-
-[node name="Label2" type="CSGBox3D" parent="controller2"]
-transform = Transform3D(-1, -2.23517e-08, 2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 5.96046e-08, 1.49012e-08, -1, 1.90735e-06, 0.0164413, -0.0649986)
-size = Vector3(0.065, 0.001, 0.015)
-material = SubResource("StandardMaterial3D_xlvrw")
-
-[node name="Label3D" type="Label3D" parent="controller2/Label2"]
-transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "EF MAGNET CURRENT
-CONTROLLER"
-vertical_alignment = 0
-
-[node name="Label3D2" type="Label3D" parent="controller2/Label2"]
-transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "C-EF"
-horizontal_alignment = 0
 
 [node name="Tokamak" type="Node3D" parent="."]
 

@@ -24,6 +24,9 @@ func _init(Supply, Source, RatedPowerW, EnergyEv, Efficiency):
 	efficiency = Efficiency
 	supply.loads.append(getLoadKw)
 
+func energized():
+	return supply.energized()
+
 func getLoadKw():
 	return power / efficiency / 1000.0
 

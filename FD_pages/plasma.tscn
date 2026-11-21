@@ -1,0 +1,218 @@
+[gd_scene load_steps=3 format=3 uid="uid://br75vuksfnd6k"]
+
+[ext_resource type="Script" uid="uid://bhfm6e557rjvl" path="res://FD_pages/plasma.gd" id="1_hn2de"]
+[ext_resource type="FontFile" uid="uid://dh04hvxxdo5mk" path="res://external/VCR_OSD_MONO_1.001.ttf" id="2_hltfn"]
+
+[node name="Plasma" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hn2de")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 295.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 24
+text = "PLASMA OVERVIEW"
+
+[node name="Label8" type="Label" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 16.0
+offset_right = 599.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 24
+text = "VESSEL OVERVIEW"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 100.0
+offset_right = 270.0
+offset_bottom = 132.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "CURRENT MA"
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 124.0
+offset_right = 270.0
+offset_bottom = 156.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "Q95 SAFETY"
+
+[node name="Label6" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 149.0
+offset_right = 270.0
+offset_bottom = 181.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "SHIFT M"
+
+[node name="PLASMACURRENT" type="Label" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 100.0
+offset_right = 397.0
+offset_bottom = 132.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "0.01"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 170.0
+offset_right = 224.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "CORE TEMPERATURE
+keV"
+
+[node name="Label7" type="Label" parent="."]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 76.0
+offset_right = 529.0
+offset_bottom = 111.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "LOOP VOLTAGE"
+
+[node name="Label9" type="Label" parent="."]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 54.0
+offset_right = 529.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "FUEL PRESSURE"
+
+[node name="PLASMAQ95" type="Label" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 123.0
+offset_right = 397.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "0.0"
+
+[node name="PLASMASHIFT" type="Label" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 147.0
+offset_right = 397.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "0.0"
+
+[node name="PLASMATEMPERATURE" type="Label" parent="."]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 170.0
+offset_right = 398.0
+offset_bottom = 202.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "0.0"
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 76.0
+offset_right = 224.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "PLASMA TIME"
+
+[node name="PLASMATIME" type="Label" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 76.0
+offset_right = 397.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "0H 0M 0S"
+
+[node name="Label10" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 54.0
+offset_right = 224.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "LAST SHOT TIME"
+
+[node name="LASTSHOTTIME" type="Label" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 54.0
+offset_right = 397.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "0H 0M 0S"
+
+[node name="VESSELPRESSURE" type="Label" parent="."]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 53.0
+offset_right = 721.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "0H 0M 0S"
+
+[node name="VESSELLOOPVOLTAGE" type="Label" parent="."]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 75.0
+offset_right = 721.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hltfn")
+theme_override_font_sizes/font_size = 18
+text = "0"

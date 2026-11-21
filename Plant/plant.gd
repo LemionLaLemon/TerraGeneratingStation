@@ -153,6 +153,7 @@ var EquipmentDrainCollectorTank
 var Accel32x
 var Accel64x
 var GridBO
+var ICMODE1 # Plasma Initial Condition
 
 # "Breakers"
 var CSPrechargeButton
@@ -166,6 +167,7 @@ func _ready():
 	Accel32x = Breaker.new(Grid, null, false)
 	Accel64x = Breaker.new(Grid, null, false)
 	GridBO = Breaker.new(Grid, null, false)
+	ICMODE1 = Breaker.new(Grid, null, false)
 	# Environment
 	TGSAtmosphere = Atmosphere.new(Units.CtoK(AMBIENT_TEMPERATURE))
 	
@@ -386,12 +388,36 @@ func _ready():
 func _physics_process(dt):
 	if Accel32x.isClosed():
 		dt = dt * 32
+		
 	if Accel64x.isClosed():
 		dt = dt * 64
+		
 	if GridBO.isClosed():
 		Grid.setEnergized(false)
 	else:
 		Grid.setEnergized(true)
+		
+	if ICMODE1.isClosed():
+		ICMODE1.open()
+		V_204.close()
+		V_205.close()
+		P_204Breaker.close()
+		P_205Breaker.close()
+		C_206.setAuto()
+		C_206.setDemand(20)
+		C_207.setAuto()
+		C_207.setDemand(20)
+		EFMagnetController.setDemand(10000)
+		CB_502.close()
+		TFMagnetController.setDemand(10000)
+		TFMagnet.current = 13000
+		CSMagnet.current = -10000
+		CB_504.close()
+		CSDischargeButton.close()
+		NeutralBeamCController.setDemand(10)
+		NeutralBeamDController.setDemand(10)
+		NeutralBeamCBreaker.close()
+		NeutralBeamDBreaker.close()
 	for link in links:
 		link.step(dt)
 	

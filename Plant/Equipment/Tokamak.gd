@@ -72,6 +72,12 @@ var elmPulse: float = 0.0
 var plasmaAngle: float = 0.0
 var pressure: float = 0.0
 var pressureMPa: float = 0.0
+var plasmaTime: float = 0.0
+var lastPulse: float = 0.0
+
+var ne: float = 0.0
+var vloop: float = 0.0
+var pOhm: float = 0.0
 
 # Tokamak
 var lockout: bool = false
@@ -104,7 +110,7 @@ func step(dt):
 	var area = plasmaMinor * plasmaMinor * plasmaElong * PI # m^2
 	var vol = 2.0 * PI * rMaj * area # m^3
 	var bt = TF.getFieldT() * TF.majorRadius / rMaj
-	var vloop = CS_PLASMA_M * (CS.current - lastCS) / dt
+	vloop = CS_PLASMA_M * (CS.current - lastCS) / dt
 	lastCS = CS.current
 	
 	var d2mol = contents.get(Common.Materials.D2, 0.0) / Common.MolarMass[Common.Materials.D2]
@@ -114,7 +120,7 @@ func step(dt):
 	var purity = 0.0
 	if pTotal > 0.0:
 		purity = d2mol * Common.R * temperature / volume / pTotal
-	var ne = 2.0 * d2mol * AVOGADRO / vol
+	ne = 2.0 * d2mol * AVOGADRO / vol
 	pNBI = 0.0
 	for beam in beams:
 		var frac = beam.absorbedFraction(ne, 2.0 * plasmaMinor)
@@ -141,6 +147,7 @@ func step(dt):
 		else:
 			var heatCap = max(3.0 * ne * vol * EV, 1.0)
 			var pHeat = plasmaCurrent * plasmaCurrent * rp + pNBI
+			pOhm = plasmaCurrent * plasmaCurrent * rp
 			plasmaH += (smoothstep(0.8 * P_LH, 1.2 * P_LH, pHeat) - plasmaH) * (1.0 - exp(-dt / 1.0))
 			var tauE = TAU_E * (1.0 + plasmaH)
 			var tEq = pHeat * tauE / heatCap # (p_ohm + p_nbi)  * tau_e / heatcap
@@ -168,6 +175,11 @@ func step(dt):
 		plasmaRot = 0.0
 		elmClock = 0.0
 		elmPulse = 0.0
+	if plasmaCurrent > 0.0:
+		plasmaTime += dt
+	elif plasmaTime > 0.0:
+		lastPulse = plasmaTime
+		plasmaTime = 0.0
 	
 	var rotTarget = ROT_MAX * clamp(pNBI / ROT_REF_P, 0.0, 1.0)
 	plasmaRot += (rotTarget - plasmaRot) * (1.0 - exp(-dt / TAU_ROT))

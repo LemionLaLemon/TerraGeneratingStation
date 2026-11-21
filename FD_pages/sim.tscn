@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://yolephro78k7" path="res://FD_pages/sim.gd" id="1_7qrl6"]
 [ext_resource type="FontFile" uid="uid://dh04hvxxdo5mk" path="res://external/VCR_OSD_MONO_1.001.ttf" id="3_q48s4"]
 
-[node name="Gses" type="Control"]
+[node name="Sim" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,13 +12,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7qrl6")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background2" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label10" type="Label" parent="."]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
@@ -29,7 +29,7 @@ theme_override_fonts/font = ExtResource("3_q48s4")
 theme_override_font_sizes/font_size = 24
 text = "SIMULATION CONTROLS OVERVIEW"
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label11" type="Label" parent="."]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 77.0
@@ -51,7 +51,7 @@ theme_override_fonts/font = ExtResource("3_q48s4")
 theme_override_font_sizes/font_size = 18
 text = "0.01"
 
-[node name="Label3" type="Label" parent="."]
+[node name="Label12" type="Label" parent="."]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 100.0
@@ -73,7 +73,7 @@ theme_override_fonts/font = ExtResource("3_q48s4")
 theme_override_font_sizes/font_size = 18
 text = "NOT ACTIVE"
 
-[node name="Label4" type="Label" parent="."]
+[node name="Label13" type="Label" parent="."]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 53.0

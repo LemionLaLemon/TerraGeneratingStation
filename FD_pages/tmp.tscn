@@ -24,9 +24,9 @@ texture = ExtResource("2_3knqm")
 [node name="P_204_RPM" type="Label" parent="."]
 layout_mode = 0
 offset_left = 207.0
-offset_top = 259.0
+offset_top = 324.0
 offset_right = 250.0
-offset_bottom = 271.0
+offset_bottom = 336.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_8trho")
 theme_override_font_sizes/font_size = 12
@@ -36,9 +36,33 @@ horizontal_alignment = 2
 [node name="P_205_RPM" type="Label" parent="."]
 layout_mode = 0
 offset_left = 361.0
-offset_top = 259.0
+offset_top = 324.0
 offset_right = 404.0
-offset_bottom = 271.0
+offset_bottom = 336.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_8trho")
+theme_override_font_sizes/font_size = 12
+text = "1600"
+horizontal_alignment = 2
+
+[node name="V_206_PERCENT" type="Label" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 236.0
+offset_right = 232.0
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_8trho")
+theme_override_font_sizes/font_size = 12
+text = "1600"
+horizontal_alignment = 2
+
+[node name="V_207_PERCENT" type="Label" parent="."]
+layout_mode = 0
+offset_left = 343.0
+offset_top = 236.0
+offset_right = 386.0
+offset_bottom = 248.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_8trho")
 theme_override_font_sizes/font_size = 12
@@ -72,18 +96,18 @@ horizontal_alignment = 2
 [node name="P_204" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 179.0
-offset_top = 208.0
+offset_top = 272.0
 offset_right = 207.0
-offset_bottom = 232.0
+offset_bottom = 296.0
 rotation = 1.5708
 texture = ExtResource("4_p0rku")
 
 [node name="P_205" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 332.0
-offset_top = 208.0
+offset_top = 272.0
 offset_right = 360.0
-offset_bottom = 232.0
+offset_bottom = 296.0
 rotation = 1.5708
 texture = ExtResource("4_p0rku")
 
@@ -101,4 +125,20 @@ offset_left = 307.0
 offset_top = 142.0
 offset_right = 332.0
 offset_bottom = 168.0
+texture = ExtResource("5_cv8i5")
+
+[node name="V_206" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 215.0
+offset_right = 179.0
+offset_bottom = 241.0
+texture = ExtResource("5_cv8i5")
+
+[node name="V_207" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 307.0
+offset_top = 215.0
+offset_right = 332.0
+offset_bottom = 241.0
 texture = ExtResource("5_cv8i5")

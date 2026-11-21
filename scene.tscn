@@ -1380,7 +1380,7 @@ transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09,
 floatCondition = "V_202.getPosition()"
 
 [node name="16mm_pushbutton22" parent="ControlRoom/Blending and Distilling" instance=ExtResource("11_fy5k1")]
-transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.31801, 0.118289, -0.799145)
+transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.38349, 0.118289, -0.823892)
 breakerName = "P_204Breaker"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton22"]
@@ -1456,7 +1456,7 @@ transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 1.49012e-08, 1, -7.45058e-09,
 floatCondition = "V_205.getPosition()"
 
 [node name="16mm_pushbutton25" parent="ControlRoom/Blending and Distilling" instance=ExtResource("17_iss77")]
-transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.32965, 0.12639, -0.767162)
+transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.39513, 0.12639, -0.791909)
 breakerName = "V_204"
 
 [node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/16mm_pushbutton25"]
@@ -1797,6 +1797,54 @@ transform = Transform3D(-1, 0, -1.78814e-07, -2.98023e-08, 1, -5.96046e-08, 1.19
 size = Vector3(0.129883, 0.0115625, 0.0654297)
 texture_albedo = ExtResource("18_i6j5g")
 
+[node name="singlepilotlamp2" parent="ControlRoom/Blending and Distilling" instance=ExtResource("20_wncyr")]
+transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.28439, 0.141726, -0.68894)
+condition = "TerraTokamak.getPressure() > 15.0"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/singlepilotlamp2"]
+transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/singlepilotlamp2/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TMP START
+INTERLOCK"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/singlepilotlamp2/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "P-205"
+horizontal_alignment = 0
+
+[node name="singlepilotlamp3" parent="ControlRoom/Blending and Distilling" instance=ExtResource("20_wncyr")]
+transform = Transform3D(0.343916, -0.0818558, -0.935425, 0.231543, 0.972825, -7.45058e-09, 0.910005, -0.216591, 0.353523, 2.41535, 0.141726, -0.738433)
+condition = "TerraTokamak.getPressure() > 15.0"
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Blending and Distilling/singlepilotlamp3"]
+transform = Transform3D(-2.98023e-08, -1.49012e-08, 1, 0, 1, 0, -1, -1.49012e-08, 5.96046e-08, 0.017662, -0.0016098, -0.000352859)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Blending and Distilling/singlepilotlamp3/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TMP START
+INTERLOCK"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Blending and Distilling/singlepilotlamp3/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "P-204"
+horizontal_alignment = 0
+
 [node name="Vacuums" type="Node3D" parent="ControlRoom"]
 
 [node name="FD2" parent="ControlRoom/Vacuums" instance=ExtResource("12_akxrc")]
@@ -1913,6 +1961,62 @@ modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "NARROW RANGE"
 vertical_alignment = 0
+
+[node name="controller3" parent="ControlRoom/Vacuums" instance=ExtResource("30_otx46")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 2.20435, 0.113651, -0.703419)
+controllerName = "C_207"
+maxValue = 20.0
+majorStep = 2.0
+minorDivisions = 4
+previewActual = 0.2
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Vacuums/controller3"]
+transform = Transform3D(-1, -2.23517e-08, 2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 5.96046e-08, 1.49012e-08, -1, 1.90735e-06, 0.0164413, -0.0649986)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Vacuums/controller3/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TMP
+CONTROL VALVE"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Vacuums/controller3/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "V-207"
+horizontal_alignment = 0
+
+[node name="controller4" parent="ControlRoom/Vacuums" instance=ExtResource("30_otx46")]
+transform = Transform3D(-0.935426, -0.0818558, -0.343916, -7.45058e-09, 0.972825, -0.231543, 0.353523, -0.216591, -0.910005, 2.33531, 0.113651, -0.752912)
+controllerName = "C_206"
+maxValue = 20.0
+majorStep = 2.0
+minorDivisions = 4
+previewActual = 0.2
+
+[node name="Label2" type="CSGBox3D" parent="ControlRoom/Vacuums/controller4"]
+transform = Transform3D(-1, -2.23517e-08, 2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 5.96046e-08, 1.49012e-08, -1, 1.90735e-06, 0.0164413, -0.0649986)
+size = Vector3(0.065, 0.001, 0.015)
+material = SubResource("StandardMaterial3D_xlvrw")
+
+[node name="Label3D" type="Label3D" parent="ControlRoom/Vacuums/controller4/Label2"]
+transform = Transform3D(-0.032, 4.83187e-09, 2.11208e-16, 0, -1.39876e-09, 0.032, 4.83187e-09, 0.032, 1.39876e-09, 1.15965e-09, 0.00104, 0.00768)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "TMP
+CONTROL VALVE"
+vertical_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="ControlRoom/Vacuums/controller4/Label2"]
+transform = Transform3D(-0.022, 3.32191e-09, 1.45205e-16, 0, -9.61651e-10, 0.022, 3.32191e-09, 0.022, 9.61651e-10, 0.0312968, 0.00104, -0.00414001)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "V-206"
+horizontal_alignment = 0
 
 [node name="Node3D" type="Node3D" parent="ControlRoom"]
 

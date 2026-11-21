@@ -70,6 +70,8 @@ var plasmaRot: float = 0.0
 var elmClock: float = 0.0
 var elmPulse: float = 0.0
 var plasmaAngle: float = 0.0
+var pressure: float = 0.0
+var pressureMPa: float = 0.0
 
 # Tokamak
 var lockout: bool = false
@@ -107,6 +109,8 @@ func step(dt):
 	
 	var d2mol = contents.get(Common.Materials.D2, 0.0) / Common.MolarMass[Common.Materials.D2]
 	var pTotal = getPressure()
+	pressure = pTotal
+	pressureMPa = pTotal * 1000.0
 	var purity = 0.0
 	if pTotal > 0.0:
 		purity = d2mol * Common.R * temperature / volume / pTotal
@@ -117,9 +121,6 @@ func step(dt):
 		pNBI += beam.power * frac
 		add(Common.Materials.D2, beam.gasKgs * frac * dt)
 	var iCD = NBCD_GAMMA * pNBI / max(ne / 1.0e20, 0.01) / rMaj
-
-	if plasmaCurrent > 0.0:
-		contents[Common.Materials.D2] = contents.get(Common.Materials.D2, 0.0) * exp(-dt / TAU_P)
 
 	if vloop < BREAKDOWN_VLOOP:
 		lockout = false

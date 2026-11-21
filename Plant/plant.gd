@@ -89,6 +89,12 @@ var V_202
 var V_203
 var V_204
 var V_205
+var V_206 # CV
+var V_207 # CV
+var V_206Breaker
+var V_207Breaker
+var C_206
+var C_207
 var V_200Breaker
 var V_201Breaker
 var V_202Breaker
@@ -356,6 +362,21 @@ func _ready():
 	links.append(V_205)
 	P_205.gates.append(V_205)
 	
+	V_206Breaker = Breaker.new(BusC, null, true)
+	V_206 = MotorOperatedValve.new(V_206Breaker)
+	V_206.close()
+	links.append(V_206)
+	P_204.gates.append(V_206)
+	C_206 = PIDController.new(V_206, "demand", TerraTokamak, "pressureMPa", 20.0, -1.0, -0.01, 0.0)
+	links.append(C_206)
+	V_207Breaker = Breaker.new(BusD, null, true)
+	V_207 = MotorOperatedValve.new(V_207Breaker)
+	V_207.close()
+	links.append(V_207)
+	P_205.gates.append(V_207)
+	C_207 = PIDController.new(V_207, "demand", TerraTokamak, "pressureMPa", 20.0, -1.0, -0.01, 0.0)
+	links.append(C_207)
+	
 	print("Ready")
 	print(TerraTokamak.MajorRadius)
 	print(TerraTokamak.MinorRadius)
@@ -374,13 +395,21 @@ func _physics_process(dt):
 	for link in links:
 		link.step(dt)
 	
-	# cheating
+	# Interlocks and Inhibits
+	# Central Solenoid
 	if CSDischargeButton.isClosed() and CSMagnet.current <= -9990.0 and TFMagnet.getFieldT() >= 1.0 and TerraTokamak.getPressure() < 0.05:
 		CSMagnetController.setDemand(10000)
 		CSDischargeButton.open()
 	elif CSPrechargeButton.isClosed() and TerraTokamak.plasmaCurrent <= 0.0:
 		CSMagnetController.setDemand(-10000)
 		CSPrechargeButton.open()
+	
+	# Turbo Molecular Pumps
+	var tmpP = TerraTokamak.getPressure()
+	if P_204Breaker.isClosed() and (tmpP > 50.0 or (P_204.rpm < 1.0 and tmpP > 15.0)):
+		P_204Breaker.open()
+	if P_205Breaker.isClosed() and (tmpP > 50.0 or (P_205.rpm < 1.0 and tmpP > 15.0)):
+		P_205Breaker.open()
 	
 	BananaBlender.step(dt)
 	PulpStill.step(dt)

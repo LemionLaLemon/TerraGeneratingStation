@@ -64,9 +64,9 @@ System Descriptions outlining a system:
 
 Annunciator Response Procedures with explainations of the alarms:
 
-- [ARP-602: Center Panel](Annunciator%20Response%20Procedures/ARP-601.pdf)
+- [ARP-601: Center Panel](Annunciator%20Response%20Procedures/ARP-601.pdf)
 - [ARP-602: Left Panel](Annunciator%20Response%20Procedures/ARP-602.pdf)
-- [ARP-602: Right Panel](Annunciator%20Response%20Procedures/ARP-603.pdf)
+- [ARP-603: Right Panel](Annunciator%20Response%20Procedures/ARP-603.pdf)
 
 A mirror of these documents are also maintained on Lemion Industries InterATOM's Document Search Service:
 

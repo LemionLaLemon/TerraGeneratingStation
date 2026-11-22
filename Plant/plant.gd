@@ -159,6 +159,10 @@ var ICMODE1 # Plasma Initial Condition
 var CSPrechargeButton
 var CSDischargeButton
 
+# Interlock Variables
+var LastCSCurr: float = 0.0
+var CSRate: float = 0.0
+
 var links = []
 
 func _ready():
@@ -423,10 +427,13 @@ func _physics_process(dt):
 	
 	# Interlocks and Inhibits
 	# Central Solenoid
-	if CSDischargeButton.isClosed() and CSMagnet.current <= -9990.0 and TFMagnet.getFieldT() >= 1.0 and TerraTokamak.getPressure() < 0.05:
+	CSRate = abs(CSMagnet.current - LastCSCurr) / max(dt, 0.0001)
+	LastCSCurr = CSMagnet.current
+	
+	if CSDischargeButton.isClosed() and CSMagnet.current <= -9990.0 and TFMagnet.getFieldT() >= 6.0 and TerraTokamak.getPressure() < 0.05 and CSRate < 5.0:
 		CSMagnetController.setDemand(10000)
 		CSDischargeButton.open()
-	elif CSPrechargeButton.isClosed() and TerraTokamak.plasmaCurrent <= 0.0:
+	elif CSPrechargeButton.isClosed() and TerraTokamak.plasmaCurrent <= 0.0 and CSRate < 5.0:
 		CSMagnetController.setDemand(-10000)
 		CSPrechargeButton.open()
 	

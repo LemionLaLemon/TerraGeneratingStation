@@ -74,6 +74,9 @@ var pressure: float = 0.0
 var pressureMPa: float = 0.0
 var plasmaTime: float = 0.0
 var lastPulse: float = 0.0
+var lastReal: float = 0.0
+var lastElmShown: float = -10.0
+var elmShownStart: float = -10.0
 
 var ne: float = 0.0
 var vloop: float = 0.0
@@ -183,6 +186,11 @@ func step(dt):
 	
 	var rotTarget = ROT_MAX * clamp(pNBI / ROT_REF_P, 0.0, 1.0)
 	plasmaRot += (rotTarget - plasmaRot) * (1.0 - exp(-dt / TAU_ROT))
+	
+	var realNow = Time.get_ticks_msec() / 1000
+	var realDt = clamp(realNow - lastReal, 0.0, 0.1)
+	lastReal = realNow
+	
 	plasmaAngle = fmod(plasmaAngle + plasmaRot * dt, TAU)
 	
 	elmPulse = 0.0
@@ -191,10 +199,15 @@ func step(dt):
 		if elmClock >= ELM_PERIOD:
 			elmClock -= ELM_PERIOD
 			contents[Common.Materials.D2] = contents.get(Common.Materials.D2, 0.0) * 0.97
-		if elmClock < ELM_LEN:
-			elmPulse = sin(PI * elmClock / ELM_LEN)
-		else:
-			elmClock = 0.0
+			
+			if realNow - lastElmShown >= 1.0:
+				lastElmShown = realNow
+				elmShownStart = realNow
+		var shown = realNow - elmShownStart
+		if shown >= 0.0 and shown < ELM_LEN:
+			elmPulse = sin(PI * shown / ELM_LEN)
+	else:
+		elmClock = 0.0
 	
 	var ipFrac = plasmaCurrent / IP_FLATTOP
 	MaterialOverride.set_shader_parameter("plasma_current", clamp(ipFrac, 0.0, 1.0))

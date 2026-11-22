@@ -52,7 +52,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_xsijp")
 surface_material_override/2 = SubResource("StandardMaterial3D_8borx")
 
 [node name="DEMNEEDLE" parent="." index="4"]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.00966216, -0.025, -0.009)
+transform = Transform3D(0.8, 0, 0, 0, 0.721466, 0.345669, 0, -0.345669, 0.721466, 0.00966216, -0.025, -0.009)
 
 [node name="DemUnitView" type="SubViewport" parent="." index="9"]
 size = Vector2i(53, 1024)

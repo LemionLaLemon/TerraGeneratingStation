@@ -41,7 +41,7 @@ uniform float density : hint_range(0.0, 1.0) = 0.5;          // edge density: mo
 uniform float edge_temp : hint_range(0.0, 1.0) = 0.5;        // edge temperature colour: 0 = cold blue, 0.5 = pink/lavender, 1 = red-orange
 uniform float xpoint_balance : hint_range(-1.0, 1.0) = 0.4;  // -1 = lower divertor only, 0 = balanced double null, +1 = upper only
 uniform float turbulence : hint_range(0.0, 1.0) = 0.4;       // filament contrast and shimmer
-uniform float elm : hint_range(0.0, 1.0) = 0.0;              // ELM burst: pulse it 0 -> 1 -> 0 over ~50-200 ms
+uniform float elm : hint_range(0.0, 1.0) = 0.0;              // ELM burst: pulse it 0 -> 1 -> 0 over ~80-200 ms, at most 3 visible pulses a second (photosensitivity: no more than 3 flashes/s). Shows in the edge filaments and the strike lines, not the whole plasma
 uniform float lithium : hint_range(0.0, 1.0) = 0.0;          // lithium puff: red sparks at the injector, green streaks along the field
 uniform float lithium_angle : hint_range(-180.0, 180.0, 0.1) = 0.0; // where the injector is, degrees around Y from +X (fixed to the vessel)
 uniform float startup : hint_range(0.0, 1.0) = 0.0;          // start-up look: blue, hazy, bright spots at tile edges
@@ -52,7 +52,7 @@ uniform float h_mode : hint_range(0.0, 1.0) = 0.0;           // 0 = L-mode, 1 = 
 uniform float q95 : hint_range(1.0, 15.0) = 4.0;             // edge safety factor: filament pitch (rounded to a whole number)
 uniform float z_offset = 0.0;                                // vertical plasma displacement from the sim (mesh units)
 uniform float toroidal_angle = 0.0;                          // radians, added to the spin. Drive this and set toroidal_speed = 0 for sim-driven rotation
-uniform float toroidal_speed = 49.0;                          // rad/s, rounded to a whole number of turns per time_wrap
+uniform float toroidal_speed = 2.0;                          // rad/s, rounded to a whole number of turns per time_wrap
 
 group_uniforms shape;
 uniform vec3 box_size = vec3(46.0, 24.0, 46.0);
@@ -185,12 +185,12 @@ Ctx make_ctx() {
 	c.shl = vec4(1.0 / sw, sw, EDGE_GAIN * edge_base * dens_gain * mix(1.0, 0.5, h_mode) * (1.0 - 0.6 * startup), tb);
 	c.shl2 = vec4(mix(face_dim, 0.7, collapse), filament_face * tb * (1.0 - collapse), max(1.0, round(q95)), 0.7 * haze_reach);
 	c.hz = vec4(1.0 / haze_falloff, 1.0 / mix(0.1, 0.6, startup), 0.75 * startup,
-	            HAZE_GAIN * haze * 2.0 * density * (1.0 - 0.4 * h_mode) * (1.0 + 2.0 * startup + 2.0 * elm));
+	            HAZE_GAIN * haze * 2.0 * density * (1.0 - 0.4 * h_mode) * (1.0 + 2.0 * startup + 0.25 * elm)); // haze fills the view: keep ELMs small here
 	// divertor geometry
 	float dv = diverted * (1.0 - collapse);
 	float w_up = mix(top_hot * clamp(1.0 + xpoint_balance, 0.0, 1.0), 1.0, startup) * dv;
 	float w_lo = mix(clamp(1.0 - xpoint_balance, 0.0, 1.0), 1.0, startup) * dv;
-	float burst = (1.0 + 3.0 * elm) * dens_gain;
+	float burst = (1.0 + 2.0 * elm) * dens_gain; // ELM heat pulse on the divertor (small area)
 	c.dw = vec4(w_lo, w_up, LEG_GAIN * leg_strength * burst * (1.0 - 0.8 * startup), RING_GAIN * hot_strength * burst);
 	float xr = c.geo.x - triangularity * separatrix * separatrix;
 	float xz = separatrix * elongation;
@@ -289,8 +289,10 @@ vec4 plasma(vec3 p, vec3 rd, float limb, Ctx c, out float hot, out float edge_d)
 			streak = smoothstep(0.55, 0.95, fil + 0.25 * f3 * f2);
 		}
 		// limb light with filament contrast, plus the filaments seen face-on as faint streaks
-		float lightf = lf * (1.0 + c.shl.w * (1.6 * fil - 0.8))
-		             + limb * c.shl2.y * (2.5 + 3.0 * elm * ob) * streak * (0.35 + 0.65 * ob);
+		// max(): with turbulence * (1 + 2 elm) above 1.25 the filament troughs went negative, and an
+		// additive blend of negative light shows as black dots along the edge
+		float lightf = lf * max(1.0 + c.shl.w * (1.6 * fil - 0.8), 0.0)
+		             + limb * c.shl2.y * (2.5 + 4.0 * elm * ob) * streak * (0.35 + 0.65 * ob); // ELMs: filaments thrown off the outboard edge
 		float amt = exp(-e * e) * c.shl.z * lightf * (1.0 + inner_glow * inb * inb) * (1.0 - 0.65 * ob);
 		// colour: edge colour, violet on the column side; in a collapse red outside and blue inside
 		vec3 ec = mix(ecol, hcol, 0.55 * inb);
@@ -401,8 +403,9 @@ void vertex() {
 	fph = vec4(cos(p1), -sin(p1), cos(p2), -sin(p2));
 	fph2 = vec4(cos(p3), -sin(p3), TAU * fract(u * round(0.8 * wrap)), fract(u * round(1.7 * wrap)));
 	float aa = radians(xpoint_asym_angle);
-	float fl = sin(TAU * fract(u * round(7.3 * wrap))) + sin(TAU * fract(u * round(11.9 * wrap)) + 1.3);
-	misc = vec3(cos(aa), sin(aa), 1.0 + 0.04 * turbulence * (1.0 + 3.0 * elm) * fl);
+	// slow breathing, kept under ~1.2 Hz: anything in 3-30 Hz over a large area is a photosensitivity risk
+	float fl = sin(TAU * fract(u * round(0.7 * wrap))) + sin(TAU * fract(u * round(1.13 * wrap)) + 1.3);
+	misc = vec3(cos(aa), sin(aa), 1.0 + 0.04 * turbulence * fl); // global brightness no longer follows ELMs
 
 	// colour of the current state
 	float t = clamp(edge_temp - 0.4 * startup + 0.6 * collapse, 0.0, 1.0);
@@ -520,7 +523,10 @@ void fragment() {
 		dens += (contact_glow * 0.25 * h) * mix(ecol, vec3(1.0), 0.2);
 	}
 
-	vec3 c = dens * amp;
+	vec3 c = max(dens * amp, vec3(0.0));
+	if (any(isnan(c)) || any(isinf(c))) {
+		c = vec3(0.0); // never let one bad sample paint a black pixel
+	}
 	// hue-preserving tonemap: stays pink instead of blowing out, only the hottest contact burns white
 	float m = max(c.r, max(c.g, c.b));
 	c /= 1.0 + m / peak;

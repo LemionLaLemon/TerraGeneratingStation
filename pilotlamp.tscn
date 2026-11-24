@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dirgj6j336ngv"]
+[gd_scene format=3 uid="uid://dirgj6j336ngv"]
 
 [ext_resource type="PackedScene" uid="uid://bpl4dj1q0vg0f" path="res://blender-models/pilotlamp.blend" id="1_cc5ke"]
 [ext_resource type="Script" uid="uid://dojo0gm01hygw" path="res://pilotlamp.gd" id="2_kxqwx"]
@@ -11,7 +11,7 @@ emission = Color(0, 1, 0, 1)
 albedo_color = Color(0.490196, 0, 0, 1)
 emission = Color(1, 0, 0, 1)
 
-[node name="pilotlamp" instance=ExtResource("1_cc5ke")]
+[node name="pilotlamp" unique_id=674691482 instance=ExtResource("1_cc5ke")]
 script = ExtResource("2_kxqwx")
 
 [node name="Lamp" parent="." index="2"]

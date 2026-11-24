@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dlp384ayvbxcb"]
+[gd_scene format=3 uid="uid://dlp384ayvbxcb"]
 
 [ext_resource type="PackedScene" uid="uid://bqenjvexd2mbo" path="res://blender-models/dx1000.blend" id="1_uy17x"]
 [ext_resource type="FontFile" uid="uid://dh04hvxxdo5mk" path="res://external/VCR_OSD_MONO_1.001.ttf" id="2_435pj"]
@@ -11,12 +11,12 @@
 [ext_resource type="Script" uid="uid://x1obn14h4534" path="res://dx_1000_graph.gd" id="8_chlfx"]
 [ext_resource type="Script" uid="uid://dr6aybnrfu3yx" path="res://dx_1000_grid_graph.gd" id="9_egboq"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_uy17x"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_yjy0c"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uy17x"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4ffl"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_uy17x")
+albedo_texture = SubResource("ViewportTexture_yjy0c")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_883dd"]
 bg_color = Color(0.752941, 0.752941, 0.752941, 1)
@@ -42,34 +42,34 @@ bg_color = Color(0.54902, 0.172549, 0.894118, 1)
 default_font = ExtResource("2_435pj")
 default_font_size = 14
 
-[node name="dx1000" instance=ExtResource("1_uy17x")]
+[node name="dx1000" unique_id=16273247 instance=ExtResource("1_uy17x")]
 script = ExtResource("2_883dd")
 
 [node name="Enclosure" parent="." index="2"]
-surface_material_override/1 = SubResource("StandardMaterial3D_uy17x")
+surface_material_override/1 = SubResource("StandardMaterial3D_r4ffl")
 
-[node name="SubViewport" type="SubViewport" parent="." index="9"]
+[node name="SubViewport" type="SubViewport" parent="." index="9" unique_id=157024118]
 canvas_item_default_texture_filter = 3
 size = Vector2i(640, 480)
 
-[node name="Screen" type="Control" parent="SubViewport" index="0"]
+[node name="Screen" type="Control" parent="SubViewport" index="0" unique_id=1491043069]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="SubViewport/Screen" index="0"]
+[node name="ColorRect" type="ColorRect" parent="SubViewport/Screen" index="0" unique_id=1954987637]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
 color = Color(0.752941, 0.752941, 0.752941, 1)
 
-[node name="Values" type="Control" parent="SubViewport/Screen" index="1"]
+[node name="Values" type="Control" parent="SubViewport/Screen" index="1" unique_id=1377310027]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="1" type="Panel" parent="SubViewport/Screen/Values" index="0"]
+[node name="1" type="Panel" parent="SubViewport/Screen/Values" index="0" unique_id=410724130]
 custom_minimum_size = Vector2(160, 94)
 layout_mode = 1
 anchors_preset = -1
@@ -81,7 +81,7 @@ offset_bottom = 448.333
 theme_override_styles/panel = SubResource("StyleBoxFlat_883dd")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="SubViewport/Screen/Values/1" index="0"]
+[node name="Label" type="Label" parent="SubViewport/Screen/Values/1" index="0" unique_id=282341346]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -93,7 +93,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_x3lcq")
 text = "BANANA HOPPER WEIGHT"
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="SubViewport/Screen/Values/1" index="1"]
+[node name="Value" type="Label" parent="SubViewport/Screen/Values/1" index="1" unique_id=401230436]
 layout_mode = 0
 offset_top = 26.0
 offset_right = 159.0
@@ -104,7 +104,7 @@ theme_override_font_sizes/font_size = 32
 text = "1600.00"
 horizontal_alignment = 2
 
-[node name="Unit" type="Label" parent="SubViewport/Screen/Values/1" index="2"]
+[node name="Unit" type="Label" parent="SubViewport/Screen/Values/1" index="2" unique_id=827468840]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 60.0
@@ -116,7 +116,7 @@ theme_override_font_sizes/font_size = 28
 text = "DEG C"
 horizontal_alignment = 2
 
-[node name="2" type="Panel" parent="SubViewport/Screen/Values" index="1"]
+[node name="2" type="Panel" parent="SubViewport/Screen/Values" index="1" unique_id=1976037956]
 custom_minimum_size = Vector2(160, 94)
 layout_mode = 1
 anchors_preset = -1
@@ -131,7 +131,7 @@ offset_bottom = 448.333
 theme_override_styles/panel = SubResource("StyleBoxFlat_883dd")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="SubViewport/Screen/Values/2" index="0"]
+[node name="Label" type="Label" parent="SubViewport/Screen/Values/2" index="0" unique_id=465927120]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -143,7 +143,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_h1vja")
 text = "BANANA HOPPER WEIGHT"
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="SubViewport/Screen/Values/2" index="1"]
+[node name="Value" type="Label" parent="SubViewport/Screen/Values/2" index="1" unique_id=2006480094]
 layout_mode = 0
 offset_top = 26.0
 offset_right = 159.0
@@ -154,7 +154,7 @@ theme_override_font_sizes/font_size = 32
 text = "1600.00"
 horizontal_alignment = 2
 
-[node name="Unit" type="Label" parent="SubViewport/Screen/Values/2" index="2"]
+[node name="Unit" type="Label" parent="SubViewport/Screen/Values/2" index="2" unique_id=1302631628]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 60.0
@@ -166,7 +166,7 @@ theme_override_font_sizes/font_size = 28
 text = "DEG C"
 horizontal_alignment = 2
 
-[node name="3" type="Panel" parent="SubViewport/Screen/Values" index="2"]
+[node name="3" type="Panel" parent="SubViewport/Screen/Values" index="2" unique_id=281621080]
 custom_minimum_size = Vector2(160, 94)
 layout_mode = 1
 anchors_preset = -1
@@ -181,7 +181,7 @@ offset_bottom = 448.333
 theme_override_styles/panel = SubResource("StyleBoxFlat_883dd")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="SubViewport/Screen/Values/3" index="0"]
+[node name="Label" type="Label" parent="SubViewport/Screen/Values/3" index="0" unique_id=1419210229]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -193,7 +193,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_uuhqy")
 text = "BANANA HOPPER WEIGHT"
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="SubViewport/Screen/Values/3" index="1"]
+[node name="Value" type="Label" parent="SubViewport/Screen/Values/3" index="1" unique_id=2069572659]
 layout_mode = 0
 offset_top = 26.0
 offset_right = 159.0
@@ -204,7 +204,7 @@ theme_override_font_sizes/font_size = 32
 text = "1600.00"
 horizontal_alignment = 2
 
-[node name="Unit" type="Label" parent="SubViewport/Screen/Values/3" index="2"]
+[node name="Unit" type="Label" parent="SubViewport/Screen/Values/3" index="2" unique_id=2142152612]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 60.0
@@ -216,7 +216,7 @@ theme_override_font_sizes/font_size = 28
 text = "DEG C"
 horizontal_alignment = 2
 
-[node name="4" type="Panel" parent="SubViewport/Screen/Values" index="3"]
+[node name="4" type="Panel" parent="SubViewport/Screen/Values" index="3" unique_id=865927824]
 custom_minimum_size = Vector2(160, 94)
 layout_mode = 1
 anchors_preset = -1
@@ -231,7 +231,7 @@ offset_bottom = 448.333
 theme_override_styles/panel = SubResource("StyleBoxFlat_883dd")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="SubViewport/Screen/Values/4" index="0"]
+[node name="Label" type="Label" parent="SubViewport/Screen/Values/4" index="0" unique_id=1337611750]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -243,7 +243,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_08f15")
 text = "BANANA HOPPER WEIGHT"
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="SubViewport/Screen/Values/4" index="1"]
+[node name="Value" type="Label" parent="SubViewport/Screen/Values/4" index="1" unique_id=483153165]
 layout_mode = 0
 offset_top = 26.0
 offset_right = 159.0
@@ -254,7 +254,7 @@ theme_override_font_sizes/font_size = 32
 text = "1600.00"
 horizontal_alignment = 2
 
-[node name="Unit" type="Label" parent="SubViewport/Screen/Values/4" index="2"]
+[node name="Unit" type="Label" parent="SubViewport/Screen/Values/4" index="2" unique_id=422513794]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 60.0
@@ -266,13 +266,13 @@ theme_override_font_sizes/font_size = 28
 text = "DEG C"
 horizontal_alignment = 2
 
-[node name="Top" type="ColorRect" parent="SubViewport/Screen" index="2"]
+[node name="Top" type="ColorRect" parent="SubViewport/Screen" index="2" unique_id=368046556]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 40.0
 color = Color(0, 0, 0.8, 1)
 
-[node name="ID" type="Label" parent="SubViewport/Screen/Top" index="0"]
+[node name="ID" type="Label" parent="SubViewport/Screen/Top" index="0" unique_id=1141273181]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -283,7 +283,7 @@ theme_override_font_sizes/font_size = 22
 text = "INTERNAL 1"
 vertical_alignment = 1
 
-[node name="TIME" type="Label" parent="SubViewport/Screen/Top" index="1"]
+[node name="TIME" type="Label" parent="SubViewport/Screen/Top" index="1" unique_id=129073959]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 18.0
@@ -294,7 +294,7 @@ theme_override_font_sizes/font_size = 22
 text = "2026/11/15 07:44:00"
 vertical_alignment = 1
 
-[node name="Scale" type="ColorRect" parent="SubViewport/Screen" index="3"]
+[node name="Scale" type="ColorRect" parent="SubViewport/Screen" index="3" unique_id=1128230833]
 layout_mode = 0
 offset_top = 40.0
 offset_right = 640.0
@@ -303,66 +303,66 @@ theme = SubResource("Theme_yjy0c")
 color = Color(1, 1, 0.8, 1)
 script = ExtResource("4_yjy0c")
 
-[node name="4" type="TextureRect" parent="SubViewport/Screen/Scale" index="0"]
+[node name="4" type="TextureRect" parent="SubViewport/Screen/Scale" index="0" unique_id=1382774435]
 layout_mode = 0
 offset_top = 12.0
 offset_right = 21.0
 offset_bottom = 40.0
 texture = ExtResource("4_08f15")
 
-[node name="3" type="TextureRect" parent="SubViewport/Screen/Scale" index="1"]
+[node name="3" type="TextureRect" parent="SubViewport/Screen/Scale" index="1" unique_id=1827402920]
 layout_mode = 0
 offset_top = 12.0
 offset_right = 21.0
 offset_bottom = 40.0
 texture = ExtResource("5_chlfx")
 
-[node name="2" type="TextureRect" parent="SubViewport/Screen/Scale" index="2"]
+[node name="2" type="TextureRect" parent="SubViewport/Screen/Scale" index="2" unique_id=1683914684]
 layout_mode = 0
 offset_top = 12.0
 offset_right = 21.0
 offset_bottom = 40.0
 texture = ExtResource("6_egboq")
 
-[node name="1" type="TextureRect" parent="SubViewport/Screen/Scale" index="3"]
+[node name="1" type="TextureRect" parent="SubViewport/Screen/Scale" index="3" unique_id=289143365]
 layout_mode = 0
 offset_top = 12.0
 offset_right = 21.0
 offset_bottom = 40.0
 texture = ExtResource("7_yjy0c")
 
-[node name="Graph" type="ColorRect" parent="SubViewport/Screen" index="4"]
+[node name="Graph" type="ColorRect" parent="SubViewport/Screen" index="4" unique_id=2100881935]
 layout_mode = 0
 offset_top = 80.0
 offset_right = 640.0
 offset_bottom = 380.0
 script = ExtResource("8_chlfx")
 
-[node name="Grid" type="Control" parent="SubViewport/Screen/Graph" index="0"]
+[node name="Grid" type="Control" parent="SubViewport/Screen/Graph" index="0" unique_id=624939591]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("9_egboq")
 
-[node name="4" type="Line2D" parent="SubViewport/Screen/Graph" index="1"]
+[node name="4" type="Line2D" parent="SubViewport/Screen/Graph" index="1" unique_id=2119403088]
 width = 2.0
 default_color = Color(0.54902, 0.172549, 0.894118, 1)
 
-[node name="3" type="Line2D" parent="SubViewport/Screen/Graph" index="2"]
+[node name="3" type="Line2D" parent="SubViewport/Screen/Graph" index="2" unique_id=2078382593]
 width = 2.0
 default_color = Color(0, 0, 1, 1)
 
-[node name="2" type="Line2D" parent="SubViewport/Screen/Graph" index="3"]
+[node name="2" type="Line2D" parent="SubViewport/Screen/Graph" index="3" unique_id=315636247]
 width = 2.0
 default_color = Color(0, 0.501961, 0, 1)
 
-[node name="1" type="Line2D" parent="SubViewport/Screen/Graph" index="4"]
+[node name="1" type="Line2D" parent="SubViewport/Screen/Graph" index="4" unique_id=350463505]
 width = 2.0
 default_color = Color(1, 0, 0, 1)
 
-[node name="PaperLabel" type="Node3D" parent="." index="10"]
+[node name="PaperLabel" type="Node3D" parent="." index="10" unique_id=398714622]
 
-[node name="1" type="Label3D" parent="PaperLabel" index="0"]
+[node name="1" type="Label3D" parent="PaperLabel" index="0" unique_id=1107074556]
 transform = Transform3D(0.012, 0, 0, 0, 0.012, 0, 0, 0, 0.012, -0.04485, -0.04806, 0.02478)
 layers = 2
 render_priority = 1
@@ -371,7 +371,7 @@ outline_modulate = Color(0, 0, 0, 0)
 font_size = 64
 horizontal_alignment = 0
 
-[node name="2" type="Label3D" parent="PaperLabel" index="1"]
+[node name="2" type="Label3D" parent="PaperLabel" index="1" unique_id=728201788]
 transform = Transform3D(0.012, 0, 0, 0, 0.012, 0, 0, 0, 0.012, -0.04485, -0.05382, 0.02478)
 layers = 2
 render_priority = 1
@@ -380,7 +380,7 @@ outline_modulate = Color(0, 0, 0, 0)
 font_size = 64
 horizontal_alignment = 0
 
-[node name="3" type="Label3D" parent="PaperLabel" index="2"]
+[node name="3" type="Label3D" parent="PaperLabel" index="2" unique_id=290499172]
 transform = Transform3D(0.012, 0, 0, 0, 0.012, 0, 0, 0, 0.012, -0.04485, -0.05964, 0.02478)
 layers = 2
 render_priority = 1
@@ -389,7 +389,7 @@ outline_modulate = Color(0, 0, 0, 0)
 font_size = 64
 horizontal_alignment = 0
 
-[node name="4" type="Label3D" parent="PaperLabel" index="3"]
+[node name="4" type="Label3D" parent="PaperLabel" index="3" unique_id=975587605]
 transform = Transform3D(0.012, 0, 0, 0, 0.012, 0, 0, 0, 0.012, -0.04485, -0.0654, 0.02478)
 layers = 2
 render_priority = 1

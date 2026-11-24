@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b456i30lcq1ho"]
+[gd_scene format=3 uid="uid://b456i30lcq1ho"]
 
 [ext_resource type="PackedScene" uid="uid://42jejctwxos2" path="res://blender-models/SBM.blend" id="1_aiuui"]
 [ext_resource type="Script" uid="uid://dk4eoqre3bdml" path="res://sbm.gd" id="2_mxdd2"]
@@ -11,19 +11,19 @@ albedo_color = Color(0, 1, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mxdd2"]
 size = Vector3(2.17, 1.51, 2.065)
 
-[node name="SBM" instance=ExtResource("1_aiuui")]
+[node name="SBM" unique_id=353537325 instance=ExtResource("1_aiuui")]
 script = ExtResource("2_mxdd2")
 
 [node name="Flag" parent="." index="1"]
 surface_material_override/0 = SubResource("ORMMaterial3D_mxdd2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="3" unique_id=130995637]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=600242965]
 transform = Transform3D(0.038, 0, 0, 0, 0.038, 0, 0, 0, 0.038, 0, 0.02869, 0)
 shape = SubResource("BoxShape3D_mxdd2")
 debug_color = Color(0.9855, 0.0823161, 0.21759, 0.42)
 
-[node name="Sound" type="AudioStreamPlayer3D" parent="." index="4"]
+[node name="Sound" type="AudioStreamPlayer3D" parent="." index="4" unique_id=246860243]
 stream = ExtResource("2_qchmq")
 max_distance = 10.0

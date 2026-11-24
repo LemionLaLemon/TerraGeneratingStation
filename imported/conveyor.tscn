@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyo0obynbdbk1"]
+[gd_scene format=3 uid="uid://cyo0obynbdbk1"]
 
 [ext_resource type="PackedScene" uid="uid://dufj0uo6xgfq3" path="res://blender-models/conveyor.blend" id="1_wxiqe"]
 [ext_resource type="Script" uid="uid://bi02w40ulbfa0" path="res://imported/conveyor.gd" id="2_0omea"]
@@ -9,7 +9,7 @@ render_priority = 0
 shader = ExtResource("2_55fk0")
 shader_parameter/Speed = 0.0
 
-[node name="conveyor" instance=ExtResource("1_wxiqe")]
+[node name="conveyor" unique_id=632834566 instance=ExtResource("1_wxiqe")]
 script = ExtResource("2_0omea")
 
 [node name="Cube_004" parent="." index="2"]

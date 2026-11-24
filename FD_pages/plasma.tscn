@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://br75vuksfnd6k"]
+[gd_scene format=3 uid="uid://br75vuksfnd6k"]
 
 [ext_resource type="Script" uid="uid://bhfm6e557rjvl" path="res://FD_pages/plasma.gd" id="1_hn2de"]
 [ext_resource type="FontFile" uid="uid://dh04hvxxdo5mk" path="res://external/VCR_OSD_MONO_1.001.ttf" id="2_hltfn"]
 
-[node name="Plasma" type="Control"]
+[node name="Plasma" type="Control" unique_id=1608082744]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,13 +12,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hn2de")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=981986746]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=315389993]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
@@ -29,7 +29,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 24
 text = "PLASMA OVERVIEW"
 
-[node name="Label8" type="Label" parent="."]
+[node name="Label8" type="Label" parent="." unique_id=1988456606]
 layout_mode = 0
 offset_left = 320.0
 offset_top = 16.0
@@ -40,7 +40,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 24
 text = "VESSEL OVERVIEW"
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="." unique_id=1066902833]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 100.0
@@ -51,7 +51,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "CURRENT MA"
 
-[node name="Label5" type="Label" parent="."]
+[node name="Label5" type="Label" parent="." unique_id=432084033]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 124.0
@@ -62,7 +62,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "Q95 SAFETY"
 
-[node name="Label6" type="Label" parent="."]
+[node name="Label6" type="Label" parent="." unique_id=954764724]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 149.0
@@ -73,7 +73,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "SHIFT M"
 
-[node name="PLASMACURRENT" type="Label" parent="."]
+[node name="PLASMACURRENT" type="Label" parent="." unique_id=1066538680]
 layout_mode = 0
 offset_left = 189.0
 offset_top = 100.0
@@ -84,7 +84,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "0.01"
 
-[node name="Label3" type="Label" parent="."]
+[node name="Label3" type="Label" parent="." unique_id=748358514]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 170.0
@@ -96,7 +96,7 @@ theme_override_font_sizes/font_size = 18
 text = "CORE TEMPERATURE
 keV"
 
-[node name="Label7" type="Label" parent="."]
+[node name="Label7" type="Label" parent="." unique_id=1923458868]
 layout_mode = 0
 offset_left = 321.0
 offset_top = 76.0
@@ -107,7 +107,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "LOOP VOLTAGE"
 
-[node name="Label9" type="Label" parent="."]
+[node name="Label9" type="Label" parent="." unique_id=86268637]
 layout_mode = 0
 offset_left = 321.0
 offset_top = 54.0
@@ -118,7 +118,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "FUEL PRESSURE"
 
-[node name="PLASMAQ95" type="Label" parent="."]
+[node name="PLASMAQ95" type="Label" parent="." unique_id=162462662]
 layout_mode = 0
 offset_left = 189.0
 offset_top = 123.0
@@ -129,7 +129,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "0.0"
 
-[node name="PLASMASHIFT" type="Label" parent="."]
+[node name="PLASMASHIFT" type="Label" parent="." unique_id=1830158766]
 layout_mode = 0
 offset_left = 189.0
 offset_top = 147.0
@@ -140,7 +140,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "0.0"
 
-[node name="PLASMATEMPERATURE" type="Label" parent="."]
+[node name="PLASMATEMPERATURE" type="Label" parent="." unique_id=272570026]
 layout_mode = 0
 offset_left = 190.0
 offset_top = 170.0
@@ -151,7 +151,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "0.0"
 
-[node name="Label4" type="Label" parent="."]
+[node name="Label4" type="Label" parent="." unique_id=505826805]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 76.0
@@ -162,7 +162,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "PLASMA TIME"
 
-[node name="PLASMATIME" type="Label" parent="."]
+[node name="PLASMATIME" type="Label" parent="." unique_id=1575886417]
 layout_mode = 0
 offset_left = 189.0
 offset_top = 76.0
@@ -173,7 +173,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "0H 0M 0S"
 
-[node name="Label10" type="Label" parent="."]
+[node name="Label10" type="Label" parent="." unique_id=174676696]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 54.0
@@ -184,7 +184,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "LAST SHOT TIME"
 
-[node name="LASTSHOTTIME" type="Label" parent="."]
+[node name="LASTSHOTTIME" type="Label" parent="." unique_id=1481776512]
 layout_mode = 0
 offset_left = 189.0
 offset_top = 54.0
@@ -195,7 +195,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "0H 0M 0S"
 
-[node name="VESSELPRESSURE" type="Label" parent="."]
+[node name="VESSELPRESSURE" type="Label" parent="." unique_id=2082242491]
 layout_mode = 0
 offset_left = 513.0
 offset_top = 53.0
@@ -206,7 +206,7 @@ theme_override_fonts/font = ExtResource("2_hltfn")
 theme_override_font_sizes/font_size = 18
 text = "0H 0M 0S"
 
-[node name="VESSELLOOPVOLTAGE" type="Label" parent="."]
+[node name="VESSELLOOPVOLTAGE" type="Label" parent="." unique_id=1420890869]
 layout_mode = 0
 offset_left = 513.0
 offset_top = 75.0

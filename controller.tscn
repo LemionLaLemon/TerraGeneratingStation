@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfo266ycweh1b"]
+[gd_scene format=3 uid="uid://dfo266ycweh1b"]
 
 [ext_resource type="PackedScene" uid="uid://c7fjnre8ichc" path="res://blender-models/controller.blend" id="1_jldtq"]
 [ext_resource type="Script" uid="uid://cl22422778uj5" path="res://controller.gd" id="2_n1geg"]
@@ -34,7 +34,7 @@ albedo_texture = SubResource("ViewportTexture_my0pc")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dd4ha"]
 bg_color = Color(0.905882, 0.905882, 0.905882, 1)
 
-[node name="controller" instance=ExtResource("1_jldtq")]
+[node name="controller" unique_id=751792108 instance=ExtResource("1_jldtq")]
 script = ExtResource("2_n1geg")
 previewActual = 0.0
 
@@ -52,13 +52,13 @@ surface_material_override/1 = SubResource("StandardMaterial3D_xsijp")
 surface_material_override/2 = SubResource("StandardMaterial3D_8borx")
 
 [node name="DEMNEEDLE" parent="." index="4"]
-transform = Transform3D(0.8, 0, 0, 0, 0.721466, 0.345669, 0, -0.345669, 0.721466, 0.00966216, -0.025, -0.009)
+transform = Transform3D(0.8, 0, 0, 0, 0.7214661, 0.34566867, 0, -0.34566867, 0.7214661, 0.00966216, -0.025, -0.009)
 
-[node name="DemUnitView" type="SubViewport" parent="." index="9"]
+[node name="DemUnitView" type="SubViewport" parent="." index="9" unique_id=1873382450]
 size = Vector2i(53, 1024)
 render_target_update_mode = 1
 
-[node name="Label" type="Label" parent="DemUnitView" index="0"]
+[node name="Label" type="Label" parent="DemUnitView" index="0" unique_id=16190196]
 custom_minimum_size = Vector2(53, 1024)
 offset_right = 53.0
 offset_bottom = 1024.0
@@ -77,11 +77,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="ActUnitView" type="SubViewport" parent="." index="10"]
+[node name="ActUnitView" type="SubViewport" parent="." index="10" unique_id=1358127527]
 size = Vector2i(53, 1024)
 render_target_update_mode = 1
 
-[node name="Label" type="Label" parent="ActUnitView" index="0"]
+[node name="Label" type="Label" parent="ActUnitView" index="0" unique_id=1401542509]
 custom_minimum_size = Vector2(53, 1024)
 offset_right = 53.0
 offset_bottom = 1024.0
@@ -100,17 +100,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="ScaleView" type="SubViewport" parent="." index="11"]
+[node name="ScaleView" type="SubViewport" parent="." index="11" unique_id=1604741204]
 size = Vector2i(144, 1024)
 render_target_update_mode = 1
 
-[node name="Paper" type="ColorRect" parent="ScaleView" index="0"]
+[node name="Paper" type="ColorRect" parent="ScaleView" index="0" unique_id=821849666]
 custom_minimum_size = Vector2(144, 1024)
 offset_right = 144.0
 offset_bottom = 1024.0
 color = Color(0.905882, 0.905882, 0.905882, 1)
 
-[node name="Ticks" type="ColorRect" parent="ScaleView" index="1"]
+[node name="Ticks" type="ColorRect" parent="ScaleView" index="1" unique_id=896901348]
 custom_minimum_size = Vector2(144, 1024)
 anchors_preset = 15
 anchor_right = 1.0

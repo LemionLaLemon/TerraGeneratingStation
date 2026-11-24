@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1h3bowed7cw3"]
+[gd_scene format=3 uid="uid://c1h3bowed7cw3"]
 
 [ext_resource type="PackedScene" uid="uid://cexeetbktobn4" path="res://blender-models/16mm_round_pushbutton.blend" id="1_kh5aw"]
 [ext_resource type="Script" uid="uid://t2awxgxldmuu" path="res://16_mm_round_pushbutton_ann.gd" id="2_giqvy"]
@@ -8,16 +8,16 @@
 height = 0.389526
 radius = 0.299316
 
-[node name="16mm_round_pushbutton" instance=ExtResource("1_kh5aw")]
+[node name="16mm_round_pushbutton" unique_id=541616686 instance=ExtResource("1_kh5aw")]
 script = ExtResource("2_giqvy")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1472185357]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=97122018]
 transform = Transform3D(0.038, 0, 0, 0, 0.038, 0, 0, 0, 0.038, 0, 0.00760696, 0)
 shape = SubResource("CylinderShape3D_stxlm")
 debug_color = Color(0.9855, 0.0823161, 0.21759, 0.42)
 
-[node name="Sound" type="AudioStreamPlayer3D" parent="." index="3"]
+[node name="Sound" type="AudioStreamPlayer3D" parent="." index="3" unique_id=9517078]
 stream = ExtResource("3_wqo1g")
 max_distance = 10.0

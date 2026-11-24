@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d126fnwgvrbxc"]
+[gd_scene format=3 uid="uid://d126fnwgvrbxc"]
 
 [ext_resource type="PackedScene" uid="uid://d27y7mot26yry" path="res://blender-models/16mm_pushbutton.blend" id="1_tnb3m"]
 [ext_resource type="Script" uid="uid://cy88kj80agg03" path="res://16_mm_pushbutton.gd" id="2_fa0u6"]
@@ -11,19 +11,19 @@ emission = Color(1, 1, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jv83h"]
 size = Vector3(0.5, 0.4, 0.5)
 
-[node name="16mm_pushbutton" instance=ExtResource("1_tnb3m")]
+[node name="16mm_pushbutton" unique_id=1427436941 instance=ExtResource("1_tnb3m")]
 script = ExtResource("2_fa0u6")
 
 [node name="Solid" parent="." index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_fa0u6")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="3" unique_id=241498448]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=509061671]
 transform = Transform3D(0.038, 0, 0, 0, 0.038, 0, 0, 0, 0.038, 0, 0.0076, 0)
 shape = SubResource("BoxShape3D_jv83h")
 debug_color = Color(0.9855, 0.0823161, 0.21759, 0.42)
 
-[node name="Sound" type="AudioStreamPlayer3D" parent="." index="4"]
+[node name="Sound" type="AudioStreamPlayer3D" parent="." index="4" unique_id=515820983]
 stream = ExtResource("3_fa0u6")
 max_distance = 10.0

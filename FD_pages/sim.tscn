@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwyey88qgvkhg"]
+[gd_scene format=3 uid="uid://cwyey88qgvkhg"]
 
 [ext_resource type="Script" uid="uid://yolephro78k7" path="res://FD_pages/sim.gd" id="1_7qrl6"]
 [ext_resource type="FontFile" uid="uid://dh04hvxxdo5mk" path="res://external/VCR_OSD_MONO_1.001.ttf" id="3_q48s4"]
 
-[node name="Sim" type="Control"]
+[node name="Sim" type="Control" unique_id=509474369]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,13 +12,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7qrl6")
 
-[node name="Background2" type="ColorRect" parent="."]
+[node name="Background2" type="ColorRect" parent="." unique_id=375280309]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label10" type="Label" parent="."]
+[node name="Label10" type="Label" parent="." unique_id=1254555891]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
@@ -29,7 +29,7 @@ theme_override_fonts/font = ExtResource("3_q48s4")
 theme_override_font_sizes/font_size = 24
 text = "SIMULATION CONTROLS OVERVIEW"
 
-[node name="Label11" type="Label" parent="."]
+[node name="Label11" type="Label" parent="." unique_id=1635422845]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 77.0
@@ -40,7 +40,7 @@ theme_override_fonts/font = ExtResource("3_q48s4")
 theme_override_font_sizes/font_size = 18
 text = "SIMULATION TIMESTEP SECS"
 
-[node name="TIMESTEP" type="Label" parent="."]
+[node name="TIMESTEP" type="Label" parent="." unique_id=576351363]
 layout_mode = 0
 offset_left = 315.0
 offset_top = 77.0
@@ -51,7 +51,7 @@ theme_override_fonts/font = ExtResource("3_q48s4")
 theme_override_font_sizes/font_size = 18
 text = "0.01"
 
-[node name="Label12" type="Label" parent="."]
+[node name="Label12" type="Label" parent="." unique_id=239686649]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 100.0
@@ -62,7 +62,7 @@ theme_override_fonts/font = ExtResource("3_q48s4")
 theme_override_font_sizes/font_size = 18
 text = "GRID BLACKOUT"
 
-[node name="GRIDBO" type="Label" parent="."]
+[node name="GRIDBO" type="Label" parent="." unique_id=1481880171]
 layout_mode = 0
 offset_left = 315.0
 offset_top = 100.0
@@ -73,7 +73,7 @@ theme_override_fonts/font = ExtResource("3_q48s4")
 theme_override_font_sizes/font_size = 18
 text = "NOT ACTIVE"
 
-[node name="Label13" type="Label" parent="."]
+[node name="Label13" type="Label" parent="." unique_id=277072978]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 53.0
@@ -84,7 +84,7 @@ theme_override_fonts/font = ExtResource("3_q48s4")
 theme_override_font_sizes/font_size = 18
 text = "SIMULATION TIME"
 
-[node name="SIMTIME" type="Label" parent="."]
+[node name="SIMTIME" type="Label" parent="." unique_id=2044353177]
 layout_mode = 0
 offset_left = 315.0
 offset_top = 53.0

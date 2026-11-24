@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgkls7e0p0a0n"]
+[gd_scene format=3 uid="uid://cgkls7e0p0a0n"]
 
 [ext_resource type="Script" uid="uid://dil1q6uw14b7o" path="res://FD_pages/elec2.gd" id="1_sk5s8"]
 [ext_resource type="Texture2D" uid="uid://ckwpd1k8xhbpq" path="res://imported/FD-ELEC2.png" id="2_sk5s8"]
 [ext_resource type="FontFile" uid="uid://dh04hvxxdo5mk" path="res://external/VCR_OSD_MONO_1.001.ttf" id="3_h05by"]
 [ext_resource type="Texture2D" uid="uid://db4a7obf4spcl" path="res://imported/CLOSED.png" id="4_81i5m"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1693890342]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
@@ -13,13 +13,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_sk5s8")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=756975239]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
 texture = ExtResource("2_sk5s8")
 
-[node name="TR_S_VOLTS" type="Label" parent="."]
+[node name="TR_S_VOLTS" type="Label" parent="." unique_id=1376089900]
 layout_mode = 0
 offset_left = 420.0
 offset_top = 93.0
@@ -31,7 +31,7 @@ theme_override_font_sizes/font_size = 12
 text = "1600.0"
 horizontal_alignment = 2
 
-[node name="TR_S_LOAD" type="Label" parent="."]
+[node name="TR_S_LOAD" type="Label" parent="." unique_id=422126128]
 layout_mode = 0
 offset_left = 420.0
 offset_top = 105.0
@@ -43,7 +43,7 @@ theme_override_font_sizes/font_size = 12
 text = "1600.0"
 horizontal_alignment = 2
 
-[node name="TR_S_FREQ" type="Label" parent="."]
+[node name="TR_S_FREQ" type="Label" parent="." unique_id=1761999257]
 layout_mode = 0
 offset_left = 420.0
 offset_top = 117.0
@@ -55,7 +55,7 @@ theme_override_font_sizes/font_size = 12
 text = "1600.0"
 horizontal_alignment = 2
 
-[node name="BUS_A_VOLTS" type="Label" parent="."]
+[node name="BUS_A_VOLTS" type="Label" parent="." unique_id=468899329]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 234.0
@@ -67,7 +67,7 @@ theme_override_font_sizes/font_size = 12
 text = "1600.0"
 horizontal_alignment = 2
 
-[node name="BUS_A_LOAD" type="Label" parent="."]
+[node name="BUS_A_LOAD" type="Label" parent="." unique_id=1616914940]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 246.0
@@ -79,7 +79,7 @@ theme_override_font_sizes/font_size = 12
 text = "1600.0"
 horizontal_alignment = 2
 
-[node name="BUS_A_FREQ" type="Label" parent="."]
+[node name="BUS_A_FREQ" type="Label" parent="." unique_id=1310705627]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 258.0
@@ -91,7 +91,7 @@ theme_override_font_sizes/font_size = 12
 text = "1600.0"
 horizontal_alignment = 2
 
-[node name="BUS_B_VOLTS" type="Label" parent="."]
+[node name="BUS_B_VOLTS" type="Label" parent="." unique_id=1409279518]
 layout_mode = 0
 offset_left = 396.0
 offset_top = 234.0
@@ -103,7 +103,7 @@ theme_override_font_sizes/font_size = 12
 text = "1600.0"
 horizontal_alignment = 2
 
-[node name="BUS_B_LOAD" type="Label" parent="."]
+[node name="BUS_B_LOAD" type="Label" parent="." unique_id=772363098]
 layout_mode = 0
 offset_left = 396.0
 offset_top = 246.0
@@ -115,7 +115,7 @@ theme_override_font_sizes/font_size = 12
 text = "1600.0"
 horizontal_alignment = 2
 
-[node name="BUS_B_FREQ" type="Label" parent="."]
+[node name="BUS_B_FREQ" type="Label" parent="." unique_id=1293899010]
 layout_mode = 0
 offset_left = 396.0
 offset_top = 258.0
@@ -127,7 +127,7 @@ theme_override_font_sizes/font_size = 12
 text = "1600.0"
 horizontal_alignment = 2
 
-[node name="CB_TR_S_A" type="TextureRect" parent="."]
+[node name="CB_TR_S_A" type="TextureRect" parent="." unique_id=1325680550]
 layout_mode = 0
 offset_left = 201.0
 offset_top = 177.0
@@ -135,7 +135,7 @@ offset_right = 249.0
 offset_bottom = 219.0
 texture = ExtResource("4_81i5m")
 
-[node name="CB_TR_S_B" type="TextureRect" parent="."]
+[node name="CB_TR_S_B" type="TextureRect" parent="." unique_id=575520264]
 layout_mode = 0
 offset_left = 505.0
 offset_top = 177.0

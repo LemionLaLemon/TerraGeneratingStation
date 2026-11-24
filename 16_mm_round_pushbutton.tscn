@@ -1,29 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://bouyo1wsu0i16"]
+[gd_scene format=3 uid="uid://bouyo1wsu0i16"]
 
 [ext_resource type="PackedScene" uid="uid://cexeetbktobn4" path="res://blender-models/16mm_round_pushbutton.blend" id="1_64asx"]
 [ext_resource type="AudioStream" uid="uid://dnjpj17ocorhy" path="res://sounds/16mm_pushbutton.mp3" id="2_nke2r"]
 [ext_resource type="Script" uid="uid://c5oxnw2p23xv8" path="res://16_mm_round_pushbutton.gd" id="2_stxlm"]
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_3js4g"]
-albedo_color = Color(0.172549, 0.172549, 0.172549, 1)
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_nke2r"]
+albedo_color = Color(0.17254902, 0.17254902, 0.17254902, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nke2r"]
 height = 0.389526
 radius = 0.299316
 
-[node name="16mm_round_pushbutton" instance=ExtResource("1_64asx")]
+[node name="16mm_round_pushbutton" unique_id=1554447329 instance=ExtResource("1_64asx")]
 script = ExtResource("2_stxlm")
 
 [node name="Top" parent="." index="1"]
-surface_material_override/0 = SubResource("ORMMaterial3D_3js4g")
+surface_material_override/0 = SubResource("ORMMaterial3D_nke2r")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=911731583]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2144520309]
 transform = Transform3D(0.038, 0, 0, 0, 0.038, 0, 0, 0, 0.038, 0, 0.00760696, 0)
 shape = SubResource("CylinderShape3D_nke2r")
 debug_color = Color(0.9855, 0.0823161, 0.21759, 0.42)
 
-[node name="Sound" type="AudioStreamPlayer3D" parent="." index="3"]
+[node name="Sound" type="AudioStreamPlayer3D" parent="." index="3" unique_id=86542688]
 stream = ExtResource("2_nke2r")
 max_distance = 10.0
